@@ -1,0 +1,40 @@
+﻿keys;en;es
+SETTINGS_DISPLAY;Display;Pantalla
+SETTINGS_CONTROLS;Controls;Controles
+BUTTON_RETURN;Return;Regresar
+BUTTON_START;Start;Iniciar
+BUTTON_RESTART;Restart;Reiniciar
+BUTTON_EXIT;Exit;Salir
+BUTTON_OPTIONS;Options;Opciones
+BUTTON_MENU;Back to Menu;Volver al Menú
+BUTTON_DISPLAY;Display;Pantalla
+BUTTON_RESUME;Resume;Reanudar
+BUTTON_AUDIO;Audio;Audio
+TAG_CHARACTER;Character select;Elegir personaje
+TAG_PAUSED;Paused;Pausado
+CLASS_RANGER;Ranger;Arquero
+CLASS_KNIGHT;Knight;Soldado
+CLASS_MAGE;Mage;Mago
+TUTO_01;#;#
+TUTO_02;#;#
+TUTO_03_RANGER;Hold  #;Carga tu ataque con #
+TUTO_03_KNIGHT;#  to  attack;# para atacar
+TUTO_04_RANGER;#  to  roll;# para esquivar
+TUTO_04_KNIGHT;#  to  block;# para bloquear
+TUTO_05;Drop;Cae
+TUTO_06;Jump;Salta
+TUTO_07;Grab with #;Agarra con #
+TUTO_08;Release with #;Suelta con #
+TUTO_09;Interact with #;Pulsa #
+TAG_ATTACK;Attack;Atacar
+TAG_INTERACT;Interact;Interactuar
+TAG_UTILITY;Utility Skill;Habilidad Secundaria
+TAG_JUMP;Jump;Saltar
+TAG_UP;Move Up;Moverse hacia Arriba
+TAG_LEFT;Move Left;Moverse a la Izquierda
+TAG_DOWN;Move Down;Moverse hacia Abajo
+TAG_RIGHT;Move Right;Moverse a la Derecha
+THANKS;Thanks for playing my demo :);Gracias por jugar mi demo :)
+TAG_BRIGHTNESS;Brightness;Brillo
+SILVER_FEATHER;Silver Feather;Pluma de Plata
+SILVER_FEATHER_DESC;Critical hits on well-timed attacks;Daño crítico en ataques sincronizados

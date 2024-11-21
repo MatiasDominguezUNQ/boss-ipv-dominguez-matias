@@ -1,0 +1,246 @@
+[gd_scene load_steps=14 format=3 uid="uid://graiqq5tkbl4"]
+
+[ext_resource type="Texture2D" uid="uid://c0et1v3y3r67c" path="res://assets/textures/weapon/arrow.png" id="2_4d54x"]
+[ext_resource type="Script" path="res://src/entities/player/arrow.gd" id="2_36ven"]
+[ext_resource type="PackedScene" uid="uid://df6v77blclpmp" path="res://src/environment/effects/arrow_hit_vfx.tscn" id="3_3rsfl"]
+[ext_resource type="AudioStream" uid="uid://b7uobwxw0mamu" path="res://assets/sound/sfx/attacks/bow/arrow_deflect.mp3" id="4_r1e4f"]
+[ext_resource type="AudioStream" uid="uid://h5idfym7boul" path="res://assets/sound/sfx/attacks/bow/arrow_hit.mp3" id="7_t843l"]
+[ext_resource type="Shader" path="res://src/entities/player/ranger/Bow.gdshader" id="8_qpm1c"]
+
+[sub_resource type="CircleShape2D" id="1"]
+radius = 1.5
+
+[sub_resource type="Animation" id="2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [ExtResource("2_4d54x")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-6, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.04, 0.04)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:material:shader_parameter/enable_silver")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="3"]
+resource_name = "fire_loop"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_4d54x")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-6, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="4"]
+resource_name = "fire_start"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_4d54x")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-6, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:material:shader_parameter/enable_silver")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gd2lm"]
+_data = {
+"RESET": SubResource("2"),
+"fire_loop": SubResource("3"),
+"fire_start": SubResource("4")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vxc1r"]
+shader = ExtResource("8_qpm1c")
+shader_parameter/enable_silver = false
+shader_parameter/silver_color = Vector4(2, 2, 2, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7gqhl"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(0.01, 1.5, 1)
+emission_shape = 1
+emission_sphere_radius = 2.94
+direction = Vector3(-1, 0, 0)
+spread = 17.727
+flatness = 1.0
+initial_velocity_max = 85.47
+gravity = Vector3(0, 0, 0)
+
+[node name="Arrow" type="CharacterBody2D"]
+z_as_relative = false
+collision_layer = 0
+collision_mask = 101
+script = ExtResource("2_36ven")
+VELOCITY = 500.0
+vfx_hit = ExtResource("3_3rsfl")
+hit_sfx = ExtResource("7_t843l")
+bounce_sfx = ExtResource("4_r1e4f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("1")
+
+[node name="LifetimeTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="ProjectileAnimations" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gd2lm")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_vxc1r")
+position = Vector2(-6, 0)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("2_4d54x")
+
+[node name="ArrowSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_t843l")
+volume_db = -6.804
+pitch_scale = 0.74
+max_distance = 500.0
+attenuation = 1.18921
+bus = &"CritBowSFX"
+
+[node name="HitBox" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("1")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+process_material = SubResource("ParticleProcessMaterial_7gqhl")
+lifetime = 0.1
+interp_to_end = 0.149
+trail_enabled = true
+trail_lifetime = 1.38
+trail_section_subdivisions = 8
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_hitbox_area_entered"]

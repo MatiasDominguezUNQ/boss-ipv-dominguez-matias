@@ -1,0 +1,195 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2fo2avimx260"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_wuhq6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_etir5"]
+size = Vector2(11.25, 10.75)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_7half"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_08fbn"]
+radius = 4.0
+height = 22.0
+
+[node name="Rope" type="StaticBody2D"]
+
+[node name="RopeHolder" type="Sprite2D" parent="."]
+modulate = Color(0.16446, 0.16446, 0.16446, 1)
+position = Vector2(-4.47035e-07, 1.10269e-06)
+scale = Vector2(16, 16)
+texture = SubResource("CanvasTexture_wuhq6")
+
+[node name="RopeHolderBody" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_etir5")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(0, 7)
+scale = Vector2(0.2, 0.2)
+node_a = NodePath("..")
+node_b = NodePath("../Segments/Segment")
+bias = 0.9
+angular_limit_enabled = true
+angular_limit_lower = -0.261799
+angular_limit_upper = 0.261799
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="."]
+position = Vector2(9.53674e-07, 28)
+scale = Vector2(0.2, 0.2)
+node_a = NodePath("../Segments/Segment")
+node_b = NodePath("../Segments/Segment2")
+bias = 0.9
+angular_limit_enabled = true
+angular_limit_lower = -0.261799
+angular_limit_upper = 0.261799
+
+[node name="PinJoint2D3" type="PinJoint2D" parent="."]
+position = Vector2(0, 48)
+scale = Vector2(0.2, 0.2)
+node_a = NodePath("../Segments/Segment2")
+node_b = NodePath("../Segments/Segment3")
+bias = 0.9
+angular_limit_enabled = true
+angular_limit_lower = -0.261799
+angular_limit_upper = 0.261799
+
+[node name="PinJoint2D4" type="PinJoint2D" parent="."]
+position = Vector2(0, 68)
+scale = Vector2(0.2, 0.2)
+node_a = NodePath("../Segments/Segment3")
+node_b = NodePath("../Segments/Segment4")
+bias = 0.9
+angular_limit_enabled = true
+angular_limit_lower = -0.261799
+angular_limit_upper = 0.261799
+
+[node name="PinJoint2D5" type="PinJoint2D" parent="."]
+position = Vector2(0, 89)
+scale = Vector2(0.2, 0.2)
+node_a = NodePath("../Segments/Segment4")
+node_b = NodePath("../Segments/Segment5")
+bias = 0.9
+angular_limit_enabled = true
+angular_limit_lower = -0.261799
+angular_limit_upper = 0.261799
+
+[node name="PinJoint2D6" type="PinJoint2D" parent="."]
+position = Vector2(0, 109)
+scale = Vector2(0.2, 0.2)
+node_a = NodePath("../Segments/Segment5")
+node_b = NodePath("../Segments/Segment6")
+bias = 0.9
+angular_limit_enabled = true
+angular_limit_lower = -0.261799
+angular_limit_upper = 0.261799
+
+[node name="PinJoint2D7" type="PinJoint2D" parent="."]
+position = Vector2(0, 131)
+scale = Vector2(0.2, 0.2)
+node_a = NodePath("../Segments/Segment6")
+node_b = NodePath("../Segments/Segment7")
+bias = 0.9
+angular_limit_enabled = true
+angular_limit_lower = -0.261799
+angular_limit_upper = 0.261799
+
+[node name="Segments" type="Node2D" parent="."]
+
+[node name="Segment" type="RigidBody2D" parent="Segments"]
+position = Vector2(0, 17)
+collision_layer = 8
+mass = 2.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Segments/Segment"]
+modulate = Color(0.342751, 0.240294, 0.0141638, 1)
+position = Vector2(0, 1.07288e-06)
+scale = Vector2(8, 22)
+texture = SubResource("CanvasTexture_7half")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Segments/Segment"]
+shape = SubResource("CapsuleShape2D_08fbn")
+
+[node name="Segment2" type="RigidBody2D" parent="Segments"]
+position = Vector2(0, 38)
+collision_layer = 8
+mass = 2.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Segments/Segment2"]
+modulate = Color(0.342751, 0.240294, 0.0141638, 1)
+position = Vector2(0, 1.07288e-06)
+scale = Vector2(8, 22)
+texture = SubResource("CanvasTexture_7half")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Segments/Segment2"]
+shape = SubResource("CapsuleShape2D_08fbn")
+
+[node name="Segment3" type="RigidBody2D" parent="Segments"]
+position = Vector2(0, 58)
+collision_layer = 8
+mass = 2.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Segments/Segment3"]
+modulate = Color(0.342751, 0.240294, 0.0141638, 1)
+scale = Vector2(8, 22)
+texture = SubResource("CanvasTexture_7half")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Segments/Segment3"]
+shape = SubResource("CapsuleShape2D_08fbn")
+
+[node name="Segment4" type="RigidBody2D" parent="Segments"]
+position = Vector2(0, 79)
+collision_layer = 8
+mass = 2.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Segments/Segment4"]
+modulate = Color(0.342751, 0.240294, 0.0141638, 1)
+scale = Vector2(8, 22)
+texture = SubResource("CanvasTexture_7half")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Segments/Segment4"]
+shape = SubResource("CapsuleShape2D_08fbn")
+
+[node name="Segment5" type="RigidBody2D" parent="Segments"]
+position = Vector2(0, 99)
+collision_layer = 8
+mass = 2.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Segments/Segment5"]
+modulate = Color(0.342751, 0.240294, 0.0141638, 1)
+scale = Vector2(8, 22)
+texture = SubResource("CanvasTexture_7half")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Segments/Segment5"]
+shape = SubResource("CapsuleShape2D_08fbn")
+
+[node name="Segment6" type="RigidBody2D" parent="Segments"]
+position = Vector2(0, 120)
+collision_layer = 8
+mass = 2.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Segments/Segment6"]
+modulate = Color(0.342751, 0.240294, 0.0141638, 1)
+scale = Vector2(8, 22)
+texture = SubResource("CanvasTexture_7half")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Segments/Segment6"]
+shape = SubResource("CapsuleShape2D_08fbn")
+
+[node name="Segment7" type="RigidBody2D" parent="Segments"]
+position = Vector2(0, 142)
+collision_layer = 8
+mass = 2.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Segments/Segment7"]
+modulate = Color(0.342751, 0.240294, 0.0141638, 1)
+scale = Vector2(8, 22)
+texture = SubResource("CanvasTexture_7half")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Segments/Segment7"]
+shape = SubResource("CapsuleShape2D_08fbn")

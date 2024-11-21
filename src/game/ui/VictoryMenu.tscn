@@ -1,0 +1,98 @@
+[gd_scene load_steps=5 format=3 uid="uid://bdbmaq3bgtw6o"]
+
+[ext_resource type="AudioStream" uid="uid://b485vsqlu714c" path="res://assets/sound/UI/Minimalist7.ogg" id="2_bxeft"]
+[ext_resource type="Script" path="res://src/game/ui/VictoryMenu.gd" id="3"]
+[ext_resource type="AudioStream" uid="uid://drvygf7nu8s7v" path="res://assets/sound/UI/Minimalist10.ogg" id="3_4c22m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y556t"]
+bg_color = Color(0.246388, 0.180123, 0.0824706, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.0796452, 0.153943, 0.0391678, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 4
+anti_aliasing = false
+
+[node name="VictoryMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3")
+focus_sfx = ExtResource("2_bxeft")
+click_sfx = ExtResource("3_4c22m")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.25098)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 250.0
+offset_top = 200.0
+offset_right = -250.0
+offset_bottom = -200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y556t")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -32.0
+offset_top = 15.0
+offset_right = 52.0
+offset_bottom = 38.0
+grow_horizontal = 2
+text = "Nivel Completado"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.5
+offset_top = -33.0
+offset_right = 78.5
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ReplayButton" type="Button" parent="Panel/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+text = "Siguiente"
+
+[node name="ReturnButton" type="Button" parent="Panel/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+text = "BUTTON_MENU"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[connection signal="mouse_entered" from="Panel/VBoxContainer/ReplayButton" to="." method="on_focus"]
+[connection signal="pressed" from="Panel/VBoxContainer/ReplayButton" to="." method="on_click"]
+[connection signal="pressed" from="Panel/VBoxContainer/ReplayButton" to="." method="_on_NextButton_pressed"]
+[connection signal="mouse_entered" from="Panel/VBoxContainer/ReturnButton" to="." method="on_focus"]
+[connection signal="pressed" from="Panel/VBoxContainer/ReturnButton" to="." method="on_click"]
+[connection signal="pressed" from="Panel/VBoxContainer/ReturnButton" to="." method="_on_ReturnButton_pressed"]

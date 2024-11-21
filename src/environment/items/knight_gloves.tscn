@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://df2y51h717cpi"]
+
+[ext_resource type="PackedScene" uid="uid://bgkfoxwgnacsj" path="res://src/environment/abstract_item/item.tscn" id="1_e5n2n"]
+[ext_resource type="Texture2D" uid="uid://b8yg3arw45i4n" path="res://assets/textures/items/knight_gloves.png" id="2_ijfl3"]
+
+[node name="KnightGloves" instance=ExtResource("1_e5n2n")]
+item_name = "Guanteletes"
+item_type = 2
+effects = {
+"Def": 2,
+"Dex": 1,
+"Int": 0,
+"Spd": 0,
+"Str": 4
+}
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_ijfl3")

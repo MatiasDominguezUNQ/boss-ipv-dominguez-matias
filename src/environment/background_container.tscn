@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://2aw1jw6djw5c"]
+
+[ext_resource type="Texture2D" uid="uid://cg7jcptnd0fp5" path="res://assets/textures/background/Space Background.png" id="1_3g8jt"]
+
+[node name="BackgroundContainer" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground"]
+position = Vector2(331, 303)
+scale = Vector2(3.965, 3.914)
+texture = ExtResource("1_3g8jt")

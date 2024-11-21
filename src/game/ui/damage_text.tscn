@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cevb4peuvfe02"]
+
+[ext_resource type="Script" path="res://src/game/ui/damage_text.gd" id="1_3n6n8"]
+
+[node name="DamageText" type="Label"]
+modulate = Color(0.941176, 0.654902, 0, 1)
+z_index = 999
+offset_right = 40.0
+offset_bottom = 23.0
+text = "32"
+script = ExtResource("1_3n6n8")

@@ -1,0 +1,256 @@
+[gd_scene load_steps=13 format=3 uid="uid://b1nwhde3tii"]
+
+[ext_resource type="Script" path="res://src/game/ui/inventory/inventory_display.gd" id="1_5n2ob"]
+[ext_resource type="PackedScene" uid="uid://dho0tfgj06dni" path="res://src/game/ui/inventory/i_slot_gui.tscn" id="2_n7gkl"]
+[ext_resource type="Script" path="res://src/game/ui/inventory/draggable_control.gd" id="2_oo3ii"]
+[ext_resource type="PackedScene" uid="uid://xsalxs0jjtgk" path="res://src/game/ui/HealthBar.tscn" id="3_qb3th"]
+[ext_resource type="Script" path="res://src/game/ui/xp_bar.gd" id="4_4ccnd"]
+[ext_resource type="Texture2D" uid="uid://b3pfl37m1dd6w" path="res://assets/textures/items/head_icon.png" id="6_6285l"]
+[ext_resource type="Texture2D" uid="uid://2e8sc08dv4wk" path="res://assets/textures/items/chest_icon.png" id="7_xjkdl"]
+[ext_resource type="Texture2D" uid="uid://bkcj2ugsen20q" path="res://assets/textures/items/hands_icon.png" id="8_5sfkm"]
+[ext_resource type="Texture2D" uid="uid://nv5uiot8rf77" path="res://assets/textures/items/feet_icon.png" id="9_div33"]
+[ext_resource type="Texture2D" uid="uid://s5hsy7ok25e6" path="res://assets/textures/items/accesory_icon.png" id="10_j0rdl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dsb6q"]
+bg_color = Color(0.145266, 0.145266, 0.145266, 0.576471)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.334696, 0.225395, 0.0971132, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7xy6x"]
+bg_color = Color(0.830246, 0.639393, 7.70092e-07, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[node name="InventoryDisplay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_5n2ob")
+
+[node name="MainPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.089
+anchor_top = 0.383
+anchor_right = 0.377
+anchor_bottom = 0.855
+offset_left = -0.200005
+offset_top = -28.8
+offset_right = -0.600006
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_dsb6q")
+script = ExtResource("2_oo3ii")
+
+[node name="HealthBar" parent="MainPanel" instance=ExtResource("3_qb3th")]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 175.07
+offset_right = 190.0
+offset_bottom = 185.07
+theme_override_styles/fill = SubResource("StyleBoxFlat_7xy6x")
+script = ExtResource("4_4ccnd")
+
+[node name="Level" type="Label" parent="MainPanel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 48.455
+offset_top = 151.455
+offset_right = 88.455
+offset_bottom = 174.455
+text = "Lvl: "
+
+[node name="Stored" type="GridContainer" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -88.0
+offset_top = -152.605
+offset_right = 88.0
+offset_bottom = -12.605
+grow_horizontal = 2
+grow_vertical = 0
+columns = 5
+
+[node name="Panel" parent="MainPanel/Stored" instance=ExtResource("2_n7gkl")]
+layout_mode = 2
+
+[node name="Panel2" parent="MainPanel/Stored" instance=ExtResource("2_n7gkl")]
+layout_mode = 2
+
+[node name="Panel3" parent="MainPanel/Stored" instance=ExtResource("2_n7gkl")]
+layout_mode = 2
+
+[node name="Panel4" parent="MainPanel/Stored" instance=ExtResource("2_n7gkl")]
+layout_mode = 2
+
+[node name="Panel5" parent="MainPanel/Stored" instance=ExtResource("2_n7gkl")]
+layout_mode = 2
+
+[node name="Panel6" parent="MainPanel/Stored" instance=ExtResource("2_n7gkl")]
+layout_mode = 2
+
+[node name="Panel7" parent="MainPanel/Stored" instance=ExtResource("2_n7gkl")]
+layout_mode = 2
+
+[node name="Panel8" parent="MainPanel/Stored" instance=ExtResource("2_n7gkl")]
+layout_mode = 2
+
+[node name="Panel9" parent="MainPanel/Stored" instance=ExtResource("2_n7gkl")]
+layout_mode = 2
+
+[node name="Panel10" parent="MainPanel/Stored" instance=ExtResource("2_n7gkl")]
+layout_mode = 2
+
+[node name="Panel11" parent="MainPanel/Stored" instance=ExtResource("2_n7gkl")]
+layout_mode = 2
+
+[node name="Panel12" parent="MainPanel/Stored" instance=ExtResource("2_n7gkl")]
+layout_mode = 2
+
+[node name="Panel13" parent="MainPanel/Stored" instance=ExtResource("2_n7gkl")]
+layout_mode = 2
+
+[node name="Panel14" parent="MainPanel/Stored" instance=ExtResource("2_n7gkl")]
+layout_mode = 2
+
+[node name="Panel15" parent="MainPanel/Stored" instance=ExtResource("2_n7gkl")]
+layout_mode = 2
+
+[node name="Panel16" parent="MainPanel/Stored" instance=ExtResource("2_n7gkl")]
+layout_mode = 2
+
+[node name="Panel17" parent="MainPanel/Stored" instance=ExtResource("2_n7gkl")]
+layout_mode = 2
+
+[node name="Panel18" parent="MainPanel/Stored" instance=ExtResource("2_n7gkl")]
+layout_mode = 2
+
+[node name="Panel19" parent="MainPanel/Stored" instance=ExtResource("2_n7gkl")]
+layout_mode = 2
+
+[node name="Panel20" parent="MainPanel/Stored" instance=ExtResource("2_n7gkl")]
+layout_mode = 2
+
+[node name="LeftEquipment" type="VBoxContainer" parent="MainPanel"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 37.0
+offset_bottom = 145.0
+
+[node name="Head" parent="MainPanel/LeftEquipment" instance=ExtResource("2_n7gkl")]
+layout_mode = 2
+theme_override_colors/icon_normal_color = Color(0.207512, 0.207512, 0.207512, 1)
+theme_override_colors/icon_focus_color = Color(0.207843, 0.207843, 0.207843, 1)
+theme_override_colors/icon_pressed_color = Color(0.207843, 0.207843, 0.207843, 1)
+theme_override_colors/icon_hover_color = Color(0.207843, 0.207843, 0.207843, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.207843, 0.207843, 0.207843, 1)
+slot_icon = ExtResource("6_6285l")
+
+[node name="Chest" parent="MainPanel/LeftEquipment" instance=ExtResource("2_n7gkl")]
+layout_mode = 2
+theme_override_colors/icon_normal_color = Color(0.207843, 0.207843, 0.207843, 1)
+theme_override_colors/icon_focus_color = Color(0.207843, 0.207843, 0.207843, 1)
+theme_override_colors/icon_pressed_color = Color(0.207843, 0.207843, 0.207843, 1)
+theme_override_colors/icon_hover_color = Color(0.207843, 0.207843, 0.207843, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.207843, 0.207843, 0.207843, 1)
+slot_icon = ExtResource("7_xjkdl")
+
+[node name="Hands" parent="MainPanel/LeftEquipment" instance=ExtResource("2_n7gkl")]
+layout_mode = 2
+theme_override_colors/icon_normal_color = Color(0.207843, 0.207843, 0.207843, 1)
+theme_override_colors/icon_focus_color = Color(0.207843, 0.207843, 0.207843, 1)
+theme_override_colors/icon_pressed_color = Color(0.207843, 0.207843, 0.207843, 1)
+theme_override_colors/icon_hover_color = Color(0.207843, 0.207843, 0.207843, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.207843, 0.207843, 0.207843, 1)
+slot_icon = ExtResource("8_5sfkm")
+
+[node name="Feet" parent="MainPanel/LeftEquipment" instance=ExtResource("2_n7gkl")]
+layout_mode = 2
+theme_override_colors/icon_normal_color = Color(0.207843, 0.207843, 0.207843, 1)
+theme_override_colors/icon_focus_color = Color(0.207843, 0.207843, 0.207843, 1)
+theme_override_colors/icon_pressed_color = Color(0.207843, 0.207843, 0.207843, 1)
+theme_override_colors/icon_hover_color = Color(0.207843, 0.207843, 0.207843, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.207843, 0.207843, 0.207843, 1)
+slot_icon = ExtResource("9_div33")
+
+[node name="RightEquipment" type="VBoxContainer" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -37.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = 145.0
+grow_horizontal = 0
+
+[node name="LeftAccesory" parent="MainPanel/RightEquipment" instance=ExtResource("2_n7gkl")]
+layout_mode = 2
+theme_override_colors/icon_normal_color = Color(0.207843, 0.207843, 0.207843, 1)
+theme_override_colors/icon_focus_color = Color(0.207843, 0.207843, 0.207843, 1)
+theme_override_colors/icon_pressed_color = Color(0.207843, 0.207843, 0.207843, 1)
+theme_override_colors/icon_hover_color = Color(0.207843, 0.207843, 0.207843, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.207843, 0.207843, 0.207843, 1)
+slot_icon = ExtResource("10_j0rdl")
+
+[node name="Stats" type="VBoxContainer" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.0
+offset_top = 5.0
+offset_right = 50.0
+offset_bottom = 142.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="MainPanel/Stats"]
+layout_mode = 2
+text = "Str"
+
+[node name="Label2" type="Label" parent="MainPanel/Stats"]
+layout_mode = 2
+text = "Dex"
+
+[node name="Label3" type="Label" parent="MainPanel/Stats"]
+layout_mode = 2
+text = "Def"
+
+[node name="Label4" type="Label" parent="MainPanel/Stats"]
+layout_mode = 2
+text = "Spd"
+
+[node name="Label5" type="Label" parent="MainPanel/Stats"]
+layout_mode = 2
+text = "Int"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="gui_input" from="MainPanel" to="MainPanel" method="_on_gui_input"]
+[connection signal="mouse_entered" from="MainPanel" to="MainPanel" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="MainPanel" to="MainPanel" method="_on_mouse_exited"]

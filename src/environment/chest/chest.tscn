@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=3 uid="uid://5r8n8o5hr1su"]
+
+[ext_resource type="Script" path="res://src/environment/chest/chest.gd" id="1_elbgg"]
+[ext_resource type="Texture2D" uid="uid://cmiym1dtnanrp" path="res://assets/textures/environment/chest/chest.png" id="2_4dcl6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ixx7"]
+size = Vector2(32, 32)
+
+[sub_resource type="Animation" id="Animation_3jl2u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_njhxe"]
+resource_name = "open_chest"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rc07i"]
+_data = {
+"RESET": SubResource("Animation_3jl2u"),
+"open_chest": SubResource("Animation_njhxe")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ems4y"]
+atlas = ExtResource("2_4dcl6")
+region = Rect2(0, 0, 128, 48)
+
+[node name="Chest" type="Area2D"]
+collision_layer = 128
+collision_mask = 2
+script = ExtResource("1_elbgg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_2ixx7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rc07i")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_ems4y")
+hframes = 4
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="body_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_exited" from="." to="." method="_on_area_exited"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

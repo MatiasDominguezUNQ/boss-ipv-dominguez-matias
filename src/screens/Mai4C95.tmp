@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://bs0do08ju7ll8"]
+
+[ext_resource type="Script" path="res://src/screens/MainMenu.gd" id="1"]
+[ext_resource type="PackedScene" path="res://src/screens/LevelManager.tscn" id="4"]
+[ext_resource type="Texture2D" uid="uid://8p8klod6lmkk" path="res://src/environment/Background.png" id="4_5jquh"]
+[ext_resource type="Texture2D" uid="uid://ddo8ji8phouh1" path="res://assets/textures/mouse/pointer.png" id="10"]
+
+[node name="MainMenu" type="Node"]
+script = ExtResource("1")
+level_manager_scene = ExtResource("4")
+mouse_cursor = ExtResource("10")
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = 0
+follow_viewport_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+texture = ExtResource("4_5jquh")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Container" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Buttons" type="VBoxContainer" parent="CanvasLayer/Container"]
+layout_mode = 0
+anchor_top = 0.5
+anchor_bottom = 0.5
+mouse_filter = 2
+alignment = 1
+
+[node name="StartButton" type="Button" parent="CanvasLayer/Container/Buttons"]
+layout_mode = 2
+text = "Start"
+
+[node name="ExitButton" type="Button" parent="CanvasLayer/Container/Buttons"]
+layout_mode = 2
+text = "Exit"
+
+[connection signal="pressed" from="CanvasLayer/Container/Buttons/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/Container/Buttons/ExitButton" to="." method="_on_ExitButton_pressed"]

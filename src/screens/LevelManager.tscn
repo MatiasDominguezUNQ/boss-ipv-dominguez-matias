@@ -1,0 +1,18 @@
+[gd_scene load_steps=8 format=3 uid="uid://b308w8k2ec0i"]
+
+[ext_resource type="Script" path="res://src/screens/LevelManager.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://ccs08mpcqrtv" path="res://src/game/levels/Level02.tscn" id="2_267fq"]
+[ext_resource type="PackedScene" uid="uid://c2oy8e2yvdo62" path="res://src/game/levels/Level00.tscn" id="2_evsgx"]
+[ext_resource type="PackedScene" uid="uid://dd0m16gmfg33x" path="res://src/game/levels/Level01.tscn" id="2_vujvi"]
+[ext_resource type="Texture2D" uid="uid://d2qvdjfp6wj6l" path="res://assets/textures/mouse/crosshair.png" id="3"]
+[ext_resource type="PackedScene" uid="uid://c40d8p0jemg4d" path="res://src/environment/items/jump_boots.tscn" id="3_kxulh"]
+[ext_resource type="PackedScene" uid="uid://y8cy0xggunj6" path="res://src/environment/items/rogue_gloves.tscn" id="4_fnlry"]
+
+[node name="LevelManager" type="Node"]
+script = ExtResource("2")
+levels = Array[PackedScene]([ExtResource("2_267fq"), ExtResource("2_vujvi"), ExtResource("2_evsgx")])
+items_global = Array[PackedScene]([ExtResource("3_kxulh"), ExtResource("4_fnlry")])
+main_menu_path = "res://src/screens/MainMenu.tscn"
+mouse_cursor = ExtResource("3")
+
+[node name="CurrentLevelContainer" type="Node" parent="."]
