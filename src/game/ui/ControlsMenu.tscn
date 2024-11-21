@@ -1,0 +1,155 @@
+[gd_scene load_steps=8 format=3 uid="uid://m45ht27xeuw4"]
+
+[ext_resource type="Script" path="res://src/game/ui/controls_menu.gd" id="1_14mt5"]
+[ext_resource type="AudioStream" uid="uid://b485vsqlu714c" path="res://assets/sound/UI/Minimalist7.ogg" id="2_a3obd"]
+[ext_resource type="AudioStream" uid="uid://drvygf7nu8s7v" path="res://assets/sound/UI/Minimalist10.ogg" id="3_x0cea"]
+[ext_resource type="FontFile" uid="uid://bihylbkwevg8j" path="res://assets/fonts/DungeonFont.ttf" id="4_756rg"]
+[ext_resource type="PackedScene" uid="uid://rft022jt3hgm" path="res://src/game/ui/action_input.tscn" id="5_qp63q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dsb6q"]
+bg_color = Color(0.246388, 0.180123, 0.0824706, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.0796452, 0.153943, 0.0391678, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 4
+anti_aliasing = false
+
+[sub_resource type="Theme" id="Theme_1vmrv"]
+
+[node name="ControlsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_14mt5")
+focus_sfx = ExtResource("2_a3obd")
+click_sfx = ExtResource("3_x0cea")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.407843)
+metadata/_edit_lock_ = true
+
+[node name="MainPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.125
+anchor_right = 0.75
+anchor_bottom = 0.875
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dsb6q")
+
+[node name="Label" type="Label" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -22.0
+offset_top = 5.0
+offset_right = 22.0
+offset_bottom = 28.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("4_756rg")
+text = "BUTTON_OPTIONS"
+horizontal_alignment = 1
+
+[node name="ReturnButton" type="Button" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.97
+anchor_right = 0.5
+anchor_bottom = 0.97
+offset_left = -26.5
+offset_top = -25.0
+offset_right = 26.5
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_1vmrv")
+theme_override_fonts/font = ExtResource("4_756rg")
+text = "BUTTON_RETURN"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 35.0
+offset_right = -20.0
+offset_bottom = -35.25
+grow_horizontal = 2
+pivot_offset = Vector2(0, 16.195)
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainPanel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 2
+size_flags_stretch_ratio = 0.0
+theme_override_constants/separation = -5
+
+[node name="ActionInput" parent="MainPanel/ScrollContainer/VBoxContainer" instance=ExtResource("5_qp63q")]
+layout_mode = 2
+action_id = "primary_attack"
+action_name = "TAG_ATTACK"
+
+[node name="ActionInput6" parent="MainPanel/ScrollContainer/VBoxContainer" instance=ExtResource("5_qp63q")]
+layout_mode = 2
+action_id = "interact"
+action_name = "TAG_INTERACT"
+
+[node name="ActionInput8" parent="MainPanel/ScrollContainer/VBoxContainer" instance=ExtResource("5_qp63q")]
+layout_mode = 2
+action_id = "utility_skill"
+action_name = "TAG_UTILITY"
+
+[node name="ActionInput7" parent="MainPanel/ScrollContainer/VBoxContainer" instance=ExtResource("5_qp63q")]
+layout_mode = 2
+action_id = "jump"
+action_name = "TAG_JUMP"
+
+[node name="ActionInput5" parent="MainPanel/ScrollContainer/VBoxContainer" instance=ExtResource("5_qp63q")]
+layout_mode = 2
+action_id = "move_up"
+action_name = "TAG_UP"
+
+[node name="ActionInput3" parent="MainPanel/ScrollContainer/VBoxContainer" instance=ExtResource("5_qp63q")]
+layout_mode = 2
+action_id = "move_left"
+action_name = "TAG_LEFT"
+
+[node name="ActionInput2" parent="MainPanel/ScrollContainer/VBoxContainer" instance=ExtResource("5_qp63q")]
+layout_mode = 2
+action_id = "move_down"
+action_name = "TAG_DOWN"
+
+[node name="ActionInput4" parent="MainPanel/ScrollContainer/VBoxContainer" instance=ExtResource("5_qp63q")]
+layout_mode = 2
+action_id = "move_right"
+action_name = "TAG_RIGHT"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[connection signal="mouse_entered" from="MainPanel/ReturnButton" to="." method="on_focus"]
+[connection signal="pressed" from="MainPanel/ReturnButton" to="." method="on_click"]
+[connection signal="pressed" from="MainPanel/ReturnButton" to="." method="_on_return_button_pressed"]

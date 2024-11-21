@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://k1kmja2mqtmj"]
+
+[ext_resource type="PackedScene" uid="uid://chyfhd1ohamw7" path="res://src/environment/obstacles/spikes.tscn" id="1_5s1k5"]
+[ext_resource type="Script" path="res://src/environment/obstacles/side_spikes.gd" id="2_vf7ok"]
+
+[node name="Spikes" instance=ExtResource("1_5s1k5")]
+rotation = 1.5708
+script = ExtResource("2_vf7ok")

@@ -1,0 +1,182 @@
+[gd_scene load_steps=20 format=3 uid="uid://dd0m16gmfg33x"]
+
+[ext_resource type="Script" path="res://src/game/levels/level_combat.gd" id="1_smb2f"]
+[ext_resource type="AudioStream" uid="uid://b6n2ah3hmubjo" path="res://assets/sound/bgm/Tracks/Fx 1.ogg" id="2_65ll3"]
+[ext_resource type="AudioStream" uid="uid://y0vysv5wqli1" path="res://assets/sound/bgm/Tracks/Fx 3.ogg" id="3_k5csw"]
+[ext_resource type="AudioStream" uid="uid://0ijgx0332hb" path="res://assets/sound/bgm/Tracks/Dark 3.ogg" id="4_hhkyn"]
+[ext_resource type="AudioStream" uid="uid://dqyjpkaxcyia2" path="res://assets/sound/bgm/Tracks/Action 3.ogg" id="5_ee10v"]
+[ext_resource type="PackedScene" uid="uid://ce0quimc7o7p2" path="res://src/game/ui/DefeatMenu.tscn" id="6_4irme"]
+[ext_resource type="PackedScene" uid="uid://xepc1o6dqoga" path="res://src/game/ui/GUI.tscn" id="7_tupf4"]
+[ext_resource type="PackedScene" uid="uid://kgve63nlrtt3" path="res://src/game/ui/PauseMenu.tscn" id="8_dixio"]
+[ext_resource type="PackedScene" uid="uid://bdbmaq3bgtw6o" path="res://src/game/ui/VictoryMenu.tscn" id="9_i2qev"]
+[ext_resource type="PackedScene" uid="uid://chkhrauq0xab" path="res://src/environment/background/mountain_background.tscn" id="10_gwubw"]
+[ext_resource type="PackedScene" uid="uid://clt24kn4armal" path="res://assets/textures/tileset/levels/TileMapLvl01.tscn" id="11_sr8bk"]
+[ext_resource type="FontFile" uid="uid://dy5sekvp82oi3" path="res://assets/fonts/Mystery Font(1).ttf" id="12_v517y"]
+[ext_resource type="Texture2D" uid="uid://dcvwibiecd02g" path="res://assets/textures/tutorial/tutorial_spikes.png" id="13_e0sxb"]
+[ext_resource type="PackedScene" path="res://src/environment/Goal.tscn" id="15_7tgar"]
+[ext_resource type="PackedScene" uid="uid://5r8n8o5hr1su" path="res://src/environment/chest/chest.tscn" id="16_vrd2m"]
+[ext_resource type="PackedScene" uid="uid://d3a0b5x56duds" path="res://src/environment/items/silver_feather.tscn" id="17_5qh4f"]
+[ext_resource type="PackedScene" uid="uid://cby55meunt1qo" path="res://src/entities/enemies/skeleton/Skeleton.tscn" id="19_8l30c"]
+[ext_resource type="PackedScene" uid="uid://dnm8i2o1mv3sl" path="res://src/entities/enemies/notPlayer/NotPlayer.tscn" id="20_m1nb2"]
+[ext_resource type="PackedScene" uid="uid://c1jb1up3g5dl8" path="res://src/game/singletons/WorldEnviroment.tscn" id="24_3b4xj"]
+
+[node name="Level01" type="Node"]
+script = ExtResource("1_smb2f")
+victory_music = ExtResource("2_65ll3")
+death_music = ExtResource("3_k5csw")
+default_music = ExtResource("4_hhkyn")
+boss_music = ExtResource("5_ee10v")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_hhkyn")
+autoplay = true
+bus = &"BackgroundLevel"
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="DefeatMenu" parent="UILayer" instance=ExtResource("6_4irme")]
+
+[node name="GUI" parent="UILayer" instance=ExtResource("7_tupf4")]
+
+[node name="PauseMenu" parent="UILayer" instance=ExtResource("8_dixio")]
+process_mode = 3
+
+[node name="VictoryMenu" parent="UILayer" instance=ExtResource("9_i2qev")]
+
+[node name="BackgroundLayer" type="Node" parent="."]
+
+[node name="MountainBackground" parent="BackgroundLayer" instance=ExtResource("10_gwubw")]
+
+[node name="Environment" type="Node2D" parent="."]
+
+[node name="Tilesets" type="Node2D" parent="Environment"]
+
+[node name="TileMapLvl01" parent="Environment/Tilesets" instance=ExtResource("11_sr8bk")]
+
+[node name="Objects" type="Node2D" parent="Environment"]
+z_as_relative = false
+
+[node name="Tutorial" type="Node2D" parent="Environment/Objects"]
+
+[node name="AttackTutorial" type="Label" parent="Environment/Objects/Tutorial"]
+unique_name_in_owner = true
+offset_left = 1170.0
+offset_top = 494.0
+offset_right = 2112.0
+offset_bottom = 548.0
+scale = Vector2(0.46, 0.46)
+theme_override_fonts/font = ExtResource("12_v517y")
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+
+[node name="UtilityTutorial" type="Label" parent="Environment/Objects/Tutorial"]
+unique_name_in_owner = true
+offset_left = 1446.0
+offset_top = 550.0
+offset_right = 1662.0
+offset_bottom = 604.0
+scale = Vector2(0.46, 0.46)
+theme_override_fonts/font = ExtResource("12_v517y")
+theme_override_font_sizes/font_size = 32
+
+[node name="Movement" type="Label" parent="Environment/Objects/Tutorial"]
+unique_name_in_owner = true
+offset_left = 527.0
+offset_top = 481.0
+offset_right = 747.0
+offset_bottom = 548.0
+scale = Vector2(0.46, 0.46)
+theme_override_fonts/font = ExtResource("12_v517y")
+theme_override_font_sizes/font_size = 32
+text = "TUTO_01"
+
+[node name="Jump" type="Label" parent="Environment/Objects/Tutorial"]
+unique_name_in_owner = true
+offset_left = 991.0
+offset_top = 554.0
+offset_right = 1171.0
+offset_bottom = 608.0
+scale = Vector2(0.46, 0.46)
+theme_override_fonts/font = ExtResource("12_v517y")
+theme_override_font_sizes/font_size = 32
+text = "TUTO_02"
+
+[node name="Interact" type="Label" parent="Environment/Objects/Tutorial"]
+unique_name_in_owner = true
+offset_left = 714.0
+offset_top = 527.0
+offset_right = 1066.0
+offset_bottom = 581.0
+scale = Vector2(0.46, 0.46)
+theme_override_fonts/font = ExtResource("12_v517y")
+theme_override_font_sizes/font_size = 32
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/Objects/Tutorial"]
+position = Vector2(1028, 617)
+texture = ExtResource("13_e0sxb")
+
+[node name="Label" type="Label" parent="Environment/Objects/Tutorial"]
+offset_left = 731.0
+offset_top = 443.0
+offset_right = 929.0
+offset_bottom = 492.0
+theme_override_fonts/font = ExtResource("12_v517y")
+text = "C
+abre el inventario"
+horizontal_alignment = 1
+
+[node name="Goal" parent="Environment/Objects" instance=ExtResource("15_7tgar")]
+z_index = 0
+position = Vector2(7567, 280)
+
+[node name="Chests" type="Node2D" parent="Environment/Objects"]
+
+[node name="Chest" parent="Environment/Objects/Chests" instance=ExtResource("16_vrd2m")]
+position = Vector2(786, 581)
+is_random = true
+
+[node name="Chest2" parent="Environment/Objects/Chests" instance=ExtResource("16_vrd2m")]
+position = Vector2(838, 581)
+is_random = true
+
+[node name="Chest6" parent="Environment/Objects/Chests" instance=ExtResource("16_vrd2m")]
+position = Vector2(730, 581)
+item = ExtResource("17_5qh4f")
+
+[node name="Entities" type="Node2D" parent="Environment"]
+z_as_relative = false
+
+[node name="Enemies" type="Node2D" parent="Environment/Entities"]
+
+[node name="Skeleton" parent="Environment/Entities/Enemies" instance=ExtResource("19_8l30c")]
+position = Vector2(1357, 581)
+
+[node name="Skeleton3" parent="Environment/Entities/Enemies" instance=ExtResource("19_8l30c")]
+position = Vector2(1193, 580)
+
+[node name="Skeleton2" parent="Environment/Entities/Enemies" instance=ExtResource("19_8l30c")]
+position = Vector2(1568, 581)
+
+[node name="NotPlayer" parent="Environment/Entities/Enemies" instance=ExtResource("20_m1nb2")]
+position = Vector2(2297, 1379)
+
+[node name="DefaultLighting" type="CanvasModulate" parent="."]
+position = Vector2(527, 132)
+color = Color(0.28485, 0.28485, 0.28485, 1)
+
+[node name="WorldEnviroment" parent="." instance=ExtResource("24_3b4xj")]
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(571, 563)
+
+[connection signal="death_music" from="UILayer/DefeatMenu" to="." method="_on_death_music"]
+[connection signal="retry_selected" from="UILayer/DefeatMenu" to="." method="_on_restart_requested"]
+[connection signal="return_selected" from="UILayer/DefeatMenu" to="." method="_on_return_requested"]
+[connection signal="restart_selected" from="UILayer/PauseMenu" to="." method="_on_restart_requested"]
+[connection signal="return_selected" from="UILayer/PauseMenu" to="." method="_on_return_requested"]
+[connection signal="next_selected" from="UILayer/VictoryMenu" to="." method="_on_level_won"]
+[connection signal="return_selected" from="UILayer/VictoryMenu" to="." method="_on_return_requested"]
+[connection signal="victory_music" from="UILayer/VictoryMenu" to="." method="_on_victory_menu_victory_music"]
+[connection signal="dead" from="Environment/Entities/Enemies/NotPlayer" to="." method="_on_boss_dead"]

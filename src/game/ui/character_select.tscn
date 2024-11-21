@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://dtt6ddvey67lm"]
+
+[ext_resource type="Script" path="res://src/game/ui/character_select.gd" id="1_dokjh"]
+[ext_resource type="FontFile" uid="uid://bihylbkwevg8j" path="res://assets/fonts/DungeonFont.ttf" id="2_138a8"]
+[ext_resource type="AudioStream" uid="uid://b485vsqlu714c" path="res://assets/sound/UI/Minimalist7.ogg" id="2_leyds"]
+[ext_resource type="AudioStream" uid="uid://drvygf7nu8s7v" path="res://assets/sound/UI/Minimalist10.ogg" id="3_31qta"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ci6gd"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.193154, 0.193154, 0.193153, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_size = 2
+anti_aliasing = false
+
+[node name="CharacterSelect" type="MarginContainer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -400.0
+offset_right = -350.0
+offset_bottom = 65.0
+grow_horizontal = 2
+scale = Vector2(14.41, 14.41)
+size_flags_horizontal = 5
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = ExtResource("1_dokjh")
+focus_sfx = ExtResource("2_leyds")
+click_sfx = ExtResource("3_31qta")
+
+[node name="Container" type="PanelContainer" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ci6gd")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="Container"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="CharacterName" type="Label" parent="Container/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_138a8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CharacterButton" type="Button" parent="Container/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[connection signal="mouse_entered" from="Container/HBoxContainer/CharacterButton" to="." method="on_focus"]
+[connection signal="pressed" from="Container/HBoxContainer/CharacterButton" to="." method="on_click"]
+[connection signal="pressed" from="Container/HBoxContainer/CharacterButton" to="." method="_on_input_pressed"]

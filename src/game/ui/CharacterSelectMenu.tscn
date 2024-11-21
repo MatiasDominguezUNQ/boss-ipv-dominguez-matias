@@ -1,0 +1,133 @@
+[gd_scene load_steps=12 format=3 uid="uid://dcs72phuegkmk"]
+
+[ext_resource type="Script" path="res://src/game/ui/controls_menu.gd" id="1_vguxe"]
+[ext_resource type="AudioStream" uid="uid://b485vsqlu714c" path="res://assets/sound/UI/Minimalist7.ogg" id="2_lhca5"]
+[ext_resource type="FontFile" uid="uid://bihylbkwevg8j" path="res://assets/fonts/DungeonFont.ttf" id="2_syj4n"]
+[ext_resource type="AudioStream" uid="uid://drvygf7nu8s7v" path="res://assets/sound/UI/Minimalist10.ogg" id="3_1civy"]
+[ext_resource type="PackedScene" uid="uid://dtt6ddvey67lm" path="res://src/game/ui/character_select.tscn" id="3_yfbqe"]
+[ext_resource type="PackedScene" uid="uid://dn1ncvf0pc8jk" path="res://src/entities/player/ranger/Ranger.tscn" id="4_112b8"]
+[ext_resource type="Texture2D" uid="uid://16pssv1vw1op" path="res://assets/textures/player/archer_preview.png" id="5_ijqul"]
+[ext_resource type="PackedScene" uid="uid://dg4nousd44f82" path="res://src/entities/player/knight/Knight.tscn" id="8_f0egv"]
+[ext_resource type="Texture2D" uid="uid://bbnrwh7w11pwb" path="res://assets/textures/player/soldier_preview.png" id="9_vmhra"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dsb6q"]
+bg_color = Color(0.0383915, 0.021092, 0.00574672, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.0796452, 0.153943, 0.0391678, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 4
+anti_aliasing = false
+
+[sub_resource type="Theme" id="Theme_1vmrv"]
+
+[node name="CharacterSelectMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_vguxe")
+focus_sfx = ExtResource("2_lhca5")
+click_sfx = ExtResource("3_1civy")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.407843)
+metadata/_edit_lock_ = true
+
+[node name="MainPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.125
+anchor_right = 0.75
+anchor_bottom = 0.875
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dsb6q")
+
+[node name="Label" type="Label" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -76.0
+offset_top = 3.0
+offset_right = 23.0
+offset_bottom = 26.0
+grow_horizontal = 2
+scale = Vector2(1.715, 1.715)
+theme_override_fonts/font = ExtResource("2_syj4n")
+text = "TAG_CHARACTER"
+horizontal_alignment = 1
+
+[node name="ReturnButton" type="Button" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.97
+anchor_right = 0.5
+anchor_bottom = 0.97
+offset_left = -26.5
+offset_top = -25.0
+offset_right = 26.5
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_1vmrv")
+theme_override_fonts/font = ExtResource("2_syj4n")
+text = "BUTTON_RETURN"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 101.0
+offset_right = -169.0
+offset_bottom = -186.0
+grow_horizontal = 2
+scale = Vector2(1.725, 1.725)
+pivot_offset = Vector2(0, 16.195)
+follow_focus = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainPanel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="CharacterSelect" parent="MainPanel/ScrollContainer/HBoxContainer" instance=ExtResource("3_yfbqe")]
+layout_mode = 2
+character_scene = ExtResource("4_112b8")
+character_image = ExtResource("5_ijqul")
+character_name = "CLASS_RANGER"
+
+[node name="CharacterSelect2" parent="MainPanel/ScrollContainer/HBoxContainer" instance=ExtResource("3_yfbqe")]
+layout_mode = 2
+character_scene = ExtResource("8_f0egv")
+character_image = ExtResource("9_vmhra")
+character_name = "CLASS_KNIGHT"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[connection signal="mouse_entered" from="MainPanel/ReturnButton" to="." method="on_focus"]
+[connection signal="pressed" from="MainPanel/ReturnButton" to="." method="on_click"]
+[connection signal="pressed" from="MainPanel/ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="character_ready" from="MainPanel/ScrollContainer/HBoxContainer/CharacterSelect" to="." method="_on_character_select_character_ready"]
+[connection signal="character_ready" from="MainPanel/ScrollContainer/HBoxContainer/CharacterSelect2" to="." method="_on_character_select_character_ready"]

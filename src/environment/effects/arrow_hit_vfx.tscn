@@ -1,0 +1,70 @@
+[gd_scene load_steps=12 format=3 uid="uid://df6v77blclpmp"]
+
+[ext_resource type="PackedScene" uid="uid://0e17htgdttha" path="res://src/environment/effects/visual_effect.tscn" id="1_1g8ts"]
+[ext_resource type="Texture2D" uid="uid://bmd4ixyfn4vws" path="res://assets/textures/fx/hits/hits-6/hits-6-preview1.png" id="2_xlyic"]
+[ext_resource type="Texture2D" uid="uid://b3usa1uee1elt" path="res://assets/textures/fx/hits/hits-6/hits-6-preview2.png" id="3_2kbtg"]
+[ext_resource type="Texture2D" uid="uid://buu8uovef83f5" path="res://assets/textures/fx/hits/hits-6/hits-6-preview3.png" id="4_qblv3"]
+[ext_resource type="Texture2D" uid="uid://c5vd34uglatoi" path="res://assets/textures/fx/hits/hits-6/hits-6-preview4.png" id="5_dibau"]
+[ext_resource type="Texture2D" uid="uid://b0u42vtb5jvcj" path="res://assets/textures/fx/hits/hits-6/hits-6-preview5.png" id="6_akdvo"]
+[ext_resource type="Texture2D" uid="uid://yqi6xisedjvx" path="res://assets/textures/fx/hits/hits-6/hits-6-preview6.png" id="7_t77ee"]
+[ext_resource type="Texture2D" uid="uid://ddyk44dj0g3l4" path="res://assets/textures/fx/hits/hits-6/hits-6-preview7.png" id="8_x8fs2"]
+
+[sub_resource type="Animation" id="Animation_mktyh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="Animation" id="Animation_e0qce"]
+resource_name = "init"
+length = 0.14
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.04, 0.06, 0.08, 0.1, 0.12),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_xlyic"), ExtResource("3_2kbtg"), ExtResource("4_qblv3"), ExtResource("5_dibau"), ExtResource("6_akdvo"), ExtResource("7_t77ee"), ExtResource("8_x8fs2")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.14),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_05cnl"]
+_data = {
+"RESET": SubResource("Animation_mktyh"),
+"init": SubResource("Animation_e0qce")
+}
+
+[node name="ArrowHitVFX" instance=ExtResource("1_1g8ts")]
+
+[node name="AnimationPlayer" parent="." index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_05cnl")
+}
+autoplay = "init"

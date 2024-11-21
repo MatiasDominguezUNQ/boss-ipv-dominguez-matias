@@ -1,0 +1,68 @@
+[gd_scene load_steps=13 format=3 uid="uid://mp7sbefrepjs"]
+
+[ext_resource type="Texture2D" uid="uid://bo8jsce2wqv3x" path="res://assets/textures/environment/torch/Torch_0000_Capa-1.png" id="1_u2io0"]
+[ext_resource type="Texture2D" uid="uid://dq0t08vsgfxfw" path="res://assets/textures/environment/torch/Torch_0001_Capa-2.png" id="2_mtkau"]
+[ext_resource type="Texture2D" uid="uid://cwn2rbvc4b4lw" path="res://assets/textures/environment/torch/Torch_0002_Capa-3.png" id="3_uia1l"]
+[ext_resource type="Texture2D" uid="uid://08bm2rq36fs6" path="res://assets/textures/environment/torch/Torch_0003_Capa-4.png" id="4_uy8w8"]
+[ext_resource type="Texture2D" uid="uid://sd51gv12jfsd" path="res://assets/textures/environment/torch/Torch_0004_Capa-5.png" id="5_ikl55"]
+[ext_resource type="Texture2D" uid="uid://b7yels6nm2lvr" path="res://assets/textures/environment/torch/Torch_0005_Capa-6.png" id="6_0bs62"]
+[ext_resource type="Texture2D" uid="uid://dv7gfhimar1w7" path="res://assets/textures/environment/torch/Torch_0006_Capa-7.png" id="7_r2xxn"]
+[ext_resource type="Texture2D" uid="uid://cn17788ub56pd" path="res://assets/textures/environment/torch/Torch_0007_Capa-8.png" id="8_jqavu"]
+[ext_resource type="Script" path="res://src/environment/torch.gd" id="9_rj1pf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n4qnq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_u2io0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_mtkau")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_uia1l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_uy8w8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ikl55")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_0bs62")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_r2xxn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_jqavu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_lj600"]
+offsets = PackedFloat32Array(0, 0.713043)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_a6hfd"]
+gradient = SubResource("Gradient_lj600")
+width = 3000
+height = 3000
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Torch" type="AnimatedSprite2D"]
+scale = Vector2(0.155, 0.155)
+sprite_frames = SubResource("SpriteFrames_n4qnq")
+autoplay = "default"
+frame_progress = 0.465329
+script = ExtResource("9_rj1pf")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.991878, 0.905265, 0.605357, 1)
+energy = 0.8
+range_item_cull_mask = 5
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_a6hfd")

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Inventory" load_steps=2 format=3 uid="uid://clwcl7am80r82"]
+
+[ext_resource type="Script" path="res://src/game/singletons/Inventory.gd" id="2_n4ilk"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_n4ilk")

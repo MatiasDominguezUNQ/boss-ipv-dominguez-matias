@@ -1,0 +1,97 @@
+[gd_scene load_steps=7 format=3 uid="uid://bgkfoxwgnacsj"]
+
+[ext_resource type="Script" path="res://src/environment/abstract_item/item.gd" id="1_ktgl0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3202c"]
+size = Vector2(31, 30)
+
+[sub_resource type="Animation" id="Animation_je2mu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_m56mq"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(-1, 1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f34dn"]
+_data = {
+"RESET": SubResource("Animation_je2mu"),
+"idle": SubResource("Animation_m56mq")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hoqvs"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.192157, 0.192157, 0.192157, 0.670588)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_size = 2
+anti_aliasing = false
+
+[node name="Item" type="Area2D"]
+scale = Vector2(0.69, 0.69)
+collision_layer = 256
+collision_mask = 2
+script = ExtResource("1_ktgl0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_3202c")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_f34dn")
+}
+
+[node name="Info" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+z_index = 50
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -168.0
+offset_top = -50.0
+offset_right = 168.0
+offset_bottom = -27.0
+grow_horizontal = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_hoqvs")
+text = "Silver Feather: Critical hits on timed attacks"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="body_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_exited" from="." to="." method="_on_area_exited"]

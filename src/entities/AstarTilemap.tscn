@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://j65y7jcrytaq"]
+
+[ext_resource type="Texture2D" uid="uid://bbtihvnoo5e8h" path="res://assets/textures/gray_square.png" id="1"]
+[ext_resource type="Script" path="res://src/entities/AstarTilemap.gd" id="2"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k60oj"]
+texture = ExtResource("1")
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
+
+[sub_resource type="TileSet" id="5"]
+sources/1 = SubResource("TileSetAtlasSource_k60oj")
+
+[node name="AstarTilemap" type="TileMap"]
+self_modulate = Color(1, 1, 1, 0.501961)
+z_index = -10
+tile_set = SubResource("5")
+format = 2
+script = ExtResource("2")

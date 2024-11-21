@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjf23t6o43c3j"]
+
+[ext_resource type="Script" path="res://src/game/singletons/camera_transition.gd" id="1_2eyul"]
+
+[node name="CameraTransition" type="Node"]
+script = ExtResource("1_2eyul")
+
+[node name="Camera2D" type="Camera2D" parent="."]
