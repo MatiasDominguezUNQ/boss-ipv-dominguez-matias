@@ -1,0 +1,127 @@
+[gd_scene load_steps=9 format=3 uid="uid://dkuwy38tjrrxs"]
+
+[ext_resource type="FontFile" uid="uid://bihylbkwevg8j" path="res://assets/fonts/DungeonFont.ttf" id="1_gsx6n"]
+[ext_resource type="Script" path="res://src/game/ui/menus/OptionsMenu.gd" id="1_jvwd8"]
+[ext_resource type="AudioStream" uid="uid://b485vsqlu714c" path="res://assets/sound/UI/Minimalist7.ogg" id="2_jwkgx"]
+[ext_resource type="PackedScene" uid="uid://ct2xqok2j3aue" path="res://src/game/ui/menus/ControlsMenu.tscn" id="3_lfo4l"]
+[ext_resource type="AudioStream" uid="uid://drvygf7nu8s7v" path="res://assets/sound/UI/Minimalist10.ogg" id="3_x10nl"]
+[ext_resource type="PackedScene" uid="uid://qfjb61kllrmj" path="res://src/game/ui/menus/DisplayMenu.tscn" id="4_mhyfh"]
+[ext_resource type="PackedScene" uid="uid://crkdcj5x1tkmg" path="res://src/game/ui/menus/AudioMenu.tscn" id="5_asbeh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qnq8v"]
+bg_color = Color(0.246388, 0.180123, 0.0824706, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.0796452, 0.153943, 0.0391678, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 4
+anti_aliasing = false
+
+[node name="OptionsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_jvwd8")
+focus_sfx = ExtResource("2_jwkgx")
+click_sfx = ExtResource("3_x10nl")
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.25098)
+metadata/_edit_lock_ = true
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 250.0
+offset_top = 200.0
+offset_right = -250.0
+offset_bottom = -200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qnq8v")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 17.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_gsx6n")
+text = "BUTTON_OPTIONS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -28.0
+offset_right = 40.0
+offset_bottom = 73.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DisplayButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_gsx6n")
+text = "BUTTON_DISPLAY"
+
+[node name="AudioButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_gsx6n")
+text = "BUTTON_AUDIO"
+
+[node name="ControlsButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_gsx6n")
+text = "SETTINGS_CONTROLS"
+
+[node name="ReturnButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_gsx6n")
+text = "BUTTON_RETURN"
+
+[node name="ControlsMenu" parent="." instance=ExtResource("3_lfo4l")]
+visible = false
+z_index = 3
+layout_mode = 1
+
+[node name="DisplayMenu" parent="." instance=ExtResource("4_mhyfh")]
+visible = false
+layout_mode = 1
+
+[node name="AudioMenu" parent="." instance=ExtResource("5_asbeh")]
+visible = false
+layout_mode = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[connection signal="pressed" from="Panel/VBoxContainer/DisplayButton" to="DisplayMenu" method="show"]
+[connection signal="pressed" from="Panel/VBoxContainer/AudioButton" to="AudioMenu" method="show"]
+[connection signal="pressed" from="Panel/VBoxContainer/ControlsButton" to="ControlsMenu" method="show"]
+[connection signal="pressed" from="Panel/VBoxContainer/ReturnButton" to="." method="hide"]

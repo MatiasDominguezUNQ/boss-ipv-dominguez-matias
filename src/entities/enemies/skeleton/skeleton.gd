@@ -81,7 +81,7 @@ func knockback(force: float, direction: Vector2) -> void:
 	var knockback_force = direction * force / knockback_resistance
 	if is_on_floor() and knockback_force.y > -100:
 		knockback_force.y = -80
-	velocity += knockback_force
+	velocity = knockback_force
 
 func acting():
 	return body_animations.current_animation == "hit" || body_animations.current_animation == "attack"

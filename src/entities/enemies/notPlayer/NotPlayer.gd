@@ -169,7 +169,6 @@ func receive_damage(amount, isCrit):
 func handle_death():
 		is_dead = true
 		GameState.give_experience.emit(experience_reward)
-		await get_tree().create_timer(5).timeout
 		emit_signal("dead")
 
 func _play_animation(animation: String) -> void:

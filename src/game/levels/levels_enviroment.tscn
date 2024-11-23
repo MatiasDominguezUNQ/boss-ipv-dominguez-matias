@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://d257qvg6b2s37"]
+
+[sub_resource type="Environment" id="Environment_0ne5e"]
+background_mode = 3
+background_canvas_max_layer = 4
+glow_enabled = true
+glow_levels/1 = 10.43
+glow_levels/2 = 6.26
+glow_levels/3 = 10.15
+glow_levels/4 = 8.0
+glow_levels/5 = 8.65
+glow_levels/6 = 8.8
+glow_levels/7 = 6.61
+glow_blend_mode = 1
+glow_hdr_threshold = 0.1
+adjustment_enabled = true
+
+[node name="LevelsEnviroment" type="WorldEnvironment"]
+environment = SubResource("Environment_0ne5e")

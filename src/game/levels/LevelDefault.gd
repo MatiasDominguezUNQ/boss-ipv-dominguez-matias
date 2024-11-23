@@ -28,9 +28,12 @@ signal restart_requested()
 signal next_level_requested()
 
 
-func _ready() -> void:
+func _ready() -> void: 
+	WorldEnviroment.environment.glow_enabled = true
 	randomize()
-	boss_area.collision_mask = (1 << 9)
+	if boss_area:
+		boss_area.collision_mask = (1 << 9)
+
 
 func get_chests():
 	return chests_node.get_children()
@@ -41,10 +44,9 @@ func _on_level_won() -> void:
 func _on_return_requested() -> void:
 	emit_signal("return_requested")
 
-
 func _on_restart_requested() -> void:
 	emit_signal("restart_requested")
-	
+
 func set_tutorials():
 	set_attack_tutorial()
 	set_movement_tutorial()
@@ -109,15 +111,13 @@ func get_key(action_id) -> String:
 	else:
 		return events.as_text()
 
-func _on_victory_menu_victory_music() -> void:
+func _on_player_victory() -> void:
 	background_music.stream = victory_music
 	background_music.play()
 
-
-func _on_death_music() -> void:
+func _on_player_death() -> void:
 	background_music.stream = death_music
 	background_music.play()
-
 
 func _on_boss_area_entered(area) -> void:
 	print("boss entered")
@@ -138,7 +138,6 @@ func _on_boss_dead() -> void:
 	background_music.volume_db = 0
 	background_music.play()
 	boss_area.collision_mask = 0
-	reset_camera()
 	
 func focus_camera_on_boss() -> void:
 	get_tree().root.content_scale_aspect = 4

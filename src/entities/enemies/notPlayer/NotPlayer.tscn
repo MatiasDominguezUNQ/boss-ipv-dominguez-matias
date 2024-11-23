@@ -975,6 +975,7 @@ _data = {
 radius = 929.034
 
 [node name="NotPlayer" type="CharacterBody2D"]
+z_index = 2
 position = Vector2(1, -22)
 collision_layer = 32
 script = ExtResource("1_kcbgc")
@@ -995,6 +996,7 @@ offset_bottom = -67.0
 player = NodePath("..")
 
 [node name="BodyCollision" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-3, -9)
 shape = SubResource("1")
 
@@ -1029,7 +1031,6 @@ libraries = {
 position = Vector2(-1.22392e-06, -7)
 
 [node name="Body" type="Sprite2D" parent="BodyPivot"]
-modulate = Color(4.62055e-06, 0.905658, 0.892464, 1)
 material = SubResource("ShaderMaterial_bcojc")
 position = Vector2(-9, -15)
 scale = Vector2(4, 4)
@@ -1077,6 +1078,7 @@ polygon = PackedVector2Array(10, -2.99996, -1.99999, -3, -4.99999, -4.00002, -8,
 bus = &"BossSFX"
 
 [node name="Eyes" type="RayCast2D" parent="."]
+position = Vector2(-1, -27)
 enabled = false
 collision_mask = 3
 

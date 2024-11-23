@@ -1,7 +1,6 @@
-[gd_scene load_steps=53 format=3 uid="uid://dg4nousd44f82"]
+[gd_scene load_steps=56 format=3 uid="uid://dg4nousd44f82"]
 
 [ext_resource type="Script" path="res://src/entities/player/knight/Knight.gd" id="1_kkr7q"]
-[ext_resource type="Resource" uid="uid://clwcl7am80r82" path="res://src/entities/player/player_inventory.tres" id="2_yr3sk"]
 [ext_resource type="AudioStream" uid="uid://5l1dpqy67v0s" path="res://assets/sound/sfx/jump/12_human_jump_1.wav" id="3_l7mkp"]
 [ext_resource type="AudioStream" uid="uid://bkebhhg4036s2" path="res://assets/sound/sfx/jump/13_human_jump_land_2.wav" id="4_302f7"]
 [ext_resource type="Script" path="res://src/entities/player/knight/States/knight_idle_state.gd" id="4_s63fe"]
@@ -10,14 +9,15 @@
 [ext_resource type="PackedScene" uid="uid://xsalxs0jjtgk" path="res://src/game/ui/HealthBar.tscn" id="5_tg4dl"]
 [ext_resource type="Script" path="res://src/entities/player/PlayerStateMachine.gd" id="6_j72yb"]
 [ext_resource type="Script" path="res://src/entities/player/ranger/states/DeadState.gd" id="9_rajxo"]
-[ext_resource type="Script" path="res://src/entities/player/knight/States/SoldierJumpState.gd" id="10_vtepw"]
-[ext_resource type="Script" path="res://src/entities/player/knight/States/BlockState.gd" id="11_7be5q"]
+[ext_resource type="Script" path="res://src/entities/player/knight/States/knight_jump_state.gd" id="10_vtepw"]
+[ext_resource type="Script" path="res://src/entities/player/knight/States/kinght_block_state.gd" id="11_7be5q"]
 [ext_resource type="Script" path="res://src/entities/player/ranger/states/RopeSwingState.gd" id="12_dhwe0"]
 [ext_resource type="AudioStream" uid="uid://m6cdj3nudsxj" path="res://assets/sound/sfx/movement/15_human_dash_2.wav" id="13_410uh"]
 [ext_resource type="AudioStream" uid="uid://dj2chm0mgk2ly" path="res://assets/sound/sfx/player/human_death.ogg" id="14_3sm0m"]
 [ext_resource type="AudioStream" uid="uid://3yoikv1hui1c" path="res://assets/sound/sfx/movement/16_human_walk_stone_1.wav" id="15_1pdic"]
 [ext_resource type="Shader" uid="uid://djk0fj0tljrnd" path="res://src/entities/player/knight/knight_shader.tres" id="16_77qn8"]
 [ext_resource type="Texture2D" uid="uid://c3p42hwu17odm" path="res://assets/textures/player/player_sheet.png" id="17_73c2k"]
+[ext_resource type="Texture2D" uid="uid://bxqesp41wp0bn" path="res://assets/textures/environment/altar.png" id="18_lxyo4"]
 [ext_resource type="Shader" path="res://src/entities/player/ranger/Bow.gdshader" id="18_ph6pw"]
 [ext_resource type="Script" path="res://src/entities/player/knight/shield.gd" id="19_apx8u"]
 [ext_resource type="Texture2D" uid="uid://dbfy58boydu8p" path="res://assets/textures/player/sword.png" id="19_c6vga"]
@@ -25,6 +25,7 @@
 [ext_resource type="AudioStream" uid="uid://2rkqeepcpese" path="res://assets/sound/sfx/attacks/sword/07_human_atk_sword_3.wav" id="21_2box8"]
 [ext_resource type="AudioStream" uid="uid://d1sx7y7kvhhbx" path="res://assets/sound/sfx/attacks/sword/parry.mp3" id="23_v7yx4"]
 [ext_resource type="PackedScene" uid="uid://b1nwhde3tii" path="res://src/game/ui/inventory/InventoryDisplay.tscn" id="24_lg5bt"]
+[ext_resource type="Script" path="res://src/entities/player/ranger/rope_cast.gd" id="25_ea6o3"]
 
 [sub_resource type="CapsuleShape2D" id="1"]
 radius = 5.0
@@ -461,6 +462,18 @@ shader_parameter/silver_color = Vector4(1.5, 2, 0.5, 1)
 [sub_resource type="AtlasTexture" id="2"]
 atlas = ExtResource("17_73c2k")
 region = Rect2(0, 0, 288, 160)
+
+[sub_resource type="Gradient" id="Gradient_lj600"]
+offsets = PackedFloat32Array(0, 0.106667, 0.48)
+colors = PackedColorArray(1, 1, 1, 1, 0.810811, 0.810811, 0.810811, 0.810811, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_osu1u"]
+gradient = SubResource("Gradient_lj600")
+width = 364
+height = 364
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="Curve" id="Curve_c3qvp"]
 _data = [Vector2(0, 1), 0.0, -0.438591, 0, 0, Vector2(0.65, 0.637736), -0.498113, -0.498113, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -951,7 +964,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [-2.0944]
+"values": [-1.91986]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1055,7 +1068,6 @@ jump_speed = 550
 FRICTION_WEIGHT = 0.3
 gravity = 25
 push_force = 40.0
-inventory = ExtResource("2_yr3sk")
 jump_sfx = ExtResource("3_l7mkp")
 land_sfx = ExtResource("4_302f7")
 hit_sfx = ExtResource("5_1cnkm")
@@ -1118,20 +1130,6 @@ libraries = {
 "": SubResource("AnimationLibrary_iidtu")
 }
 
-[node name="FloorRaycasts" type="Node2D" parent="."]
-visible = false
-
-[node name="RayCast2D" type="RayCast2D" parent="FloorRaycasts"]
-target_position = Vector2(0, 1)
-
-[node name="RayCast2D2" type="RayCast2D" parent="FloorRaycasts"]
-position = Vector2(-3, 0)
-target_position = Vector2(0, 1)
-
-[node name="RayCast2D3" type="RayCast2D" parent="FloorRaycasts"]
-position = Vector2(3, 0)
-target_position = Vector2(0, 1)
-
 [node name="BodyPivot" type="Node2D" parent="."]
 position = Vector2(-1.22392e-06, -7)
 
@@ -1141,6 +1139,20 @@ position = Vector2(-2, -4)
 texture = SubResource("2")
 hframes = 9
 vframes = 5
+
+[node name="Lantern" type="Sprite2D" parent="BodyPivot"]
+modulate = Color(0.758192, 0.758192, 0.758192, 1)
+position = Vector2(-2.99998, 3.00001)
+scale = Vector2(0.405, 0.405)
+texture = ExtResource("18_lxyo4")
+
+[node name="PointLight2D2" type="PointLight2D" parent="BodyPivot/Lantern"]
+position = Vector2(-4.65063e-05, 2.46911)
+color = Color(0.995306, 0.942439, 0.758748, 1)
+energy = 2.92
+range_item_cull_mask = 5
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_osu1u")
 
 [node name="WeaponPivot" type="Node2D" parent="BodyPivot"]
 visible = false
@@ -1212,26 +1224,42 @@ position = Vector2(15.8694, 1.04938)
 shape = SubResource("RectangleShape2D_ikuen")
 
 [node name="RopeRaycast" type="Node2D" parent="."]
-visible = false
 scale = Vector2(0.5, 0.5)
 
 [node name="RayCast2DRight" type="RayCast2D" parent="RopeRaycast"]
 position = Vector2(0, -16)
 scale = Vector2(1, 5)
-target_position = Vector2(15, 0)
+target_position = Vector2(22, 0)
 collision_mask = 8
+script = ExtResource("25_ea6o3")
+
+[node name="RayCast2DRight2" type="RayCast2D" parent="RopeRaycast"]
+position = Vector2(0, -29)
+scale = Vector2(1, 5)
+target_position = Vector2(22, 0)
+collision_mask = 8
+script = ExtResource("25_ea6o3")
 
 [node name="RayCast2DLeft" type="RayCast2D" parent="RopeRaycast"]
 position = Vector2(0, -16)
 scale = Vector2(1, 5)
-target_position = Vector2(-15, 0)
+target_position = Vector2(-22, 0)
 collision_mask = 8
+script = ExtResource("25_ea6o3")
+
+[node name="RayCast2DLeft2" type="RayCast2D" parent="RopeRaycast"]
+position = Vector2(0, -29)
+scale = Vector2(1, 5)
+target_position = Vector2(-22, 0)
+collision_mask = 8
+script = ExtResource("25_ea6o3")
 
 [node name="RayCast2DUp" type="RayCast2D" parent="RopeRaycast"]
 position = Vector2(0, -1)
 scale = Vector2(5, 1)
-target_position = Vector2(0, -29)
+target_position = Vector2(0, -53)
 collision_mask = 8
+script = ExtResource("25_ea6o3")
 
 [node name="RollPivot" type="Node2D" parent="."]
 visible = false
@@ -1267,3 +1295,8 @@ player = NodePath("../..")
 [connection signal="animation_finished" from="WeaponContainer/Weapon/FXAnim" to="StateMachine" method="_on_body_animations_animation_finished"]
 [connection signal="area_entered" from="WeaponContainer/Weapon/SwordAttack" to="." method="_handle_deal_damage"]
 [connection signal="body_entered" from="WeaponContainer/Weapon/SwordAttack" to="." method="_handle_deal_damage"]
+[connection signal="collided" from="RopeRaycast/RayCast2DRight" to="StateMachine" method="rope_cast_collided"]
+[connection signal="collided" from="RopeRaycast/RayCast2DRight2" to="StateMachine" method="rope_cast_collided"]
+[connection signal="collided" from="RopeRaycast/RayCast2DLeft" to="StateMachine" method="rope_cast_collided"]
+[connection signal="collided" from="RopeRaycast/RayCast2DLeft2" to="StateMachine" method="rope_cast_collided"]
+[connection signal="collided" from="RopeRaycast/RayCast2DUp" to="StateMachine" method="rope_cast_collided"]

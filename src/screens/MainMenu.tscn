@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://drvygf7nu8s7v" path="res://assets/sound/UI/Minimalist10.ogg" id="4_mk1ol"]
 [ext_resource type="PackedScene" uid="uid://dcs72phuegkmk" path="res://src/game/ui/CharacterSelectMenu.tscn" id="6_io8u3"]
 [ext_resource type="AudioStream" uid="uid://cc6m3sf0a4did" path="res://assets/sound/bgm/Tracks/Ambience 3.ogg" id="6_kop1s"]
-[ext_resource type="PackedScene" uid="uid://dumowchlsuiu" path="res://src/game/ui/OptionsMenu.tscn" id="7_cwbr0"]
+[ext_resource type="PackedScene" uid="uid://dkuwy38tjrrxs" path="res://src/game/ui/menus/OptionsMenu.tscn" id="7_cwbr0"]
 [ext_resource type="Texture2D" uid="uid://ddo8ji8phouh1" path="res://assets/textures/mouse/pointer.png" id="10"]
 [ext_resource type="PackedScene" uid="uid://c1jb1up3g5dl8" path="res://src/game/singletons/WorldEnviroment.tscn" id="10_r64ll"]
 
@@ -19,7 +19,7 @@ click_sfx = ExtResource("4_mk1ol")
 mouse_cursor = ExtResource("10")
 
 [node name="Background" type="CanvasLayer" parent="."]
-layer = 0
+layer = 2
 
 [node name="TextureRect" type="TextureRect" parent="Background"]
 z_as_relative = false
@@ -31,6 +31,7 @@ grow_vertical = 2
 texture = ExtResource("4_5jquh")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="Container" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -68,6 +69,7 @@ layout_mode = 2
 text = "BUTTON_EXIT"
 
 [node name="OptionsMenu" parent="CanvasLayer" instance=ExtResource("7_cwbr0")]
+visible = false
 
 [node name="CharacterSelect" parent="CanvasLayer" instance=ExtResource("6_io8u3")]
 visible = false

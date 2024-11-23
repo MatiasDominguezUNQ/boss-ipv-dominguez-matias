@@ -42,14 +42,15 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="Gradient" id="Gradient_lj600"]
-offsets = PackedFloat32Array(0, 0.713043)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+[sub_resource type="Gradient" id="Gradient_jjkl0"]
+offsets = PackedFloat32Array(0, 0.173333, 0.653333)
+colors = PackedColorArray(1, 1, 1, 1, 0.810811, 0.810811, 0.810811, 0.810811, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_a6hfd"]
-gradient = SubResource("Gradient_lj600")
-width = 3000
-height = 3000
+gradient = SubResource("Gradient_jjkl0")
+width = 2500
+height = 2500
+use_hdr = true
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
@@ -61,8 +62,8 @@ frame_progress = 0.465329
 script = ExtResource("9_rj1pf")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-color = Color(0.991878, 0.905265, 0.605357, 1)
-energy = 0.8
+color = Color(0.982914, 0.853402, 0.384147, 1)
+energy = 2.37
 range_item_cull_mask = 5
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_a6hfd")

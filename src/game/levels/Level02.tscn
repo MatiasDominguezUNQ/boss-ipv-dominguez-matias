@@ -1,26 +1,22 @@
-[gd_scene load_steps=18 format=3 uid="uid://ccs08mpcqrtv"]
+[gd_scene load_steps=14 format=3 uid="uid://ccs08mpcqrtv"]
 
 [ext_resource type="Script" path="res://src/game/levels/LevelDefault.gd" id="1_0n8ux"]
 [ext_resource type="AudioStream" uid="uid://b6n2ah3hmubjo" path="res://assets/sound/bgm/Tracks/Fx 1.ogg" id="2_3htwu"]
 [ext_resource type="AudioStream" uid="uid://y0vysv5wqli1" path="res://assets/sound/bgm/Tracks/Fx 3.ogg" id="3_6j4et"]
 [ext_resource type="AudioStream" uid="uid://0ijgx0332hb" path="res://assets/sound/bgm/Tracks/Dark 3.ogg" id="4_edovi"]
 [ext_resource type="AudioStream" uid="uid://dqyjpkaxcyia2" path="res://assets/sound/bgm/Tracks/Action 3.ogg" id="5_n332a"]
-[ext_resource type="PackedScene" uid="uid://ce0quimc7o7p2" path="res://src/game/ui/DefeatMenu.tscn" id="6_b2c3a"]
-[ext_resource type="PackedScene" uid="uid://xepc1o6dqoga" path="res://src/game/ui/GUI.tscn" id="7_uwhl7"]
-[ext_resource type="PackedScene" uid="uid://kgve63nlrtt3" path="res://src/game/ui/PauseMenu.tscn" id="8_yh4o7"]
-[ext_resource type="PackedScene" uid="uid://bdbmaq3bgtw6o" path="res://src/game/ui/VictoryMenu.tscn" id="9_614k3"]
+[ext_resource type="PackedScene" uid="uid://cpymripcqph0" path="res://src/game/ui/ui_menus.tscn" id="6_38gp6"]
 [ext_resource type="PackedScene" uid="uid://chkhrauq0xab" path="res://src/environment/background/mountain_background.tscn" id="10_234xe"]
 [ext_resource type="PackedScene" uid="uid://cpbfvnk8phjxc" path="res://assets/textures/tileset/levels/TileMapLvl02.tscn" id="11_5i7va"]
 [ext_resource type="FontFile" uid="uid://dy5sekvp82oi3" path="res://assets/fonts/Mystery Font(1).ttf" id="12_pkk88"]
 [ext_resource type="Texture2D" uid="uid://dcvwibiecd02g" path="res://assets/textures/tutorial/tutorial_spikes.png" id="13_vhx05"]
 [ext_resource type="Texture2D" uid="uid://cqu8phjmrwdjx" path="res://assets/textures/tutorial/tutorial_jump.png" id="14_1kgs2"]
 [ext_resource type="PackedScene" path="res://src/environment/Goal.tscn" id="15_kpsjq"]
-[ext_resource type="PackedScene" uid="uid://c1jb1up3g5dl8" path="res://src/game/singletons/WorldEnviroment.tscn" id="24_ue86y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n55b7"]
 size = Vector2(1074, 534)
 
-[node name="Level00" type="Node"]
+[node name="Level02" type="Node"]
 script = ExtResource("1_0n8ux")
 victory_music = ExtResource("2_3htwu")
 death_music = ExtResource("3_6j4et")
@@ -32,17 +28,7 @@ stream = ExtResource("4_edovi")
 autoplay = true
 bus = &"BackgroundLevel"
 
-[node name="UILayer" type="CanvasLayer" parent="."]
-layer = 2
-
-[node name="DefeatMenu" parent="UILayer" instance=ExtResource("6_b2c3a")]
-
-[node name="GUI" parent="UILayer" instance=ExtResource("7_uwhl7")]
-
-[node name="PauseMenu" parent="UILayer" instance=ExtResource("8_yh4o7")]
-process_mode = 3
-
-[node name="VictoryMenu" parent="UILayer" instance=ExtResource("9_614k3")]
+[node name="MenuLayer" parent="." instance=ExtResource("6_38gp6")]
 
 [node name="BackgroundLayer" type="Node" parent="."]
 
@@ -196,20 +182,15 @@ zoom = Vector2(0.745, 0.745)
 position = Vector2(527, 132)
 color = Color(0.28485, 0.28485, 0.28485, 1)
 
-[node name="WorldEnviroment" parent="." instance=ExtResource("24_ue86y")]
-
 [node name="SpawnPoint" type="Marker2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(4084, -232)
 
-[connection signal="death_music" from="UILayer/DefeatMenu" to="." method="_on_death_music"]
-[connection signal="retry_selected" from="UILayer/DefeatMenu" to="." method="_on_restart_requested"]
-[connection signal="return_selected" from="UILayer/DefeatMenu" to="." method="_on_return_requested"]
-[connection signal="restart_selected" from="UILayer/PauseMenu" to="." method="_on_restart_requested"]
-[connection signal="return_selected" from="UILayer/PauseMenu" to="." method="_on_return_requested"]
-[connection signal="next_selected" from="UILayer/VictoryMenu" to="." method="_on_level_won"]
-[connection signal="return_selected" from="UILayer/VictoryMenu" to="." method="_on_return_requested"]
-[connection signal="victory_music" from="UILayer/VictoryMenu" to="." method="_on_victory_menu_victory_music"]
+[connection signal="next_level_requested" from="MenuLayer" to="." method="_on_level_won"]
+[connection signal="player_death" from="MenuLayer" to="." method="_on_player_death"]
+[connection signal="player_victory" from="MenuLayer" to="." method="_on_player_victory"]
+[connection signal="restart_requested" from="MenuLayer" to="." method="_on_restart_requested"]
+[connection signal="return_requested" from="MenuLayer" to="." method="_on_return_requested"]
 [connection signal="area_entered" from="Environment/BossArea" to="." method="_on_boss_area_entered"]
 [connection signal="area_exited" from="Environment/BossArea" to="." method="_on_boss_area_exited"]
 [connection signal="body_entered" from="Environment/BossArea" to="." method="_on_boss_area_entered"]

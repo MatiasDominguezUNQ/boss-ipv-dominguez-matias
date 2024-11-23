@@ -113,3 +113,7 @@ func _handle_deal_damage(area: Node2D) -> void:
 	elif area.has_method("notify_hit"):
 		area.notify_hit(damage)
 		sword_attack.collision_mask = 0
+
+
+func rope_cast_collided(body: Variant) -> void:
+	pass # Replace with function body.

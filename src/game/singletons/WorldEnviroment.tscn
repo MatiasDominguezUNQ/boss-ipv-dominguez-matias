@@ -1,8 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c1jb1up3g5dl8"]
 
-[sub_resource type="Environment" id="Environment_k0yqj"]
-background_mode = 3
-adjustment_enabled = true
+[ext_resource type="Environment" uid="uid://b8nvi3eckhoos" path="res://src/game/singletons/WorldEnviroment.tres" id="1_5m6f3"]
 
 [node name="WorldEnviroment" type="WorldEnvironment"]
-environment = SubResource("Environment_k0yqj")
+environment = ExtResource("1_5m6f3")

@@ -1,15 +1,15 @@
 [gd_scene load_steps=5 format=3 uid="uid://b2fo2avimx260"]
 
+[ext_resource type="Texture2D" uid="uid://buhxhsmk34uph" path="res://assets/textures/environment/rope_segment.png" id="1_klpwy"]
+
 [sub_resource type="CanvasTexture" id="CanvasTexture_wuhq6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_etir5"]
 size = Vector2(11.25, 10.75)
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_7half"]
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_08fbn"]
-radius = 4.0
-height = 22.0
+radius = 7.0
+height = 28.0
 
 [node name="Rope" type="StaticBody2D"]
 
@@ -96,17 +96,16 @@ angular_limit_upper = 0.261799
 
 [node name="Segment" type="RigidBody2D" parent="Segments"]
 position = Vector2(0, 17)
-collision_layer = 8
+collision_layer = 0
 mass = 2.0
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Segments/Segment"]
-modulate = Color(0.342751, 0.240294, 0.0141638, 1)
 position = Vector2(0, 1.07288e-06)
-scale = Vector2(8, 22)
-texture = SubResource("CanvasTexture_7half")
+texture = ExtResource("1_klpwy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Segments/Segment"]
+visible = false
 shape = SubResource("CapsuleShape2D_08fbn")
 
 [node name="Segment2" type="RigidBody2D" parent="Segments"]
@@ -116,12 +115,11 @@ mass = 2.0
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Segments/Segment2"]
-modulate = Color(0.342751, 0.240294, 0.0141638, 1)
 position = Vector2(0, 1.07288e-06)
-scale = Vector2(8, 22)
-texture = SubResource("CanvasTexture_7half")
+texture = ExtResource("1_klpwy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Segments/Segment2"]
+visible = false
 shape = SubResource("CapsuleShape2D_08fbn")
 
 [node name="Segment3" type="RigidBody2D" parent="Segments"]
@@ -131,9 +129,7 @@ mass = 2.0
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Segments/Segment3"]
-modulate = Color(0.342751, 0.240294, 0.0141638, 1)
-scale = Vector2(8, 22)
-texture = SubResource("CanvasTexture_7half")
+texture = ExtResource("1_klpwy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Segments/Segment3"]
 shape = SubResource("CapsuleShape2D_08fbn")
@@ -145,9 +141,7 @@ mass = 2.0
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Segments/Segment4"]
-modulate = Color(0.342751, 0.240294, 0.0141638, 1)
-scale = Vector2(8, 22)
-texture = SubResource("CanvasTexture_7half")
+texture = ExtResource("1_klpwy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Segments/Segment4"]
 shape = SubResource("CapsuleShape2D_08fbn")
@@ -159,9 +153,7 @@ mass = 2.0
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Segments/Segment5"]
-modulate = Color(0.342751, 0.240294, 0.0141638, 1)
-scale = Vector2(8, 22)
-texture = SubResource("CanvasTexture_7half")
+texture = ExtResource("1_klpwy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Segments/Segment5"]
 shape = SubResource("CapsuleShape2D_08fbn")
@@ -173,9 +165,7 @@ mass = 2.0
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Segments/Segment6"]
-modulate = Color(0.342751, 0.240294, 0.0141638, 1)
-scale = Vector2(8, 22)
-texture = SubResource("CanvasTexture_7half")
+texture = ExtResource("1_klpwy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Segments/Segment6"]
 shape = SubResource("CapsuleShape2D_08fbn")
@@ -187,9 +177,7 @@ mass = 2.0
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Segments/Segment7"]
-modulate = Color(0.342751, 0.240294, 0.0141638, 1)
-scale = Vector2(8, 22)
-texture = SubResource("CanvasTexture_7half")
+texture = ExtResource("1_klpwy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Segments/Segment7"]
 shape = SubResource("CapsuleShape2D_08fbn")

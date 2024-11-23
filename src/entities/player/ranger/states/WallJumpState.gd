@@ -4,6 +4,7 @@ func enter() -> void:
 	character.jumps = 0
 	character.is_sliding = true
 	character.V_SPEED_LIMIT = 10
+	await get_tree().create_timer(0.1).timeout
 	character._play_animation("fall")
 
 func exit():
@@ -30,6 +31,13 @@ func update(delta: float) -> void:
 			emit_signal("finished", "idle")
 		else:
 			emit_signal("finished", "walk")
+	else:
+		if character.move_direction == 0:
+			await get_tree().create_timer(0.1).timeout
+			if character.move_direction == 0:
+				character.is_sliding = false
+				emit_signal("finished", "jump")
+
 
 func handle_event(event: String, value = null, isCrit = false) -> void:
 	match event:

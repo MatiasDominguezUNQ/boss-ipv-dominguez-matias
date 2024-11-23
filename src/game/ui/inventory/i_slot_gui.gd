@@ -32,13 +32,14 @@ func equip_item(itemStack: ItemStack):
 	player_inventory.equip_item_at_index(index, itemStack.inventorySlot)
 	
 func take_equipped_item():
-	var item = itemStackGui
-	container.remove_child(itemStackGui)
-	itemStackGui = null
-	if slot_icon:
-		icon = slot_icon
-	player_inventory.unequip_item_at_index(item_type)
-	return item
+	if itemStackGui:
+		var item = itemStackGui
+		container.remove_child(itemStackGui)
+		itemStackGui = null
+		if slot_icon:
+			icon = slot_icon
+		player_inventory.unequip_item_at_index(item_type)
+		return item
 	
 func takeItem():
 	var item = itemStackGui

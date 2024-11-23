@@ -1,8 +1,5 @@
 extends GameLevel
 
-func _ready() -> void:
-	randomize()
-
 func get_chests():
 	return chests_node.get_children()
 # Funciones que hacen de interfaz para las señales
@@ -77,16 +74,6 @@ func get_key(action_id) -> String:
 	else:
 		return events.as_text()
 
-func _on_victory_menu_victory_music() -> void:
-	background_music.stream = victory_music
-	background_music.play()
-
-
-func _on_death_music() -> void:
-	background_music.stream = death_music
-	background_music.play()
-
-
 func _on_boss_area_entered(area) -> void:
 	print("boss entered")
 	background_music.stream = boss_music
@@ -103,5 +90,5 @@ func _on_boss_dead() -> void:
 	background_music.stream = victory_music
 	background_music.volume_db = 0
 	background_music.play()
-	await get_tree().create_timer(5).timeout
-	emit_signal("next_level_requested")
+	await get_tree().create_timer(3).timeout
+	GameState.notify_level_won()

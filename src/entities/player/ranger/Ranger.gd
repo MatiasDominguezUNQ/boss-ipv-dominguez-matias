@@ -13,11 +13,7 @@ signal dead()
 @onready var weapon: Node = $"%Weapon"
 @onready var body_animations: AnimationPlayer = $BodyAnimations
 @onready var body_pivot: Node2D = $BodyPivot
-@onready var floor_raycasts: Array = $FloorRaycasts.get_children()
-@onready var raycast_right: RayCast2D = $RopeRaycast/RayCast2DRight
-@onready var raycast_left: RayCast2D = $RopeRaycast/RayCast2DLeft
-@onready var raycast_up: RayCast2D = $RopeRaycast/RayCast2DUp
-@onready var rope_raycasts = [raycast_right, raycast_left, raycast_up] 
+@onready var rope_raycast: Array = $RopeRaycast.get_children()
 @onready var fx_anim: AnimationPlayer = $WeaponContainer/Weapon/FXAnim
 @onready var weapon_sfx: AudioStreamPlayer = $WeaponContainer/Weapon/WeaponSFX
 @onready var attack_cooldown: Timer = $AttackCooldown
@@ -25,7 +21,7 @@ signal dead()
 @onready var damage_spawn: Marker2D = %DamageSpawn
 @onready var weapon_container: Node2D = $WeaponContainer
 
-@export var base_acceleration: float = 280.0
+@export var base_acceleration: float = 200.0
 @export var roll_speed: float = 300.0 
 @export var V_SPEED_LIMIT: float = 650.0
 @export var jump_speed: int = 500
@@ -35,7 +31,7 @@ signal dead()
 @export var max_health: int = 25
 @export var health: int = max_health
 @export var push_force: float = 80.0
-@export var inventory: Inventory
+var inventory: Inventory
 @export var jump_sfx: AudioStream
 @export var land_sfx: AudioStream
 @export var hit_sfx: AudioStream
@@ -182,14 +178,14 @@ func _remove_custom() -> void:
 func _play_animation(animation: String, custom_blend: float = -1, custom_speed: float = 1.0) -> void:
 	if body_animations.has_animation(animation):
 		body_animations.play(animation, custom_blend, custom_speed)
-
-func _on_rope_area_body_entered(body: Node2D) -> void:
-	if !is_grabbing_rope:
-		rope = body
-
-func _on_rope_area_body_exited(body: Node2D) -> void:
-	if body == rope && !is_grabbing_rope:
-		rope = null
+#
+#func _on_rope_area_body_entered(body: Node2D) -> void:
+	#if !is_grabbing_rope:
+		#rope = body
+#
+#func _on_rope_area_body_exited(body: Node2D) -> void:
+	#if body == rope && !is_grabbing_rope:
+		#rope = null
 
 func _handle_rope_swing_input():
 	global_rotation = rope.global_rotation
@@ -217,14 +213,13 @@ func can_move_down_rope():
 			return true
 	return false
 
-func can_grab_rope():
-	rope = null
-	for raycast in rope_raycasts:
-		raycast.force_raycast_update()
-		if raycast.is_colliding():
-			rope = raycast.get_collider()
-			break
-	return rope != null
+#func can_grab_rope():
+	#rope = null
+	#for raycast in rope_raycast:
+		#if raycast.is_colliding():
+			#rope = raycast.get_collider()
+			#break
+	#return rope != null
 
 func wall_direction():
 	for i in get_slide_collision_count():
@@ -283,4 +278,5 @@ func calculate_speed():
 	move_speed = lerp(0.5, 4.0, float(current_attributes.get("Spd") - 1) / (20 - 1))
 
 func move_slow():
-	acceleration = 100
+	if !is_on_floor():
+		acceleration = 100

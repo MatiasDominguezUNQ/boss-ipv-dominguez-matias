@@ -1,8 +1,11 @@
 extends Node
 
+signal brightness_changed(value)
+
 @onready var floating_text_scene = preload("res://src/game/ui/damage_text.tscn")
 @onready var viewport_size = get_viewport().size
 var color: Color
+var global_brightness: float = 1
 
 func show_damage(position: Vector2, damage: int, isCrit: bool = false, default: bool = false) -> void:
 	if floating_text_scene:

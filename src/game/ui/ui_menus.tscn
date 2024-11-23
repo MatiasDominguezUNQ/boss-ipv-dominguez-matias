@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://cpymripcqph0"]
+
+[ext_resource type="PackedScene" uid="uid://c25brlv2k4kcx" path="res://src/game/ui/menus/DefeatMenu.tscn" id="1_6rckl"]
+[ext_resource type="Script" path="res://src/game/ui/ui_menus.gd" id="1_ldqgd"]
+[ext_resource type="PackedScene" uid="uid://xepc1o6dqoga" path="res://src/game/ui/GUI.tscn" id="2_fw7ev"]
+[ext_resource type="PackedScene" uid="uid://cmsihb20lcxdy" path="res://src/game/ui/menus/PauseMenu.tscn" id="3_3gttb"]
+[ext_resource type="PackedScene" uid="uid://d1i1akl6lfpyi" path="res://src/game/ui/menus/VictoryMenu.tscn" id="4_ahrfc"]
+
+[node name="MenuLayer" type="CanvasLayer"]
+layer = 5
+script = ExtResource("1_ldqgd")
+
+[node name="DefeatMenu" parent="." instance=ExtResource("1_6rckl")]
+
+[node name="GUI" parent="." instance=ExtResource("2_fw7ev")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("3_3gttb")]
+process_mode = 3
+
+[node name="VictoryMenu" parent="." instance=ExtResource("4_ahrfc")]
+
+[connection signal="death_music" from="DefeatMenu" to="." method="_on_defeat_menu_death_music"]
+[connection signal="retry_selected" from="DefeatMenu" to="." method="_on_restart_requested"]
+[connection signal="return_selected" from="DefeatMenu" to="." method="_on_return_requested"]
+[connection signal="restart_selected" from="PauseMenu" to="." method="_on_restart_requested"]
+[connection signal="return_selected" from="PauseMenu" to="." method="_on_return_requested"]
+[connection signal="next_selected" from="VictoryMenu" to="." method="_on_level_won"]
+[connection signal="return_selected" from="VictoryMenu" to="." method="_on_return_requested"]
+[connection signal="victory_music" from="VictoryMenu" to="." method="_on_victory_menu_victory_music"]

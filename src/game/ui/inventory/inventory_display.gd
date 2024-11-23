@@ -75,8 +75,9 @@ func onSlotClicked(slot):
 
 func takeItemFromSlot(slot):
 	itemInHand = slot.takeItem()
-	add_child(itemInHand)
-	updateItemInHand()
+	if itemInHand:
+		add_child(itemInHand)
+		updateItemInHand()
 
 func insertItemInSlot(slot):
 	var item = itemInHand
@@ -90,7 +91,11 @@ func _on_return_button_pressed() -> void:
 func _input(event: InputEvent) -> void:
 	updateItemInHand()
 	if event.is_action_pressed("toggle_inventory"):
-		visible = !visible
+		if visible:
+			hide()
+			GameState.player_can_attack = true
+		else:
+			show()
 
 func update():
 	for i in range(min(player.inventory.slots.size(), stored.size())):

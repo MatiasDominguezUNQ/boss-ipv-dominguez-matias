@@ -42,6 +42,8 @@ func update(delta: float) -> void:
 func _on_animation_finished(anim_name: String) -> void:
 	return
 
+func _on_rope_cast_collided(collider):
+	return
 
 # Callback genérico para eventos manejados como strings.
 func handle_event(event: String, value = null, isCrit = false) -> void:

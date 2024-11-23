@@ -1,3 +1,6 @@
+PointLight2D
+Camera3D
+WorldEnvironment
 Label
 Marker2D
 Node2D
@@ -10,5 +13,3 @@ Window
 VBoxContainer
 Panel
 ItemList
-ItemStack
-Button
