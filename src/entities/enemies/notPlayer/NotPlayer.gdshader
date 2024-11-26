@@ -11,6 +11,10 @@ void fragment() {
         vec4 tinted_silver = vec4(silver_color.rgb * avg, silver_color.a); // Plateado aplicado con intensidad
         COLOR = tinted_silver * tex_color.a; // Mezcla según alfa
     } else {
+<<<<<<< HEAD
         COLOR = tex_color;
+=======
+        COLOR = mix(tex_color, vec4(0.07, 0.0, 0.09, 1), 2.1) * tex_color.a;
+>>>>>>> caefb9b0bdbc7d250aee0ac630c39780e5622578
     }
 }

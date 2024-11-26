@@ -43,6 +43,7 @@ animations = [{
 }]
 
 [sub_resource type="Gradient" id="Gradient_jjkl0"]
+<<<<<<< HEAD
 offsets = PackedFloat32Array(0, 0.0325203, 0.658537, 0.886179)
 colors = PackedColorArray(1, 1, 1, 1, 0.810811, 0.810811, 0.810811, 0.810811, 0, 0, 0, 0, 0, 0, 0, 0)
 
@@ -50,6 +51,15 @@ colors = PackedColorArray(1, 1, 1, 1, 0.810811, 0.810811, 0.810811, 0.810811, 0,
 gradient = SubResource("Gradient_jjkl0")
 width = 4500
 height = 4500
+=======
+offsets = PackedFloat32Array(0, 0.173333, 0.653333)
+colors = PackedColorArray(1, 1, 1, 1, 0.810811, 0.810811, 0.810811, 0.810811, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_a6hfd"]
+gradient = SubResource("Gradient_jjkl0")
+width = 2500
+height = 2500
+>>>>>>> caefb9b0bdbc7d250aee0ac630c39780e5622578
 use_hdr = true
 fill = 1
 fill_from = Vector2(0.5, 0.5)
@@ -62,8 +72,13 @@ frame_progress = 0.465329
 script = ExtResource("9_rj1pf")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+<<<<<<< HEAD
 modulate = Color(4, 4, 4, 1)
 color = Color(0.991606, 1, 0.496144, 1)
+=======
+color = Color(0.982914, 0.853402, 0.384147, 1)
+energy = 2.37
+>>>>>>> caefb9b0bdbc7d250aee0ac630c39780e5622578
 range_item_cull_mask = 5
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_a6hfd")

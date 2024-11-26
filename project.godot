@@ -119,7 +119,10 @@ locale/translations=PackedStringArray("res://assets/localization/Localization.en
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+<<<<<<< HEAD
 lights_and_shadows/use_physical_light_units=true
+=======
+>>>>>>> caefb9b0bdbc7d250aee0ac630c39780e5622578
 viewport/hdr_2d=true
 environment/defaults/default_environment="res://src/game/singletons/WorldEnviroment.tres"
 gles3/shaders/shader_compilation_mode=2

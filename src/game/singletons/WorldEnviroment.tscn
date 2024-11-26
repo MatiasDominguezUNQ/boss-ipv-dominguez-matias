@@ -1,6 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c1jb1up3g5dl8"]
 
 [ext_resource type="Environment" uid="uid://b8nvi3eckhoos" path="res://src/game/singletons/WorldEnviroment.tres" id="1_5m6f3"]
+<<<<<<< HEAD
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_e02vl"]
 auto_exposure_enabled = true
@@ -14,3 +15,8 @@ environment = ExtResource("1_5m6f3")
 camera_attributes = SubResource("CameraAttributesPractical_e02vl")
 
 [node name="Camera3D" type="Camera3D" parent="."]
+=======
+
+[node name="WorldEnviroment" type="WorldEnvironment"]
+environment = ExtResource("1_5m6f3")
+>>>>>>> caefb9b0bdbc7d250aee0ac630c39780e5622578

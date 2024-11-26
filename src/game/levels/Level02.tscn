@@ -181,7 +181,11 @@ zoom = Vector2(0.745, 0.745)
 
 [node name="DefaultLighting" type="CanvasModulate" parent="."]
 position = Vector2(527, 132)
+<<<<<<< HEAD
 color = Color(0.430057, 0.430057, 0.430057, 1)
+=======
+color = Color(0.28485, 0.28485, 0.28485, 1)
+>>>>>>> caefb9b0bdbc7d250aee0ac630c39780e5622578
 
 [node name="SpawnPoint" type="Marker2D" parent="."]
 unique_name_in_owner = true

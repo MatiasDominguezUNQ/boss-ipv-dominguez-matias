@@ -156,5 +156,5 @@ action_name = "TAG_RIGHT"
 bus = &"SFX"
 
 [connection signal="mouse_entered" from="MainPanel/ReturnButton" to="." method="on_focus"]
-[connection signal="pressed" from="MainPanel/ReturnButton" to="." method="on_click"]
 [connection signal="pressed" from="MainPanel/ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="MainPanel/ReturnButton" to="." method="on_click"]

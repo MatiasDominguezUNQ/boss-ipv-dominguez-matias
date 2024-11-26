@@ -134,6 +134,6 @@ value = 1.0
 bus = &"SFX"
 
 [connection signal="mouse_entered" from="MainPanel/ReturnButton" to="." method="on_focus"]
-[connection signal="pressed" from="MainPanel/ReturnButton" to="." method="on_click"]
 [connection signal="pressed" from="MainPanel/ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="MainPanel/ReturnButton" to="." method="on_click"]
 [connection signal="value_changed" from="MainPanel/ScrollContainer/VBoxContainer/Label/Brightness" to="." method="_on_brightness_value_changed"]
