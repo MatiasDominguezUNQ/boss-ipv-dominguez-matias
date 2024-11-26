@@ -62,5 +62,5 @@ size_flags_horizontal = 4
 bus = &"SFX"
 
 [connection signal="mouse_entered" from="Container/HBoxContainer/CharacterButton" to="." method="on_focus"]
-[connection signal="pressed" from="Container/HBoxContainer/CharacterButton" to="." method="_on_input_pressed"]
 [connection signal="pressed" from="Container/HBoxContainer/CharacterButton" to="." method="on_click"]
+[connection signal="pressed" from="Container/HBoxContainer/CharacterButton" to="." method="_on_input_pressed"]

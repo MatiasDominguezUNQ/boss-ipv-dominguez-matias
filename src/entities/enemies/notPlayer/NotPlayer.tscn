@@ -988,12 +988,7 @@ offset_right = 25.0
 offset_bottom = -67.0
 player = NodePath("..")
 
-<<<<<<< HEAD
 [node name="BodyCollision" type="CollisionPolygon2D" parent="."]
-=======
-[node name="BodyCollision" type="CollisionShape2D" parent="."]
-visible = false
->>>>>>> caefb9b0bdbc7d250aee0ac630c39780e5622578
 position = Vector2(-3, -9)
 polygon = PackedVector2Array(-17, -16, -11, -29, 15, -29, 19, -14, 19, 17, 2, 30, -18, 16)
 

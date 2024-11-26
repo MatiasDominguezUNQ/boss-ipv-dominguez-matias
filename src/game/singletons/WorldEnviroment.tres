@@ -6,7 +6,6 @@ tonemap_mode = 1
 tonemap_white = 16.0
 ssr_enabled = true
 ssao_enabled = true
-<<<<<<< HEAD
 glow_enabled = true
 glow_levels/1 = 8.22
 glow_levels/2 = 2.51
@@ -21,22 +20,3 @@ glow_hdr_threshold = 2.0
 glow_hdr_luminance_cap = 0.25
 adjustment_enabled = true
 adjustment_brightness = 0.8
-=======
-ssil_enabled = true
-sdfgi_enabled = true
-glow_enabled = true
-glow_levels/1 = 9.39
-glow_levels/2 = 6.96
-glow_levels/3 = 6.82
-glow_levels/4 = 5.92
-glow_levels/5 = 5.57
-glow_levels/6 = 3.13
-glow_levels/7 = 2.78
-glow_intensity = 1.27
-glow_strength = 1.44
-glow_mix = 0.352
-glow_blend_mode = 0
-glow_hdr_threshold = 1.31
-glow_hdr_luminance_cap = 0.01
-adjustment_enabled = true
->>>>>>> caefb9b0bdbc7d250aee0ac630c39780e5622578

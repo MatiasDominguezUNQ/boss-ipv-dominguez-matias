@@ -127,7 +127,7 @@ character_name = "CLASS_KNIGHT"
 bus = &"SFX"
 
 [connection signal="mouse_entered" from="MainPanel/ReturnButton" to="." method="on_focus"]
-[connection signal="pressed" from="MainPanel/ReturnButton" to="." method="_on_return_button_pressed"]
 [connection signal="pressed" from="MainPanel/ReturnButton" to="." method="on_click"]
+[connection signal="pressed" from="MainPanel/ReturnButton" to="." method="_on_return_button_pressed"]
 [connection signal="character_ready" from="MainPanel/ScrollContainer/HBoxContainer/CharacterSelect" to="." method="_on_character_select_character_ready"]
 [connection signal="character_ready" from="MainPanel/ScrollContainer/HBoxContainer/CharacterSelect2" to="." method="_on_character_select_character_ready"]
