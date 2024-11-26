@@ -1,7 +1,6 @@
-[gd_scene load_steps=48 format=3 uid="uid://dn1ncvf0pc8jk"]
+[gd_scene load_steps=50 format=3 uid="uid://dn1ncvf0pc8jk"]
 
 [ext_resource type="Script" path="res://src/entities/player/ranger/Ranger.gd" id="1_cr5qo"]
-[ext_resource type="Resource" uid="uid://clwcl7am80r82" path="res://src/entities/player/player_inventory.tres" id="2_3yl08"]
 [ext_resource type="AudioStream" uid="uid://5l1dpqy67v0s" path="res://assets/sound/sfx/jump/12_human_jump_1.wav" id="2_7qv0g"]
 [ext_resource type="AudioStream" uid="uid://bkebhhg4036s2" path="res://assets/sound/sfx/jump/13_human_jump_land_2.wav" id="3_dtokc"]
 [ext_resource type="AudioStream" uid="uid://c14yfe4an4fa6" path="res://assets/sound/sfx/player/11_human_damage_3.wav" id="4_3w5ix"]
@@ -17,7 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://m6cdj3nudsxj" path="res://assets/sound/sfx/movement/15_human_dash_2.wav" id="14_fop6b"]
 [ext_resource type="AudioStream" uid="uid://dj2chm0mgk2ly" path="res://assets/sound/sfx/player/human_death.ogg" id="15_5cche"]
 [ext_resource type="AudioStream" uid="uid://3yoikv1hui1c" path="res://assets/sound/sfx/movement/16_human_walk_stone_1.wav" id="16_6opo1"]
-[ext_resource type="Texture2D" uid="uid://c3p42hwu17odm" path="res://assets/textures/player/player_sheet.png" id="17_ywj0c"]
+[ext_resource type="Texture2D" uid="uid://c3p42hwu17odm" path="res://assets/textures/player/ranger_sheet.png" id="17_ywj0c"]
 [ext_resource type="Texture2D" uid="uid://bxqesp41wp0bn" path="res://assets/textures/environment/altar.png" id="18_ve77v"]
 [ext_resource type="Script" path="res://src/entities/player/Cannon.gd" id="19_aug7q"]
 [ext_resource type="AudioStream" uid="uid://deigtnxuah5n2" path="res://assets/sound/sfx/attacks/bow/bow_tensing.ogg" id="20_nmm3w"]
@@ -28,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://bbiyx1qf2jh1n" path="res://assets/textures/weapon/bow_sheet.png" id="25_eu816"]
 [ext_resource type="PackedScene" uid="uid://b1nwhde3tii" path="res://src/game/ui/inventory/InventoryDisplay.tscn" id="26_p2m6q"]
 [ext_resource type="Script" path="res://src/entities/player/ranger/charge_effect.gd" id="27_g13kx"]
+[ext_resource type="Script" path="res://src/entities/player/ranger/rope_cast.gd" id="28_cn8gh"]
 
 [sub_resource type="CapsuleShape2D" id="1"]
 radius = 5.0
@@ -484,6 +484,18 @@ _data = {
 "walk": SubResource("6")
 }
 
+[sub_resource type="Gradient" id="Gradient_uvnv7"]
+offsets = PackedFloat32Array(0, 0.105691, 0.666667)
+colors = PackedColorArray(1, 1, 1, 1, 0.810811, 0.810811, 0.810811, 0.810811, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_luoak"]
+gradient = SubResource("Gradient_uvnv7")
+width = 500
+height = 500
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [sub_resource type="AtlasTexture" id="2"]
 atlas = ExtResource("17_ywj0c")
 region = Rect2(0, 0, 288, 160)
@@ -686,11 +698,19 @@ collision_mask = 39
 script = ExtResource("1_cr5qo")
 FRICTION_WEIGHT = 0.15
 gravity = 25
+max_health = 20
+health = 20
 push_force = 40.0
-inventory = ExtResource("2_3yl08")
 jump_sfx = ExtResource("2_7qv0g")
 land_sfx = ExtResource("3_dtokc")
 hit_sfx = ExtResource("4_3w5ix")
+base_attributes = {
+"Def": 1,
+"Dex": 3,
+"Int": 1,
+"Spd": 2,
+"Str": 2
+}
 
 [node name="AttackCooldown" type="Timer" parent="."]
 wait_time = 0.5
@@ -747,19 +767,15 @@ libraries = {
 "": SubResource("AnimationLibrary_iidtu")
 }
 
-[node name="FloorRaycasts" type="Node2D" parent="."]
-visible = false
-
-[node name="RayCast2D" type="RayCast2D" parent="FloorRaycasts"]
-target_position = Vector2(0, 1)
-
-[node name="RayCast2D2" type="RayCast2D" parent="FloorRaycasts"]
-position = Vector2(-3, 0)
-target_position = Vector2(0, 1)
-
-[node name="RayCast2D3" type="RayCast2D" parent="FloorRaycasts"]
-position = Vector2(3, 0)
-target_position = Vector2(0, 1)
+[node name="LanternLight" type="PointLight2D" parent="."]
+position = Vector2(-3, -3)
+scale = Vector2(0.405, 0.405)
+color = Color(0.981069, 0.846851, 0.354685, 1)
+energy = 0.6
+blend_mode = 2
+range_item_cull_mask = 5
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_luoak")
 
 [node name="BodyPivot" type="Node2D" parent="."]
 position = Vector2(-1.22392e-06, -7)
@@ -828,37 +844,50 @@ script = ExtResource("27_g13kx")
 [node name="RopeRaycast" type="Node2D" parent="."]
 scale = Vector2(0.5, 0.5)
 
+[node name="RayCast2DUp" type="RayCast2D" parent="RopeRaycast"]
+position = Vector2(0, -3)
+scale = Vector2(5, 1)
+target_position = Vector2(0, -47)
+collision_mask = 8
+hit_from_inside = true
+script = ExtResource("28_cn8gh")
+
+[node name="RayCast2DRight2" type="RayCast2D" parent="RopeRaycast"]
+position = Vector2(0, -29)
+scale = Vector2(1, 5)
+target_position = Vector2(17, 0)
+collision_mask = 8
+hit_from_inside = true
+script = ExtResource("28_cn8gh")
+
+[node name="RayCast2DLeft2" type="RayCast2D" parent="RopeRaycast"]
+position = Vector2(0, -29)
+scale = Vector2(1, 5)
+target_position = Vector2(-17, 0)
+collision_mask = 8
+hit_from_inside = true
+script = ExtResource("28_cn8gh")
+
 [node name="RayCast2DRight" type="RayCast2D" parent="RopeRaycast"]
 position = Vector2(0, -18)
 scale = Vector2(1, 5)
-target_position = Vector2(15, 0)
+target_position = Vector2(17, 0)
 collision_mask = 8
+hit_from_inside = true
+script = ExtResource("28_cn8gh")
 
 [node name="RayCast2DLeft" type="RayCast2D" parent="RopeRaycast"]
 position = Vector2(0, -18)
 scale = Vector2(1, 5)
-target_position = Vector2(-15, 0)
+target_position = Vector2(-17, 0)
 collision_mask = 8
-
-[node name="RayCast2DUp" type="RayCast2D" parent="RopeRaycast"]
-position = Vector2(0, -3)
-scale = Vector2(5, 1)
-target_position = Vector2(0, -29)
-collision_mask = 8
+hit_from_inside = true
+script = ExtResource("28_cn8gh")
 
 [node name="RollPivot" type="Node2D" parent="."]
 
 [node name="PlayerSfx" type="AudioStreamPlayer" parent="."]
 bus = &"PlayerSFX"
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-2, -20)
-zoom = Vector2(1.205, 1.205)
-drag_left_margin = 0.0
-drag_top_margin = 0.0
-drag_right_margin = 0.0
-drag_bottom_margin = 0.0
-metadata/_edit_lock_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -869,6 +898,15 @@ player = NodePath("../..")
 unique_name_in_owner = true
 position = Vector2(0, -19)
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-2, -20)
+zoom = Vector2(1.4, 1.4)
+drag_left_margin = 0.0
+drag_top_margin = 0.0
+drag_right_margin = 0.0
+drag_bottom_margin = 0.0
+metadata/_edit_lock_ = true
+
 [connection signal="healed" from="." to="StateMachine" method="notify_healed"]
 [connection signal="hit" from="." to="StateMachine" method="notify_hit"]
 [connection signal="hp_changed" from="." to="HealthBar" method="update"]
@@ -876,3 +914,8 @@ position = Vector2(0, -19)
 [connection signal="animation_finished" from="BodyAnimations" to="StateMachine" method="_on_body_animations_animation_finished"]
 [connection signal="animation_finished" from="WeaponContainer/Weapon/FXAnim" to="." method="_on_fx_anim_animation_finished"]
 [connection signal="animation_finished" from="WeaponContainer/Weapon/FXAnim" to="WeaponContainer/Weapon" method="_on_fx_anim_animation_finished"]
+[connection signal="collided" from="RopeRaycast/RayCast2DUp" to="StateMachine" method="rope_cast_collided"]
+[connection signal="collided" from="RopeRaycast/RayCast2DRight2" to="StateMachine" method="rope_cast_collided"]
+[connection signal="collided" from="RopeRaycast/RayCast2DLeft2" to="StateMachine" method="rope_cast_collided"]
+[connection signal="collided" from="RopeRaycast/RayCast2DRight" to="StateMachine" method="rope_cast_collided"]
+[connection signal="collided" from="RopeRaycast/RayCast2DLeft" to="StateMachine" method="rope_cast_collided"]

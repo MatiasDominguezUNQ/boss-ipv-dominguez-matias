@@ -11,6 +11,8 @@ extends Control
 @onready var level: Label = %Level
 @onready var left_equipment: Array = $MainPanel/LeftEquipment.get_children()
 @onready var right_equipment: Array = $MainPanel/RightEquipment.get_children()
+@onready var main_panel: Panel = $MainPanel
+@onready var default_position: Vector2 = $MainPanel.global_position
 
 var equipped: Array = []
 var itemInHand: ItemStack
@@ -52,8 +54,8 @@ func onEquipmentSlotClicked(slot):
 	if itemInHand and slot.isEmpty() and itemInHand.item.item_type == slot.item_type:
 		equipItemInSlot(slot)
 		return
-	if !itemInHand:
-		unequipItemFromSlot(slot)
+	if !itemInHand and !slot.isEmpty():
+		add_to_stored(slot)
 
 func unequipItemFromSlot(slot):
 	itemInHand = slot.take_equipped_item()
@@ -66,17 +68,24 @@ func equipItemInSlot(slot):
 	itemInHand = null
 	slot.equip_item(item)
 
+func equipItemInSlotDirect(slot, item):
+	slot.equip_item(item)
+
 func onSlotClicked(slot):
 	if slot.isEmpty() and itemInHand:
 		insertItemInSlot(slot)
 		return
-	if !itemInHand:
+	if slot.itemStackGui and equipped[slot.itemStackGui.item.item_type].isEmpty() and !itemInHand:
+		equipItemInSlotDirect(equipped[slot.itemStackGui.item.item_type], slot.takeItem())
+		return
+	if !itemInHand :
 		takeItemFromSlot(slot)
 
 func takeItemFromSlot(slot):
 	itemInHand = slot.takeItem()
-	add_child(itemInHand)
-	updateItemInHand()
+	if itemInHand:
+		add_child(itemInHand)
+		updateItemInHand()
 
 func insertItemInSlot(slot):
 	var item = itemInHand
@@ -88,9 +97,29 @@ func _on_return_button_pressed() -> void:
 	hide()
 
 func _input(event: InputEvent) -> void:
+	if visible and event is InputEventKey and event.physical_keycode == KEY_SPACE:
+		get_viewport().set_input_as_handled()
+		return
 	updateItemInHand()
 	if event.is_action_pressed("toggle_inventory"):
-		visible = !visible
+		if visible:
+			hide()
+			GameState.player_can_attack = true
+		else:
+			main_panel.global_position = default_position
+			show()
+
+func add_to_stored(slot):
+	for i in range(min(player.inventory.slots.size(), stored.size())):
+		var i_slot: InventorySlot = player.inventory.slots[i]
+		if i_slot.item: continue
+		var i_stack: ItemStack = stored[i].itemStackGui
+		if !i_stack:
+			i_stack = itemStackClass.instantiate()
+			stored[i].insert(slot.take_equipped_item())
+		i_stack.inventorySlot = i_slot
+		i_stack.update()
+		break
 
 func update():
 	for i in range(min(player.inventory.slots.size(), stored.size())):
@@ -100,6 +129,15 @@ func update():
 		if !i_stack:
 			i_stack = itemStackClass.instantiate()
 			stored[i].insert(i_stack)
+		i_stack.inventorySlot = i_slot
+		i_stack.update()
+	for i in range(min(player.inventory.equipment_slots.size(), equipped.size())):
+		var i_slot: InventorySlot = player.inventory.equipment_slots[i]
+		if !i_slot.item: continue
+		var i_stack: ItemStack = equipped[i].itemStackGui
+		if !i_stack:
+			i_stack = itemStackClass.instantiate()
+			equipped[i].equip_item(i_stack)
 		i_stack.inventorySlot = i_slot
 		i_stack.update()
 

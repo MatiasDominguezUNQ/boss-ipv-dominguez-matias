@@ -3,6 +3,7 @@ extends AbstractState
 var joint: PinJoint2D
 
 func enter() -> void:
+	character.is_grabbing_rope = true
 	character.jumps = 0
 	character._play_animation("jump")
 	grab_rope()
@@ -13,7 +14,6 @@ func grab_rope():
 	joint.node_a = get_path() 
 	joint.node_b = character.rope.get_path() 
 	add_child(joint)
-	character.is_grabbing_rope = true
 	character.rope.linear_velocity = character.velocity / 10
 	character.velocity = Vector2.ZERO
 

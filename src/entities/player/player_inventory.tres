@@ -3,5 +3,4 @@
 [ext_resource type="Script" path="res://src/game/singletons/Inventory.gd" id="2_n4ilk"]
 
 [resource]
-resource_local_to_scene = true
 script = ExtResource("2_n4ilk")

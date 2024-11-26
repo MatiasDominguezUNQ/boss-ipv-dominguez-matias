@@ -82,8 +82,8 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 	arrow_sfx.stream = bounce_sfx
 	arrow_sfx.play()
 	collision_mask = (1 << 0) | (1 << 1) | (1 << 2) | (1 << 5) | (1 << 6)
-	var normal = area.global_position.direction_to(global_position).normalized()
-	velocity = -velocity.bounce(normal)
+	var normal = Vector2(cos(rotation), sin(rotation)).normalized()
+	velocity = velocity.bounce(normal) * 1.5
 	print("Arrow hit shield and bounced")
 
 func spawn_effect(EFFECT: PackedScene, effect_position: Vector2 = global_position):

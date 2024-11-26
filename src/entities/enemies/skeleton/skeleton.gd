@@ -26,6 +26,7 @@ signal dead()
 @export var health: int = max_health
 @export var push_force: float = 80.0
 @export var experience_reward: int = 2
+@export var damage: int = 2
 @export var knockback_resistance: float = 1.0
 var can_attack:bool = true
 var move_direction: int = 0
@@ -81,7 +82,7 @@ func knockback(force: float, direction: Vector2) -> void:
 	var knockback_force = direction * force / knockback_resistance
 	if is_on_floor() and knockback_force.y > -100:
 		knockback_force.y = -80
-	velocity += knockback_force
+	velocity = knockback_force
 
 func acting():
 	return body_animations.current_animation == "hit" || body_animations.current_animation == "attack"
@@ -151,12 +152,7 @@ func _remove_custom() -> void:
 	collision_layer = 0
 
 func _on_sword_area_body_entered(body: Node2D) -> void:
-	if body is PlayerShield and body.has_method("notify_hit"):
-		attack_area.collision_mask = 0
-		body.notify_hit(2, self)
-	elif body is Player and body.has_method("notify_hit"):
-		attack_area.collision_mask = 0
-		body.notify_hit(2)
+	GameEnviroment.enemy_attack(body, damage, attack_area, self)
 
 func _on_attack_cooldown_timeout() -> void:
 	can_attack = true

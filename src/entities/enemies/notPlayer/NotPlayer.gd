@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name PlayerBoss
 
 signal hp_changed(health, max_health)
 signal hit(amount)
@@ -34,6 +35,7 @@ const SLOPE_THRESHOLD: float = deg_to_rad(46)
 @export var health: int 
 @export var push_force: float = 80.0
 @export var experience_reward: int = 10
+@export var damage: int = 4
 var is_flipped: bool = false
 var can_attack:bool = true
 var ground_attacks = ["attack_1","attack_2"]
@@ -61,7 +63,6 @@ func _handle_move() -> void:
 	if target != null && !fx_anim.is_playing() and !is_attacking:
 		move_direction = 1 - 2 * float(to_local(target.global_position).x < 0)
 		velocity.x = lerp(velocity.x, move_direction * ACCELERATION, FRICTION_WEIGHT)
-		body_pivot.scale.x = move_direction
 		if move_direction == 1 and is_flipped:
 			weapon_container.scale.x = -1
 			is_flipped = false
@@ -96,7 +97,11 @@ func _apply_movement() -> void:
 		snap_vector = SNAP_DIRECTION * SNAP_LENGTH
 
 func _physics_process(delta: float) -> void:
-	if target != null && !fx_anim.is_playing():
+	if is_flipped:
+		body_pivot.scale.x = -1
+	else:
+		body_pivot.scale.x = 1
+	if target != null && !fx_anim.is_playing() and !is_attacking:
 		raycast.target_position = to_local(target.global_position)
 		raycast.force_raycast_update()
 		body_pivot.scale.x = 1 - 2 * float(raycast.target_position.x < 0)
@@ -113,7 +118,7 @@ func _can_move_to_target():
 		has_floor = left_floor_cast.is_colliding()
 	raycast.target_position = to_local(target.global_position)
 	raycast.force_raycast_update()
-	return has_floor && (raycast.is_colliding() && raycast.get_collider() == target) && ((abs(raycast.target_position.x) > 115 && (abs(raycast.target_position.y) < 60)) || (abs(raycast.target_position.x) > 0 && (abs(raycast.target_position.y) > 60)))
+	return has_floor && (raycast.is_colliding() && raycast.get_collider() == target) && ((abs(raycast.target_position.x) > 100 && (abs(raycast.target_position.y) < 60)) || (abs(raycast.target_position.x) > 0 && (abs(raycast.target_position.y) > 60)))
 
 func _can_attack_target():
 	if target == null:
@@ -169,7 +174,6 @@ func receive_damage(amount, isCrit):
 func handle_death():
 		is_dead = true
 		GameState.give_experience.emit(experience_reward)
-		await get_tree().create_timer(5).timeout
 		emit_signal("dead")
 
 func _play_animation(animation: String) -> void:
@@ -181,12 +185,9 @@ func _remove_custom() -> void:
 	collision_layer = 0
 
 func _on_sword_area_body_entered(body: Node2D) -> void:
-	if body is PlayerShield and body.has_method("notify_hit"):
-		sword_area.collision_mask = 0
-		body.notify_hit(4, self)
-	if body is CharacterBody2D and body.has_method("notify_hit"):
-		body.notify_hit(4)
-		sword_area.collision_mask = 0
+	GameEnviroment.enemy_attack(body, damage, sword_area, self)
+	if body.has_method("knockback"):
+		body.knockback()
 
 func _on_attack_cooldown_timeout() -> void:
 	can_attack = true

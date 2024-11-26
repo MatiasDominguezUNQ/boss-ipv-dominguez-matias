@@ -19,7 +19,15 @@ func _ready() -> void:
 	call_deferred("_setup_level", level)
 
 func _setup_level(id: int) -> void:
-	var player = GameState.player_scene.instantiate()
+	var player: Player = GameState.player_scene.instantiate()
+	player.inventory = GameState.items_stash
+	player.current_level = GameState.player_level
+	player.current_experience = GameState.player_xp
+	player.next_level_experience = GameState.player_next_xp
+	if GameState.player_hp > 0:
+		player.health = GameState.player_hp
+		player.max_health = GameState.player_max_hp
+		
 	if id >= 0 && id < levels.size():
 		
 		# Remueve el nivel activo, si existiese
@@ -41,15 +49,17 @@ func _setup_level(id: int) -> void:
 
 # Callback de regreso al MainMenu.
 func _return_called() -> void:
-	GameState.weapons_available = []
+	GameState.clear()
 	get_tree().paused = false
 	get_tree().change_scene_to_file(main_menu_path)
 
 func _restart_called() -> void:
-	GameState.weapons_available = []
+	GameState.clear()
+	level = 1
 	_setup_level(level)
 
 func _next_called() -> void:
+	GameState.save_stats()
 	level = min(level + 1, levels.size() - 1)
 	_setup_level(level)
 

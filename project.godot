@@ -17,10 +17,11 @@ config/icon="res://src/environment/Background.png"
 
 [autoload]
 
-GameState="*res://src/game/singletons/GameState.gd"
 WorldEnviroment="*res://src/game/singletons/WorldEnviroment.tscn"
-CameraTransition="*res://src/game/singletons/camera_transition.tscn"
+ConfigFileHandler="*res://src/game/singletons/config_file_handler.gd"
+GameState="*res://src/game/singletons/GameState.gd"
 GameEnviroment="*res://src/game/singletons/GameEnviroment.gd"
+CameraTransition="*res://src/game/singletons/camera_transition.tscn"
 
 [display]
 
@@ -55,13 +56,17 @@ move_down={
 }
 primary_attack={
 "deadzone": 0.5,
-"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"canceled":false,"pressed":false,"double_click":false,"script":null)
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(123, 13),"global_position":Vector2(130, 49),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+secondary_attack={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":2,"position":Vector2(78, 4),"global_position":Vector2(85, 40),"factor":1.0,"button_index":2,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
 jump={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":32,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":87,"physical_keycode":0,"key_label":0,"unicode":119,"location":0,"echo":false,"script":null)
 ]
 }
 utility_skill={
@@ -114,6 +119,8 @@ locale/translations=PackedStringArray("res://assets/localization/Localization.en
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-environment/defaults/default_environment="res://default_env.tres"
+lights_and_shadows/use_physical_light_units=true
+viewport/hdr_2d=true
+environment/defaults/default_environment="res://src/game/singletons/WorldEnviroment.tres"
 gles3/shaders/shader_compilation_mode=2
 2d/snapping/use_gpu_pixel_snap=true

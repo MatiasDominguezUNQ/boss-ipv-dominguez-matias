@@ -3,10 +3,12 @@ extends AbstractState
 
 func enter():
 	character.is_attacking = true
-	if character._can_attack_target_ground():
-		character._handle_ground_attack()
-	elif character._can_attack_target_air():
+	if character._can_attack_target_air():
 		character._handle_air_attack()
+	else:
+		character._handle_ground_attack()
+	character.can_attack = false
+	
 
 func update(delta: float) -> void:
 	character._handle_move()

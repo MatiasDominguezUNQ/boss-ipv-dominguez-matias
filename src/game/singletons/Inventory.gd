@@ -16,6 +16,10 @@ var attribute_modifiers := {
 	"Int": 0
 }
 
+func _ready():
+	print("inv ready")
+	emit_signal("updated")
+
 func _init():
 	slots.resize(20)
 	equipment_slots.resize(5)

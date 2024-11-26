@@ -1,15 +1,12 @@
-[gd_scene load_steps=26 format=3 uid="uid://c2oy8e2yvdo62"]
+[gd_scene load_steps=22 format=3 uid="uid://c2oy8e2yvdo62"]
 
 [ext_resource type="Script" path="res://src/game/levels/LevelDefault.gd" id="1_dnan7"]
 [ext_resource type="AudioStream" uid="uid://0ijgx0332hb" path="res://assets/sound/bgm/Tracks/Dark 3.ogg" id="2_2fanc"]
-[ext_resource type="PackedScene" uid="uid://ce0quimc7o7p2" path="res://src/game/ui/DefeatMenu.tscn" id="2_cxbvu"]
 [ext_resource type="AudioStream" uid="uid://b6n2ah3hmubjo" path="res://assets/sound/bgm/Tracks/Fx 1.ogg" id="2_ed28u"]
 [ext_resource type="AudioStream" uid="uid://y0vysv5wqli1" path="res://assets/sound/bgm/Tracks/Fx 3.ogg" id="3_bhtrv"]
-[ext_resource type="PackedScene" uid="uid://xepc1o6dqoga" path="res://src/game/ui/GUI.tscn" id="3_rmdhy"]
-[ext_resource type="PackedScene" uid="uid://kgve63nlrtt3" path="res://src/game/ui/PauseMenu.tscn" id="4_kmj45"]
 [ext_resource type="AudioStream" uid="uid://dqyjpkaxcyia2" path="res://assets/sound/bgm/Tracks/Action 3.ogg" id="5_320i1"]
 [ext_resource type="PackedScene" uid="uid://ct31c5lkyoed7" path="res://assets/textures/tileset/levels/TileMapLvl00.tscn" id="5_cf7vh"]
-[ext_resource type="PackedScene" uid="uid://bdbmaq3bgtw6o" path="res://src/game/ui/VictoryMenu.tscn" id="5_kd5v3"]
+[ext_resource type="PackedScene" uid="uid://cpymripcqph0" path="res://src/game/ui/ui_menus.tscn" id="6_ar1wv"]
 [ext_resource type="PackedScene" uid="uid://chkhrauq0xab" path="res://src/environment/background/mountain_background.tscn" id="7_4n0fq"]
 [ext_resource type="PackedScene" uid="uid://5r8n8o5hr1su" path="res://src/environment/chest/chest.tscn" id="8_g1fpw"]
 [ext_resource type="PackedScene" uid="uid://j65y7jcrytaq" path="res://src/entities/AstarTilemap.tscn" id="8_j48su"]
@@ -23,7 +20,6 @@
 [ext_resource type="PackedScene" uid="uid://cby55meunt1qo" path="res://src/entities/enemies/skeleton/Skeleton.tscn" id="13_3p21p"]
 [ext_resource type="PackedScene" uid="uid://dnm8i2o1mv3sl" path="res://src/entities/enemies/notPlayer/NotPlayer.tscn" id="15_xjymf"]
 [ext_resource type="PackedScene" uid="uid://df2y51h717cpi" path="res://src/environment/items/knight_gloves.tscn" id="18_pijyx"]
-[ext_resource type="PackedScene" uid="uid://c1jb1up3g5dl8" path="res://src/game/singletons/WorldEnviroment.tscn" id="22_enqhn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n55b7"]
 size = Vector2(1074, 534)
@@ -40,17 +36,8 @@ stream = ExtResource("2_2fanc")
 autoplay = true
 bus = &"BackgroundLevel"
 
-[node name="UILayer" type="CanvasLayer" parent="."]
-layer = 2
-
-[node name="DefeatMenu" parent="UILayer" instance=ExtResource("2_cxbvu")]
-
-[node name="GUI" parent="UILayer" instance=ExtResource("3_rmdhy")]
-
-[node name="PauseMenu" parent="UILayer" instance=ExtResource("4_kmj45")]
-process_mode = 3
-
-[node name="VictoryMenu" parent="UILayer" instance=ExtResource("5_kd5v3")]
+[node name="MenuLayer" parent="." instance=ExtResource("6_ar1wv")]
+layer = 3
 
 [node name="BackgroundLayer" type="Node" parent="."]
 
@@ -67,6 +54,7 @@ position = Vector2(983.37, 279.372)
 z_as_relative = false
 
 [node name="Tutorial" type="Node2D" parent="Environment/Objects"]
+z_index = 1
 
 [node name="AttackTutorial" type="Label" parent="Environment/Objects/Tutorial"]
 unique_name_in_owner = true
@@ -142,6 +130,7 @@ theme_override_fonts/font = ExtResource("12_ube4y")
 theme_override_font_sizes/font_size = 32
 
 [node name="Rope Jump" type="Label" parent="Environment/Objects/Tutorial"]
+unique_name_in_owner = true
 offset_left = 3471.0
 offset_top = 1453.0
 offset_right = 3707.0
@@ -260,20 +249,15 @@ zoom = Vector2(0.745, 0.745)
 position = Vector2(527, 132)
 color = Color(0.28485, 0.28485, 0.28485, 1)
 
-[node name="WorldEnviroment" parent="." instance=ExtResource("22_enqhn")]
-
 [node name="SpawnPoint" type="Marker2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(1244, 728)
 
-[connection signal="death_music" from="UILayer/DefeatMenu" to="." method="_on_death_music"]
-[connection signal="retry_selected" from="UILayer/DefeatMenu" to="." method="_on_restart_requested"]
-[connection signal="return_selected" from="UILayer/DefeatMenu" to="." method="_on_return_requested"]
-[connection signal="restart_selected" from="UILayer/PauseMenu" to="." method="_on_restart_requested"]
-[connection signal="return_selected" from="UILayer/PauseMenu" to="." method="_on_return_requested"]
-[connection signal="next_selected" from="UILayer/VictoryMenu" to="." method="_on_level_won"]
-[connection signal="return_selected" from="UILayer/VictoryMenu" to="." method="_on_return_requested"]
-[connection signal="victory_music" from="UILayer/VictoryMenu" to="." method="_on_victory_menu_victory_music"]
+[connection signal="next_level_requested" from="MenuLayer" to="." method="_on_level_won"]
+[connection signal="player_death" from="MenuLayer" to="." method="_on_player_death"]
+[connection signal="player_victory" from="MenuLayer" to="." method="_on_player_victory"]
+[connection signal="restart_requested" from="MenuLayer" to="." method="_on_restart_requested"]
+[connection signal="return_requested" from="MenuLayer" to="." method="_on_return_requested"]
 [connection signal="dead" from="Environment/Entities/Enemies/NotPlayer" to="." method="_on_boss_dead"]
 [connection signal="area_entered" from="Environment/BossArea" to="." method="_on_boss_area_entered"]
 [connection signal="area_exited" from="Environment/BossArea" to="." method="_on_boss_area_exited"]

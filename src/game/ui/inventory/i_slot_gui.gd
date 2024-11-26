@@ -27,18 +27,20 @@ func equip_item(itemStack: ItemStack):
 	icon = null
 	itemStackGui = itemStack
 	container.add_child(itemStackGui)
-	if !itemStackGui.inventorySlot or player_inventory.equipment_slots[index] == itemStackGui.inventorySlot:
+	if !itemStackGui.inventorySlot or player_inventory.equipment_slots[itemStackGui.item.item_type] == itemStackGui.inventorySlot:
 		return
 	player_inventory.equip_item_at_index(index, itemStack.inventorySlot)
-	
+
+
 func take_equipped_item():
-	var item = itemStackGui
-	container.remove_child(itemStackGui)
-	itemStackGui = null
-	if slot_icon:
-		icon = slot_icon
-	player_inventory.unequip_item_at_index(item_type)
-	return item
+	if itemStackGui:
+		var item = itemStackGui
+		container.remove_child(itemStackGui)
+		itemStackGui = null
+		if slot_icon:
+			icon = slot_icon
+		player_inventory.unequip_item_at_index(item_type)
+		return item
 	
 func takeItem():
 	var item = itemStackGui
@@ -56,3 +58,11 @@ func _on_pressed() -> void:
 
 func _on_mouse_entered() -> void:
 	GameState.player_can_attack = false
+
+
+func _on_focus_entered() -> void:
+	var button_center = global_position + (size / 2)
+	var camera = get_viewport().get_camera_2d()
+	var local_position = camera.global_transform.affine_inverse().basis_xform(button_center)
+	var final_position = ((local_position - camera.global_position) * camera.zoom) + (get_viewport_rect().size / 2)
+	get_viewport().warp_mouse(final_position)

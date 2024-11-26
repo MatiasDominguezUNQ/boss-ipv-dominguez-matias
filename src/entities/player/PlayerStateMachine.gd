@@ -21,3 +21,6 @@ func notify_healed(amount: int) -> void:
 
 func _on_body_animations_animation_finished(anim_name: StringName) -> void:
 	current_state._on_animation_finished(anim_name)
+
+func rope_cast_collided(collider):
+	current_state._on_rope_cast_collided(collider)
