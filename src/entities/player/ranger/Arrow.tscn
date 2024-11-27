@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://graiqq5tkbl4"]
+[gd_scene load_steps=18 format=3 uid="uid://graiqq5tkbl4"]
 
 [ext_resource type="Texture2D" uid="uid://c0et1v3y3r67c" path="res://assets/textures/weapon/arrow.png" id="2_4d54x"]
 [ext_resource type="Script" path="res://src/entities/player/arrow.gd" id="2_36ven"]
@@ -179,6 +179,18 @@ shader = ExtResource("8_qpm1c")
 shader_parameter/enable_silver = false
 shader_parameter/silver_color = Vector4(2, 2, 2, 1)
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_53tep"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(0.01, 1.5, 1)
+emission_shape = 1
+emission_sphere_radius = 2.94
+direction = Vector3(-1, 0, 0)
+spread = 17.727
+flatness = 1.0
+initial_velocity_max = 85.47
+gravity = Vector3(0, 0, 0)
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7gqhl"]
 particle_flag_align_y = true
 particle_flag_disable_z = true
@@ -190,6 +202,25 @@ spread = 17.727
 flatness = 1.0
 initial_velocity_max = 85.47
 gravity = Vector3(0, 0, 0)
+color = Color(10, 10, 1, 1)
+
+[sub_resource type="Curve" id="Curve_k7dmn"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.800847, 0.622642), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_5ktlg"]
+curve = SubResource("Curve_k7dmn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5pcnm"]
+particle_flag_disable_z = true
+spread = 77.4
+initial_velocity_min = 70.17
+initial_velocity_max = 157.89
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_5ktlg")
+color = Color(10, 10, 1, 1)
 
 [node name="Arrow" type="CharacterBody2D"]
 z_as_relative = false
@@ -205,8 +236,12 @@ bounce_sfx = ExtResource("4_r1e4f")
 visible = false
 shape = SubResource("1")
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
 [node name="LifetimeTimer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 15.0
 
 [node name="ProjectileAnimations" type="AnimationPlayer" parent="."]
 libraries = {
@@ -223,7 +258,7 @@ texture = ExtResource("2_4d54x")
 stream = ExtResource("7_t843l")
 volume_db = -6.804
 pitch_scale = 0.74
-max_distance = 500.0
+max_distance = 800.0
 attenuation = 1.18921
 bus = &"CritBowSFX"
 
@@ -235,12 +270,34 @@ collision_mask = 64
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 shape = SubResource("1")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-process_material = SubResource("ParticleProcessMaterial_7gqhl")
-lifetime = 0.1
+[node name="CritParticles" type="GPUParticles2D" parent="."]
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_53tep")
+lifetime = 0.2
+speed_scale = 2.75
 interp_to_end = 0.149
 trail_enabled = true
-trail_lifetime = 1.38
+trail_lifetime = 1.33
 trail_section_subdivisions = 8
 
+[node name="SpecialParticles" type="GPUParticles2D" parent="."]
+process_material = SubResource("ParticleProcessMaterial_7gqhl")
+lifetime = 0.2
+speed_scale = 2.75
+interp_to_end = 0.149
+trail_enabled = true
+trail_lifetime = 1.33
+trail_section_subdivisions = 8
+
+[node name="AttackParticles" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_5pcnm")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="HitBox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_exited" from="HitBox" to="." method="_on_area_exited"]
+[connection signal="body_exited" from="HitBox" to="." method="_on_area_exited"]

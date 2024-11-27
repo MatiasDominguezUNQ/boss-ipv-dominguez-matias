@@ -1,7 +1,7 @@
+res://src/game/ui
 D:/Facultad/Intro videojuegos/Juego Export/export noche de facu/fix bugs
 res://src/game/singletons
 res://src/game/levels
-res://src/game/ui
 res://
 D:/Facultad/Intro videojuegos/Juego Export/export noche de facu
 D:/Facultad/Intro videojuegos/Juego Export/pre 3
@@ -20,4 +20,3 @@ res://assets/textures/weapon
 D:/Facultad/Intro videojuegos/Juego Export/export 2
 res://assets/textures/player
 res://src/environment/background
-res://assets/textures/background/mountain

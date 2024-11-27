@@ -20,6 +20,7 @@ func _on_gui_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 func _on_mouse_entered() -> void:
+	print("main inv")
 	GameState.player_can_attack = false
 
 func _on_mouse_exited() -> void:

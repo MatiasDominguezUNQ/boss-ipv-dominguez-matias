@@ -1,25 +1,15 @@
-<<<<<<< HEAD
+AudioStreamPlayer
+Timer
+Control
+TextureProgressBar
+Label
 GPUParticles2D
 CollisionPolygon2D
-=======
 PointLight2D
 Camera3D
 WorldEnvironment
->>>>>>> caefb9b0bdbc7d250aee0ac630c39780e5622578
-Label
 CanvasLayer
 Camera3D
 PointLight2D
 WorldEnvironment
 Marker2D
-Node2D
-CollisionShape2D
-Timer
-Area2D
-Window
-VBoxContainer
-<<<<<<< HEAD
-=======
-Panel
-ItemList
->>>>>>> caefb9b0bdbc7d250aee0ac630c39780e5622578

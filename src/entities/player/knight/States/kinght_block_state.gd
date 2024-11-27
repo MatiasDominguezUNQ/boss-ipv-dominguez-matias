@@ -2,6 +2,7 @@ extends AbstractState
 
 
 func enter() -> void:
+	character.reset_combo_timer()
 	character.fx_anim.play("parry_hold")
 
 func handle_input(event:InputEvent) -> void:

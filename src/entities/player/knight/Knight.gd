@@ -21,7 +21,7 @@ func _ready() -> void:
 	inventory.item_equipped.connect(self.updateStats)
 	base_attributes = {
 		"Str": 4,
-		"Dex": 1,
+		"Dex": 3,
 		"Def": 3,
 		"Spd": 2,
 		"Int": 1
@@ -87,7 +87,7 @@ func _handle_weapon_actions() -> void:
 		if combo_timer and combo_timer.is_stopped() == false:
 			fx_anim.play("attack_3", -1, attack_speed)
 			reset_combo_timer()
-	elif GameState.player_can_attack and !fx_anim.is_playing() and can_attack and Input.is_action_just_pressed("secondary_attack"):
+	elif can_special_attack and GameState.player_can_attack  and !fx_anim.is_playing() and can_attack and Input.is_action_just_pressed("secondary_attack"):
 		if combo_timer and combo_timer.is_stopped() == false:
 				reset_combo_timer()
 		fx_anim.play("charge_start")
@@ -132,6 +132,7 @@ func _on_attack_cooldown_timeout() -> void:
 	can_attack = true
 
 func dash_attack() -> void:
+	collision_mask = (1 << 0) | (1 << 1)
 	var dash_direction = Vector2(1 if !is_flipped else -1, 0) 
 	velocity = dash_direction * dash_speed 
 	if fx_anim:
@@ -142,6 +143,8 @@ func dash_attack() -> void:
 	#velocity = Vector2.ZERO
 	is_charging = false
 	can_attack = true
+	can_special_attack = false
+	stamina_bar.start_timer()
 
 func _handle_deal_damage(area: Node2D) -> void:
 	var hit_areas = []

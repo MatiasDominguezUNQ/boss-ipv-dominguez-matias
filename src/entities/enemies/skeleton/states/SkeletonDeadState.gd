@@ -4,6 +4,7 @@ func enter() -> void:
 	character.emit_signal("dead")
 	character._play_animation("die")
 	character._remove_custom()
+	character.attack_area.collision_mask = 0
 
 func update(delta) -> void:
 	character._handle_deacceleration()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c2oy8e2yvdo62"]
+[gd_scene load_steps=21 format=3 uid="uid://c2oy8e2yvdo62"]
 
 [ext_resource type="Script" path="res://src/game/levels/LevelDefault.gd" id="1_dnan7"]
 [ext_resource type="AudioStream" uid="uid://0ijgx0332hb" path="res://assets/sound/bgm/Tracks/Dark 3.ogg" id="2_2fanc"]
@@ -15,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://0ht24fxheesd" path="res://src/entities/enemies/turret/Turret.tscn" id="10_q2s6t"]
 [ext_resource type="Texture2D" uid="uid://dcvwibiecd02g" path="res://assets/textures/tutorial/tutorial_spikes.png" id="10_vmvix"]
 [ext_resource type="Texture2D" uid="uid://cqu8phjmrwdjx" path="res://assets/textures/tutorial/tutorial_jump.png" id="11_8vurq"]
-[ext_resource type="PackedScene" path="res://src/environment/Goal.tscn" id="11_tpgr0"]
 [ext_resource type="FontFile" uid="uid://dy5sekvp82oi3" path="res://assets/fonts/Mystery Font(1).ttf" id="12_ube4y"]
 [ext_resource type="PackedScene" uid="uid://cby55meunt1qo" path="res://src/entities/enemies/skeleton/Skeleton.tscn" id="13_3p21p"]
 [ext_resource type="PackedScene" uid="uid://dnm8i2o1mv3sl" path="res://src/entities/enemies/notPlayer/NotPlayer.tscn" id="15_xjymf"]
@@ -159,10 +158,6 @@ texture = ExtResource("10_vmvix")
 position = Vector2(2698, 1415)
 texture = ExtResource("11_8vurq")
 
-[node name="Goal" parent="Environment/Objects" instance=ExtResource("11_tpgr0")]
-z_index = 0
-position = Vector2(7567, 280)
-
 [node name="Chests" type="Node2D" parent="Environment/Objects"]
 
 [node name="Chest" parent="Environment/Objects/Chests" instance=ExtResource("8_g1fpw")]
@@ -203,12 +198,6 @@ position = Vector2(5218, 1632)
 
 [node name="Skeleton6" parent="Environment/Entities/Enemies" instance=ExtResource("13_3p21p")]
 position = Vector2(5399, 1633)
-
-[node name="Skeleton7" parent="Environment/Entities/Enemies" instance=ExtResource("13_3p21p")]
-position = Vector2(6565, 253)
-
-[node name="Skeleton8" parent="Environment/Entities/Enemies" instance=ExtResource("13_3p21p")]
-position = Vector2(6693, 248)
 
 [node name="NotPlayer" parent="Environment/Entities/Enemies" instance=ExtResource("15_xjymf")]
 position = Vector2(5204, 1269)

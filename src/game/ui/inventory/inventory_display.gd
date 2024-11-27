@@ -131,6 +131,7 @@ func update():
 			stored[i].insert(i_stack)
 		i_stack.inventorySlot = i_slot
 		i_stack.update()
+		stored[i].update()
 	for i in range(min(player.inventory.equipment_slots.size(), equipped.size())):
 		var i_slot: InventorySlot = player.inventory.equipment_slots[i]
 		if !i_slot.item: continue
@@ -140,6 +141,7 @@ func update():
 			equipped[i].equip_item(i_stack)
 		i_stack.inventorySlot = i_slot
 		i_stack.update()
+		equipped[i].update()
 
 func updateItemInHand():
 	if !itemInHand: return
@@ -152,3 +154,6 @@ func on_focus():
 func on_click():
 	audio_stream_player.stream = click_sfx
 	audio_stream_player.play()
+
+func _on_stored_mouse_entered() -> void:
+	print("stored")

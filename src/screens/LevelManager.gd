@@ -55,7 +55,6 @@ func _return_called() -> void:
 
 func _restart_called() -> void:
 	GameState.clear()
-	level = 1
 	_setup_level(level)
 
 func _next_called() -> void:

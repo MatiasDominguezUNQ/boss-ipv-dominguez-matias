@@ -20,6 +20,8 @@ signal dead()
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var damage_spawn: Marker2D = %DamageSpawn
 @onready var weapon_container: Node2D = $WeaponContainer
+@onready var stamina_bar: Control = $StaminaBar
+@onready var special_sfx: AudioStreamPlayer = $WeaponContainer/Weapon/SpecialSFX
 
 @export var base_acceleration: float = 200.0
 @export var roll_speed: float = 300.0 
@@ -70,6 +72,7 @@ var crit_skill:bool = true
 var slide_skill: bool = true
 var spike_walk_skill: bool = false
 var jumps_limit: int = 2
+var can_special_attack: = true
 
 func _ready() -> void:
 	health = max_health
@@ -88,12 +91,13 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if current_item != null and current_item.can_grab and Input.is_action_just_pressed("interact"):
 		_handle_item_pickup()
-	var mouse_position = get_global_mouse_position()
-	weapon.look_at(mouse_position)
-	if mouse_position.x > global_position.x:
-		body_pivot.scale.x = 1 
-	else:
-		body_pivot.scale.x = -1  
+	if !fx_anim.is_playing() or fx_anim.current_animation != "fire_release":
+		var mouse_position = get_global_mouse_position()
+		weapon.look_at(mouse_position)
+		if mouse_position.x > global_position.x:
+			body_pivot.scale.x = 1 
+		else:
+			body_pivot.scale.x = -1  
 
 func initialize(projectile_container: Node = get_parent()) -> void:
 	self.projectile_container = projectile_container
@@ -108,6 +112,13 @@ func _handle_weapon_actions() -> void:
 		if weapon.projectile_container == null:
 			weapon.projectile_container = projectile_container
 		weapon.fire()
+	elif can_special_attack and GameState.player_can_attack and Input.is_action_pressed("secondary_attack") && !fx_anim.is_playing():
+		can_slide = false
+		if projectile_container == null:
+			projectile_container = get_parent()
+		if weapon.projectile_container == null:
+			weapon.projectile_container = projectile_container
+		weapon.fire_special()
 
 func _handle_move_input() -> void:
 	move_direction = int(Input.is_action_pressed("move_right")) - int(Input.is_action_pressed("move_left"))
@@ -250,6 +261,8 @@ func handle_give_experience(value):
 func handle_level_up():
 	current_experience -= next_level_experience
 	next_level_experience = next_level_experience*2
+	max_health += 5
+	emit_signal("hp_changed",health,max_health)
 	emit_signal("xp_changed", current_experience, next_level_experience)
 	current_level += 1
 	emit_signal("level_up", current_level)
@@ -257,14 +270,14 @@ func handle_level_up():
 	print("skill points:", skill_points)
 
 func _on_fx_anim_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "fire_release":
+	if anim_name == "fire_release" or anim_name == "fire_release_special":
 		can_slide = true
-
+		
 func _on_attack_cooldown_timeout() -> void:
 	pass
 
 func calculate_attack_speed():
-	attack_speed = lerp(0.5, 4.0, float(current_attributes.get("Dex") - 1) / (20 - 1))
+	attack_speed = lerp(0.5, 2.0, float(current_attributes.get("Dex") - 1) / (20 - 1))
 	print("Attack speed:", attack_speed)
 
 func calculate_damage():
@@ -281,3 +294,6 @@ func calculate_speed():
 func move_slow():
 	if !is_on_floor():
 		acceleration = 100
+
+func _on_stamina_bar_cooldown_timeout() -> void:
+	can_special_attack = true

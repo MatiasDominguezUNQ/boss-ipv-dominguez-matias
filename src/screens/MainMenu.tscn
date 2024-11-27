@@ -1,15 +1,42 @@
-[gd_scene load_steps=11 format=3 uid="uid://bs0do08ju7ll8"]
+[gd_scene load_steps=14 format=3 uid="uid://bs0do08ju7ll8"]
 
 [ext_resource type="Script" path="res://src/screens/MainMenu.gd" id="1"]
 [ext_resource type="AudioStream" uid="uid://b485vsqlu714c" path="res://assets/sound/UI/Minimalist7.ogg" id="3_tccjc"]
 [ext_resource type="PackedScene" uid="uid://b308w8k2ec0i" path="res://src/screens/LevelManager.tscn" id="4"]
-[ext_resource type="Texture2D" uid="uid://8p8klod6lmkk" path="res://src/environment/Background.png" id="4_5jquh"]
 [ext_resource type="AudioStream" uid="uid://drvygf7nu8s7v" path="res://assets/sound/UI/Minimalist10.ogg" id="4_mk1ol"]
+[ext_resource type="Texture2D" uid="uid://5pf873p8pn83" path="res://assets/textures/background/main_background.png" id="6_2cmbd"]
 [ext_resource type="PackedScene" uid="uid://dcs72phuegkmk" path="res://src/game/ui/CharacterSelectMenu.tscn" id="6_io8u3"]
 [ext_resource type="AudioStream" uid="uid://cc6m3sf0a4did" path="res://assets/sound/bgm/Tracks/Ambience 3.ogg" id="6_kop1s"]
 [ext_resource type="PackedScene" uid="uid://dkuwy38tjrrxs" path="res://src/game/ui/menus/OptionsMenu.tscn" id="7_cwbr0"]
 [ext_resource type="Texture2D" uid="uid://ddo8ji8phouh1" path="res://assets/textures/mouse/pointer.png" id="10"]
 [ext_resource type="PackedScene" uid="uid://c1jb1up3g5dl8" path="res://src/game/singletons/WorldEnviroment.tscn" id="10_r64ll"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1fk04"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+shadow_size = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i3jli"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+shadow_size = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lub4t"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+shadow_size = 1
+anti_aliasing = false
 
 [node name="MainMenu" type="Node"]
 script = ExtResource("1")
@@ -28,7 +55,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_5jquh")
+texture = ExtResource("6_2cmbd")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
@@ -48,9 +75,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -70.0
-offset_top = -50.5
-offset_bottom = 50.5
+offset_left = -786.0
+offset_top = -9.0
+offset_right = -635.0
+offset_bottom = 92.0
 grow_horizontal = 0
 grow_vertical = 2
 mouse_filter = 2
@@ -58,14 +86,17 @@ alignment = 1
 
 [node name="StartButton" type="Button" parent="CanvasLayer/Container/Buttons"]
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_1fk04")
 text = "BUTTON_START"
 
 [node name="OptionsButton" type="Button" parent="CanvasLayer/Container/Buttons"]
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_i3jli")
 text = "BUTTON_OPTIONS"
 
 [node name="ExitButton" type="Button" parent="CanvasLayer/Container/Buttons"]
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_lub4t")
 text = "BUTTON_EXIT"
 
 [node name="OptionsMenu" parent="CanvasLayer" instance=ExtResource("7_cwbr0")]

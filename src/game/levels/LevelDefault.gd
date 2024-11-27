@@ -138,7 +138,9 @@ func _on_boss_dead() -> void:
 	background_music.volume_db = 0
 	background_music.play()
 	boss_area.collision_mask = 0
-	
+	await get_tree().create_timer(3).timeout
+	GameState.emit_signal("level_won")
+
 func focus_camera_on_boss() -> void:
 	get_tree().root.content_scale_aspect = 4
 	CameraTransition.transition_camera2D(GameState.current_player.camera_2d, boss_camera)
