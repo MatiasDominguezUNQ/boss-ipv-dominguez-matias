@@ -3,7 +3,7 @@ extends AbstractState
 
 func enter() -> void:
 	character.jumps = 0
-	character._play_animation("walk")
+	character._play_animation("walk", -1, character.move_speed)
 
 
 func handle_input(event:InputEvent) -> void:
@@ -18,10 +18,14 @@ func _on_rope_cast_collided(collider):
 			character.rope = collider
 			emit_signal("finished", "rope_swing")
 
+func exit():
+	character.body_animations.speed_scale = 1
+
 func update(delta: float) -> void:
 	character._handle_weapon_actions()
 	character._handle_move_input()
 	character._apply_movement()
+	character.body_animations.speed_scale = character.move_speed
 	if character.move_direction == 0:
 		emit_signal("finished", "idle")
 	else:

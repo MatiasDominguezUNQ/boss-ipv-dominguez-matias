@@ -5,7 +5,7 @@ func enter() -> void:
 	character.jumps = 0
 	character._play_animation("idle")
 
-func handle_input(event: InputEvent) -> void:
+func handle_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("jump"):
 		emit_signal("finished", "jump")
 	elif Input.is_action_just_pressed("utility_skill") and !character.fx_anim.is_playing():
@@ -17,7 +17,7 @@ func _on_rope_cast_collided(collider):
 			character.rope = collider
 			emit_signal("finished", "rope_swing")
 
-func update(delta: float) -> void:
+func update(_delta: float) -> void:
 	character._handle_weapon_actions()
 	character._handle_move_input()
 	if character.move_direction != 0:

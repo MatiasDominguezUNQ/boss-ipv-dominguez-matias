@@ -113,10 +113,10 @@ text = "TUTO_06"
 
 [node name="Inventory" type="Label" parent="Environment/Objects/Tutorial"]
 unique_name_in_owner = true
-offset_left = 3283.0
-offset_top = 1679.0
-offset_right = 3463.0
-offset_bottom = 1733.0
+offset_left = 3226.0
+offset_top = 1687.0
+offset_right = 3406.0
+offset_bottom = 1741.0
 scale = Vector2(0.46, 0.46)
 theme_override_fonts/font = ExtResource("12_ube4y")
 theme_override_font_sizes/font_size = 32

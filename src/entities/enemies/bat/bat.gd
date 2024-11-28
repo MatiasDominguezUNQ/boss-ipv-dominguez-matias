@@ -8,6 +8,7 @@ var dash_direction: Vector2
 var start_position: Vector2
 var is_dashing: bool = false
 var has_collided:bool = false
+var target_general
 
 func _handle_move() -> void:
 	if target != null and not acting() and not is_dashing and can_attack:
@@ -51,6 +52,8 @@ func _apply_movement() -> void:
 			break
 
 func _physics_process(delta: float) -> void:
+	if target_general and can_see_body(target_general):
+		target = target_general
 	if target != null && !acting():
 		raycast.target_position = to_local(target.global_position)
 		raycast.force_raycast_update()

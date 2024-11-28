@@ -1351,13 +1351,6 @@ push_force = 40.0
 jump_sfx = ExtResource("3_l7mkp")
 land_sfx = ExtResource("4_302f7")
 hit_sfx = ExtResource("5_1cnkm")
-base_attributes = {
-"Def": 3,
-"Dex": 1,
-"Int": 1,
-"Spd": 2,
-"Str": 4
-}
 
 [node name="StaminaBar" parent="." instance=ExtResource("5_njq1p")]
 offset_top = -24.0

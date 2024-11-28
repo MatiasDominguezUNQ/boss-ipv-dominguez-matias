@@ -77,6 +77,12 @@ func _ready() -> void:
 	health = max_health
 	GameState.give_experience.connect(self.handle_give_experience)
 	inventory.item_equipped.connect(self.updateStats)
+	base_attributes = {
+		"Str": 2,
+		"Dex": 3,
+		"Def": 1,
+		"Spd": 2,
+	}
 	current_attributes = inventory.get_total_attributes(base_attributes)
 	emit_signal("statsUpdated",current_attributes)
 	camera_2d.make_current()

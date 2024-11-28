@@ -58,6 +58,7 @@ func set_tutorials():
 
 func set_attack_tutorial():
 	var attack_key = get_key("primary_attack")
+	var secondary_key = get_key("secondary_attack")
 	var utility_key = get_key("utility_skill")
 	var tutorial: String = ""
 	var tutorial2: String = ""
@@ -69,7 +70,7 @@ func set_attack_tutorial():
 		"Knight":
 			tutorial = tr("TUTO_03_KNIGHT")
 			tutorial2 = tr("TUTO_04_KNIGHT")
-	tutorial = tutorial.replace("#", attack_key)
+	tutorial = tutorial.replace("#", attack_key).replace("*", secondary_key)
 	tutorial2 = tutorial2.replace("#", utility_key)
 	attack_tutorial.text = tutorial
 	utility_tutorial.text = tutorial2

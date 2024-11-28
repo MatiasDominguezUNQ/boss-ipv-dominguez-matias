@@ -1,8 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://do70gjov5bjmd"]
+[gd_scene load_steps=17 format=3 uid="uid://do70gjov5bjmd"]
 
 [ext_resource type="Script" path="res://src/game/levels/level_main.gd" id="1_xmv50"]
+[ext_resource type="AudioStream" uid="uid://b6n2ah3hmubjo" path="res://assets/sound/bgm/Tracks/Fx 1.ogg" id="2_30j2l"]
+[ext_resource type="AudioStream" uid="uid://y0vysv5wqli1" path="res://assets/sound/bgm/Tracks/Fx 3.ogg" id="3_xqft7"]
 [ext_resource type="AudioStream" uid="uid://0ijgx0332hb" path="res://assets/sound/bgm/Tracks/Dark 3.ogg" id="4_xy8ab"]
 [ext_resource type="PackedScene" uid="uid://bftg4rkelg32k" path="res://assets/textures/tileset/levels/TileMapLvlMain.tscn" id="5_1r0bn"]
+[ext_resource type="AudioStream" uid="uid://dqyjpkaxcyia2" path="res://assets/sound/bgm/Tracks/Action 3.ogg" id="5_sfnyj"]
 [ext_resource type="PackedScene" uid="uid://cpymripcqph0" path="res://src/game/ui/ui_menus.tscn" id="6_mtc4f"]
 [ext_resource type="PackedScene" uid="uid://by4dtbgjm7kty" path="res://src/environment/items/kiwi.tscn" id="7_24la8"]
 [ext_resource type="PackedScene" uid="uid://chkhrauq0xab" path="res://src/environment/background/mountain_background.tscn" id="7_hjryx"]
@@ -16,6 +19,10 @@
 
 [node name="LevelMain" type="Node"]
 script = ExtResource("1_xmv50")
+victory_music = ExtResource("2_30j2l")
+death_music = ExtResource("3_xqft7")
+default_music = ExtResource("4_xy8ab")
+boss_music = ExtResource("5_sfnyj")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_xy8ab")
@@ -138,17 +145,17 @@ position = Vector2(11892, 282)
 position = Vector2(11863, -836)
 scale = Vector2(3, 3)
 
-[node name="Bat" parent="Environment/Entities/Enemies" instance=ExtResource("15_i3f47")]
-position = Vector2(11343, -10)
-
 [node name="Bat2" parent="Environment/Entities/Enemies" instance=ExtResource("15_i3f47")]
 position = Vector2(11503, -12)
 
-[node name="Bat3" parent="Environment/Entities/Enemies" instance=ExtResource("15_i3f47")]
-position = Vector2(11406, -12)
-
 [node name="Bat4" parent="Environment/Entities/Enemies" instance=ExtResource("15_i3f47")]
-position = Vector2(11457, -12)
+position = Vector2(11403, -12)
+
+[node name="Bat5" parent="Environment/Entities/Enemies" instance=ExtResource("15_i3f47")]
+position = Vector2(11448, -12)
+
+[node name="Bat6" parent="Environment/Entities/Enemies" instance=ExtResource("15_i3f47")]
+position = Vector2(11355, -12)
 
 [node name="Skeleton" parent="Environment/Entities/Enemies" instance=ExtResource("16_io3kn")]
 position = Vector2(11642, 293)

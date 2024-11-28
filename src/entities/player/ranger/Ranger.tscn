@@ -966,7 +966,7 @@ scale = Vector2(2, 2)
 collision_layer = 514
 collision_mask = 39
 script = ExtResource("1_cr5qo")
-FRICTION_WEIGHT = 0.15
+FRICTION_WEIGHT = 0.3
 gravity = 25
 max_health = 20
 health = 20
@@ -974,13 +974,6 @@ push_force = 40.0
 jump_sfx = ExtResource("2_7qv0g")
 land_sfx = ExtResource("3_dtokc")
 hit_sfx = ExtResource("4_3w5ix")
-base_attributes = {
-"Def": 1,
-"Dex": 3,
-"Int": 1,
-"Spd": 2,
-"Str": 2
-}
 
 [node name="StaminaBar" parent="." instance=ExtResource("5_ievrh")]
 offset_top = -24.0

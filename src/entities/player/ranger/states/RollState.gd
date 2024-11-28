@@ -14,7 +14,7 @@ func enter() -> void:
 			character.velocity.x = -character.roll_speed
 			character._play_animation("back_roll")
 
-func update(delta: float) -> void:
+func update(_delta: float) -> void:
 	character._apply_movement()
 
 func exit() -> void:

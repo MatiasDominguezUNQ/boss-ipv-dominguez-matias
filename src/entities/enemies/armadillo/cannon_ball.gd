@@ -138,18 +138,16 @@ func _on_sword_area_body_entered(body: Node2D) -> void:
 	GameEnviroment.enemy_attack(body, damage, attack_area, self)
 
 func _on_attack_cooldown_timeout() -> void:
-	print("can attack")
 	can_attack = true
 
 func roll_attack() -> void:
 	if target == null:
 		return
-	switch_roll()
 	roll_direction = sign(to_local(target.global_position).x)
+	switch_roll()
 	is_attacking = true
 	time_attacking.start()
 
 func _on_time_attacking_timeout() -> void:
-	print("stopping")
 	is_attacking = false
 	can_attack = false
