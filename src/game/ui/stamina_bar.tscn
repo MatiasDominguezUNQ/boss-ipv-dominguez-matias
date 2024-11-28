@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxpkfrhf5el5m"]
+
+[ext_resource type="Script" path="res://src/game/ui/stamina_bar.gd" id="1_e7fbk"]
+[ext_resource type="Texture2D" uid="uid://dywonoo3j5jpu" path="res://assets/textures/ui/stamina/progress-bar-circle.png" id="2_hq4qb"]
+
+[node name="StaminaBar" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_e7fbk")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+value = 33.0
+fill_mode = 5
+texture_under = ExtResource("2_hq4qb")
+texture_progress = ExtResource("2_hq4qb")
+tint_under = Color(0.0189402, 0.0189402, 0.0189402, 1)
+tint_over = Color(0, 0, 0, 1)
+tint_progress = Color(0.180225, 0.898086, 0.319496, 1)
+
+[node name="Cooldown" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Cooldown" to="." method="_on_timer_timeout"]

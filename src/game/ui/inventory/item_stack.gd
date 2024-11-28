@@ -1,5 +1,6 @@
 extends Panel
 class_name ItemStack
+
 @onready var item_sprite: Sprite2D = $ItemSprite
 @onready var amount_label: Label = %Amount
 
@@ -17,3 +18,7 @@ func update():
 		amount_label.text = ""
 	else:
 		amount_label.text = str(amount)
+
+
+func _on_mouse_entered() -> void:
+	print("item")

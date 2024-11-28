@@ -1,30 +1,33 @@
-[gd_scene load_steps=53 format=3 uid="uid://dg4nousd44f82"]
+[gd_scene load_steps=69 format=3 uid="uid://dg4nousd44f82"]
 
 [ext_resource type="Script" path="res://src/entities/player/knight/Knight.gd" id="1_kkr7q"]
-[ext_resource type="Resource" uid="uid://clwcl7am80r82" path="res://src/entities/player/player_inventory.tres" id="2_yr3sk"]
 [ext_resource type="AudioStream" uid="uid://5l1dpqy67v0s" path="res://assets/sound/sfx/jump/12_human_jump_1.wav" id="3_l7mkp"]
 [ext_resource type="AudioStream" uid="uid://bkebhhg4036s2" path="res://assets/sound/sfx/jump/13_human_jump_land_2.wav" id="4_302f7"]
 [ext_resource type="Script" path="res://src/entities/player/knight/States/knight_idle_state.gd" id="4_s63fe"]
 [ext_resource type="AudioStream" uid="uid://c14yfe4an4fa6" path="res://assets/sound/sfx/player/11_human_damage_3.wav" id="5_1cnkm"]
+[ext_resource type="PackedScene" uid="uid://dxpkfrhf5el5m" path="res://src/game/ui/stamina_bar.tscn" id="5_njq1p"]
 [ext_resource type="Script" path="res://src/entities/player/knight/States/knight_walk_state.gd" id="5_s78de"]
-[ext_resource type="PackedScene" uid="uid://xsalxs0jjtgk" path="res://src/game/ui/HealthBar.tscn" id="5_tg4dl"]
 [ext_resource type="Script" path="res://src/entities/player/PlayerStateMachine.gd" id="6_j72yb"]
 [ext_resource type="Script" path="res://src/entities/player/ranger/states/DeadState.gd" id="9_rajxo"]
-[ext_resource type="Script" path="res://src/entities/player/knight/States/SoldierJumpState.gd" id="10_vtepw"]
-[ext_resource type="Script" path="res://src/entities/player/knight/States/BlockState.gd" id="11_7be5q"]
+[ext_resource type="Script" path="res://src/entities/player/knight/States/knight_jump_state.gd" id="10_vtepw"]
+[ext_resource type="Script" path="res://src/entities/player/knight/States/kinght_block_state.gd" id="11_7be5q"]
 [ext_resource type="Script" path="res://src/entities/player/ranger/states/RopeSwingState.gd" id="12_dhwe0"]
 [ext_resource type="AudioStream" uid="uid://m6cdj3nudsxj" path="res://assets/sound/sfx/movement/15_human_dash_2.wav" id="13_410uh"]
 [ext_resource type="AudioStream" uid="uid://dj2chm0mgk2ly" path="res://assets/sound/sfx/player/human_death.ogg" id="14_3sm0m"]
 [ext_resource type="AudioStream" uid="uid://3yoikv1hui1c" path="res://assets/sound/sfx/movement/16_human_walk_stone_1.wav" id="15_1pdic"]
-[ext_resource type="Shader" uid="uid://djk0fj0tljrnd" path="res://src/entities/player/knight/knight_shader.tres" id="16_77qn8"]
-[ext_resource type="Texture2D" uid="uid://c3p42hwu17odm" path="res://assets/textures/player/player_sheet.png" id="17_73c2k"]
+[ext_resource type="Texture2D" uid="uid://c8t8flt0gi4xf" path="res://assets/textures/player/knight_sheet.png" id="16_8disr"]
+[ext_resource type="Texture2D" uid="uid://bxqesp41wp0bn" path="res://assets/textures/environment/altar.png" id="18_lxyo4"]
 [ext_resource type="Shader" path="res://src/entities/player/ranger/Bow.gdshader" id="18_ph6pw"]
 [ext_resource type="Script" path="res://src/entities/player/knight/shield.gd" id="19_apx8u"]
 [ext_resource type="Texture2D" uid="uid://dbfy58boydu8p" path="res://assets/textures/player/sword.png" id="19_c6vga"]
-[ext_resource type="AudioStream" uid="uid://bb7vaq1s7dn4q" path="res://assets/sound/sfx/attacks/sword/07_human_atk_sword_1.wav" id="20_8wbyd"]
-[ext_resource type="AudioStream" uid="uid://2rkqeepcpese" path="res://assets/sound/sfx/attacks/sword/07_human_atk_sword_3.wav" id="21_2box8"]
+[ext_resource type="AudioStream" uid="uid://d3ileerpq5w10" path="res://assets/sound/sfx/attacks/sword/sword_attack_1.ogg" id="20_reywm"]
+[ext_resource type="AudioStream" uid="uid://dx1h7ikhyny1i" path="res://assets/sound/sfx/attacks/sword/sword_attack_2.ogg" id="21_kyga5"]
+[ext_resource type="AudioStream" uid="uid://bjrkxgaawhkkc" path="res://assets/sound/sfx/attacks/sword/charge_start.ogg" id="23_bw6ia"]
 [ext_resource type="AudioStream" uid="uid://d1sx7y7kvhhbx" path="res://assets/sound/sfx/attacks/sword/parry.mp3" id="23_v7yx4"]
+[ext_resource type="AudioStream" uid="uid://bww75b76r3tax" path="res://assets/sound/sfx/attacks/sword/charge_hold_3.ogg" id="24_fn8br"]
 [ext_resource type="PackedScene" uid="uid://b1nwhde3tii" path="res://src/game/ui/inventory/InventoryDisplay.tscn" id="24_lg5bt"]
+[ext_resource type="AudioStream" uid="uid://cmrn0fruccxno" path="res://assets/sound/sfx/attacks/sword/charge_attack.ogg" id="25_5w1nd"]
+[ext_resource type="Script" path="res://src/entities/player/ranger/rope_cast.gd" id="25_ea6o3"]
 
 [sub_resource type="CapsuleShape2D" id="1"]
 radius = 5.0
@@ -453,21 +456,12 @@ _data = {
 "walk": SubResource("6")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_n6qau"]
-shader = ExtResource("16_77qn8")
-shader_parameter/enable_silver = true
-shader_parameter/silver_color = Vector4(1.5, 2, 0.5, 1)
-
-[sub_resource type="AtlasTexture" id="2"]
-atlas = ExtResource("17_73c2k")
-region = Rect2(0, 0, 288, 160)
-
-[sub_resource type="Curve" id="Curve_c3qvp"]
+[sub_resource type="Curve" id="Curve_w10om"]
 _data = [Vector2(0, 1), 0.0, -0.438591, 0, 0, Vector2(0.65, 0.637736), -0.498113, -0.498113, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_m0rin"]
-curve = SubResource("Curve_c3qvp")
+curve = SubResource("Curve_w10om")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_s1oo6"]
 particle_flag_align_y = true
@@ -624,6 +618,42 @@ tracks/9/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("SwordAttack/ChargingParticles:emitting")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("SwordAttack/ChargedParticles:emitting")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("%Weapon/../..:collision_mask")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [39]
+}
 
 [sub_resource type="Animation" id="Animation_b8ypi"]
 resource_name = "attack_1"
@@ -636,10 +666,10 @@ tracks/0/path = NodePath("../../BodyPivot/WeaponPivot:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
+"times": PackedFloat32Array(0, 0.15, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(4.5, 4.5), Vector2(4.5, -8), Vector2(4.5, 4.5)]
+"values": [Vector2(4.5, 4.5), Vector2(10, -8), Vector2(10, 4.5)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -648,7 +678,7 @@ tracks/1/path = NodePath(".:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3),
+"times": PackedFloat32Array(0, 0.25, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [-1.5708, 0.0, 0.0]
@@ -663,63 +693,7 @@ tracks/2/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("20_8wbyd")
-}],
-"times": PackedFloat32Array(0.05)
-}
-tracks/2/use_blend = true
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("SwordAttack:collision_mask")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.05, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [100, 0]
-}
-
-[sub_resource type="Animation" id="Animation_yc8d6"]
-resource_name = "attack_2"
-length = 0.3
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../../BodyPivot/WeaponPivot:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(4.5, 2.5), Vector2(-8, 2.5), Vector2(8, 2.5), Vector2(8, 2.5)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 0.0, 0.0]
-}
-tracks/2/type = "audio"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("WeaponSFX")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("21_2box8")
+"stream": ExtResource("20_reywm")
 }],
 "times": PackedFloat32Array(0.1)
 }
@@ -731,16 +705,16 @@ tracks/3/path = NodePath("SwordAttack:collision_mask")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.1, 0.3),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [100, 0]
 }
 
-[sub_resource type="Animation" id="Animation_lxq5g"]
-resource_name = "attack_3"
-length = 0.4
-step = 0.05
+[sub_resource type="Animation" id="Animation_yc8d6"]
+resource_name = "attack_2"
+length = 0.25
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -748,10 +722,10 @@ tracks/0/path = NodePath("../../BodyPivot/WeaponPivot:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.4),
-"transitions": PackedFloat32Array(0.277392, 0.183011, 0.183011),
+"times": PackedFloat32Array(0, 0.05, 0.12, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(4.5, 4.5), Vector2(4, -4), Vector2(4, -4)]
+"values": [Vector2(10, 4.5), Vector2(-5, 2.5), Vector2(-8, 2.5), Vector2(8, 2.5)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -760,7 +734,63 @@ tracks/1/path = NodePath(".:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.3),
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WeaponSFX")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("21_kyga5")
+}],
+"times": PackedFloat32Array(0.1)
+}
+tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SwordAttack:collision_mask")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [100, 0]
+}
+
+[sub_resource type="Animation" id="Animation_lxq5g"]
+resource_name = "attack_3"
+length = 0.42
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../BodyPivot/WeaponPivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.17, 0.32, 0.42),
+"transitions": PackedFloat32Array(0.999999, 0.999999, 0.999999, 0.183011, 0.183011),
+"update": 0,
+"values": [Vector2(8, 2.5), Vector2(-5, 4.5), Vector2(13.5, 4.5), Vector2(13.5, -4), Vector2(13.5, -4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.12, 0.32, 0.42),
 "transitions": PackedFloat32Array(0.392292, 0.517632, 1),
 "update": 0,
 "values": [0.0, -1.0472, -1.5708]
@@ -772,7 +802,7 @@ tracks/2/path = NodePath(".:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.4),
+"times": PackedFloat32Array(0.02, 0.42),
 "transitions": PackedFloat32Array(1e-05, 1e-05),
 "update": 0,
 "values": [Vector2(1, -1), Vector2(1, -1)]
@@ -787,9 +817,9 @@ tracks/3/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("20_8wbyd")
+"stream": ExtResource("20_reywm")
 }],
-"times": PackedFloat32Array(0.1)
+"times": PackedFloat32Array(0.13)
 }
 tracks/3/use_blend = true
 tracks/4/type = "value"
@@ -799,7 +829,7 @@ tracks/4/path = NodePath("SwordAttack:collision_mask")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.1, 0.4),
+"times": PackedFloat32Array(0.02, 0.42),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [100, 0]
@@ -831,7 +861,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(6, 2)]
+"values": [Vector2(15.5, 2)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -856,6 +886,199 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_0rqvx"]
+resource_name = "charge_attack"
+length = 0.7
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../BodyPivot/WeaponPivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13, 0.65, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-8, 2.5), Vector2(14, 2.5), Vector2(15, 2.5), Vector2(-8, 2.5)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponSFX")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("25_5w1nd")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SwordAttack/ChargedParticles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SwordAttack:collision_mask")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [100, 0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("%Weapon/../..:collision_mask")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [39]
+}
+
+[sub_resource type="Animation" id="Animation_pec4x"]
+resource_name = "charge_hold"
+length = 0.6
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../BodyPivot/WeaponPivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, 2.5)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponSFX")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0357813,
+"start_offset": 0.053672,
+"stream": ExtResource("24_fn8br")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SwordAttack/ChargedParticles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_lcbjo"]
+resource_name = "charge_start"
+length = 1.5
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../BodyPivot/WeaponPivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-5, 2.5), Vector2(-8, 2.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WeaponSFX")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 61.1161,
+"start_offset": 0.0,
+"stream": ExtResource("23_bw6ia")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SwordAttack/ChargingParticles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_2d1sx"]
@@ -884,7 +1107,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.03, 0.05, 0.1, 0.2, 0.4, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 4.75683, 0.0253829, 1),
 "update": 0,
-"values": [Vector2(6, 2), Vector2(6, 2), Vector2(3, 2), Vector2(3, 2), Vector2(6, 2), Vector2(6, 2), Vector2(4.5, 4.5)]
+"values": [Vector2(15.5, 2), Vector2(15.5, 2), Vector2(12.5, 2), Vector2(12.5, 2), Vector2(15.5, 2), Vector2(15.5, 2), Vector2(4.5, 4.5)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -951,7 +1174,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [-2.0944]
+"values": [-1.91986]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -963,7 +1186,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(6, 2)]
+"values": [Vector2(15.5, 2)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -1009,44 +1232,112 @@ _data = {
 "attack_2": SubResource("Animation_yc8d6"),
 "attack_3": SubResource("Animation_lxq5g"),
 "block": SubResource("Animation_2mi8m"),
+"charge_attack": SubResource("Animation_0rqvx"),
+"charge_hold": SubResource("Animation_pec4x"),
+"charge_start": SubResource("Animation_lcbjo"),
 "parry_attack": SubResource("Animation_2d1sx"),
 "parry_hold": SubResource("Animation_bs81m")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h6e8o"]
-size = Vector2(17.8577, 3.74192)
+size = Vector2(24.9288, 3.74192)
+
+[sub_resource type="Curve" id="Curve_c3qvp"]
+_data = [Vector2(0, 1), 0.0, -0.438591, 0, 0, Vector2(0.65, 0.637736), -0.498113, -0.498113, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_f65bb"]
+curve = SubResource("Curve_c3qvp")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rnvny"]
 particle_flag_align_y = true
 particle_flag_rotate_y = true
 particle_flag_disable_z = true
-emission_shape_scale = Vector3(9.95, 1, 1)
-emission_shape = 1
+emission_shape_scale = Vector3(7.85, 1, 1)
+emission_shape = 2
 emission_sphere_radius = 1.0
 gravity = Vector3(0, 0, 0)
-linear_accel_min = -2.23517e-06
-linear_accel_max = 0.499998
+linear_accel_min = 14.04
+linear_accel_max = 14.04
 radial_accel_min = -2.23517e-06
 radial_accel_max = 52.83
-scale_min = 1.55
-scale_max = 1.55
-scale_curve = SubResource("CurveTexture_m0rin")
-color = Color(0.841371, 0.946347, 0.975223, 1)
+scale_curve = SubResource("CurveTexture_f65bb")
+color = Color(1, 1, 10, 1)
 turbulence_enabled = true
-turbulence_noise_strength = 20.0
 turbulence_noise_scale = 1.372
 turbulence_noise_speed_random = 4.0
-turbulence_influence_min = 0.412
-turbulence_influence_max = 1.0
+turbulence_influence_min = 0.213
+turbulence_influence_max = 0.549
 turbulence_initial_displacement_min = -0.999999
 turbulence_initial_displacement_max = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ikuen"]
 size = Vector2(16.6174, 2.94863)
 
+[sub_resource type="Curve" id="Curve_cfiw8"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0, 0.75473), 0.0, 0.0, 0, 0, Vector2(1, 6.79245), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_e7ea7"]
+curve = SubResource("Curve_cfiw8")
+
+[sub_resource type="Curve" id="Curve_8ybbi"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.495763, 0.577358), -2.07799, -2.07799, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_qr778"]
+curve = SubResource("Curve_8ybbi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_l188l"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(10, 10, 1)
+emission_shape = 2
+emission_sphere_radius = 1.0
+angle_min = 1.07288e-05
+angle_max = 50.5
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -20.29
+radial_accel_max = -20.29
+radial_accel_curve = SubResource("CurveTexture_e7ea7")
+scale_curve = SubResource("CurveTexture_qr778")
+color = Color(1, 1, 10, 1)
+
+[sub_resource type="Curve" id="Curve_stolg"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.800847, 0.622642), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_lcxy4"]
+curve = SubResource("Curve_stolg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hpleh"]
+particle_flag_disable_z = true
+direction = Vector3(1, -0.83, 0)
+spread = 77.4
+initial_velocity_min = 70.17
+initial_velocity_max = 157.89
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_lcxy4")
+color = Color(1, 1, 10, 1)
+
+[sub_resource type="Gradient" id="Gradient_lj600"]
+offsets = PackedFloat32Array(0, 0.105691, 0.666667)
+colors = PackedColorArray(1, 1, 1, 1, 0.810811, 0.810811, 0.810811, 0.810811, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_eq82v"]
+gradient = SubResource("Gradient_lj600")
+width = 500
+height = 500
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="Knight" type="CharacterBody2D"]
 z_index = 2
-position = Vector2(0, -1)
 scale = Vector2(2, 2)
 collision_layer = 514
 collision_mask = 39
@@ -1054,30 +1345,29 @@ script = ExtResource("1_kkr7q")
 jump_speed = 550
 FRICTION_WEIGHT = 0.3
 gravity = 25
+max_health = 35
+health = 35
 push_force = 40.0
-inventory = ExtResource("2_yr3sk")
 jump_sfx = ExtResource("3_l7mkp")
 land_sfx = ExtResource("4_302f7")
 hit_sfx = ExtResource("5_1cnkm")
 base_attributes = {
 "Def": 3,
-"Dex": 2,
+"Dex": 1,
 "Int": 1,
-"Spd": 3,
-"Str": 5
+"Spd": 2,
+"Str": 4
 }
+
+[node name="StaminaBar" parent="." instance=ExtResource("5_njq1p")]
+offset_top = -24.0
+offset_bottom = -24.0
+scale = Vector2(0.055, 0.055)
+duration = 3
 
 [node name="AttackCooldown" type="Timer" parent="."]
 wait_time = 0.7
 one_shot = true
-
-[node name="HealthBar" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_tg4dl")]
-visible = false
-offset_left = -9.5
-offset_top = -24.0
-offset_right = 9.5
-offset_bottom = -20.0
-player = NodePath("..")
 
 [node name="BodyCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)
@@ -1118,29 +1408,20 @@ libraries = {
 "": SubResource("AnimationLibrary_iidtu")
 }
 
-[node name="FloorRaycasts" type="Node2D" parent="."]
-visible = false
-
-[node name="RayCast2D" type="RayCast2D" parent="FloorRaycasts"]
-target_position = Vector2(0, 1)
-
-[node name="RayCast2D2" type="RayCast2D" parent="FloorRaycasts"]
-position = Vector2(-3, 0)
-target_position = Vector2(0, 1)
-
-[node name="RayCast2D3" type="RayCast2D" parent="FloorRaycasts"]
-position = Vector2(3, 0)
-target_position = Vector2(0, 1)
-
 [node name="BodyPivot" type="Node2D" parent="."]
 position = Vector2(-1.22392e-06, -7)
 
 [node name="Body" type="Sprite2D" parent="BodyPivot"]
-material = SubResource("ShaderMaterial_n6qau")
 position = Vector2(-2, -4)
-texture = SubResource("2")
+texture = ExtResource("16_8disr")
 hframes = 9
 vframes = 5
+
+[node name="Lantern" type="Sprite2D" parent="BodyPivot"]
+modulate = Color(0.758192, 0.758192, 0.758192, 1)
+position = Vector2(-2.99998, 3.00001)
+scale = Vector2(0.405, 0.405)
+texture = ExtResource("18_lxyo4")
 
 [node name="WeaponPivot" type="Node2D" parent="BodyPivot"]
 visible = false
@@ -1152,7 +1433,7 @@ update_rotation = false
 update_scale = false
 
 [node name="WeaponContainer" type="Node2D" parent="."]
-position = Vector2(4.5, -2.5)
+position = Vector2(-8, -4.5)
 
 [node name="ParryAttackParticles" type="GPUParticles2D" parent="WeaponContainer"]
 position = Vector2(1.6, -8.5)
@@ -1167,10 +1448,12 @@ explosiveness = 1.0
 
 [node name="Weapon" type="Node2D" parent="WeaponContainer"]
 unique_name_in_owner = true
-position = Vector2(-9.95351e-09, 0)
+position = Vector2(-9.5, 0)
 rotation = -1.5708
 
 [node name="Weapon" type="Sprite2D" parent="WeaponContainer/Weapon"]
+modulate = Color(2, 2, 2, 1)
+self_modulate = Color(2, 2, 2, 1)
 material = SubResource("ShaderMaterial_jcgqo")
 position = Vector2(11.5, 1.00004)
 rotation = 1.5708
@@ -1191,7 +1474,7 @@ collision_mask = 0
 script = ExtResource("19_apx8u")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponContainer/Weapon/SwordBlock"]
-position = Vector2(7.64534, 1.44603)
+position = Vector2(11.9644, 1.49994)
 shape = SubResource("RectangleShape2D_h6e8o")
 
 [node name="ParryParticles" type="GPUParticles2D" parent="WeaponContainer/Weapon/SwordBlock"]
@@ -1211,30 +1494,70 @@ collision_mask = 0
 position = Vector2(15.8694, 1.04938)
 shape = SubResource("RectangleShape2D_ikuen")
 
+[node name="ChargingParticles" type="GPUParticles2D" parent="WeaponContainer/Weapon/SwordAttack"]
+position = Vector2(15.5, 1.5)
+emitting = false
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_l188l")
+lifetime = 0.5
+preprocess = 0.2
+speed_scale = 1.7
+
+[node name="ChargedParticles" type="GPUParticles2D" parent="WeaponContainer/Weapon/SwordAttack"]
+position = Vector2(16.5742, 1.24371)
+emitting = false
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_rnvny")
+lifetime = 0.5
+preprocess = 2.1
+randomness = 0.2
+
+[node name="AttackParticles" type="GPUParticles2D" parent="WeaponContainer/Weapon/SwordAttack"]
+position = Vector2(23, 1.00008)
+emitting = false
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_hpleh")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+
 [node name="RopeRaycast" type="Node2D" parent="."]
-visible = false
 scale = Vector2(0.5, 0.5)
 
 [node name="RayCast2DRight" type="RayCast2D" parent="RopeRaycast"]
 position = Vector2(0, -16)
 scale = Vector2(1, 5)
-target_position = Vector2(15, 0)
+target_position = Vector2(22, 0)
 collision_mask = 8
+script = ExtResource("25_ea6o3")
+
+[node name="RayCast2DRight2" type="RayCast2D" parent="RopeRaycast"]
+position = Vector2(0, -29)
+scale = Vector2(1, 5)
+target_position = Vector2(22, 0)
+collision_mask = 8
+script = ExtResource("25_ea6o3")
 
 [node name="RayCast2DLeft" type="RayCast2D" parent="RopeRaycast"]
 position = Vector2(0, -16)
 scale = Vector2(1, 5)
-target_position = Vector2(-15, 0)
+target_position = Vector2(-22, 0)
 collision_mask = 8
+script = ExtResource("25_ea6o3")
+
+[node name="RayCast2DLeft2" type="RayCast2D" parent="RopeRaycast"]
+position = Vector2(0, -29)
+scale = Vector2(1, 5)
+target_position = Vector2(-22, 0)
+collision_mask = 8
+script = ExtResource("25_ea6o3")
 
 [node name="RayCast2DUp" type="RayCast2D" parent="RopeRaycast"]
 position = Vector2(0, -1)
 scale = Vector2(5, 1)
-target_position = Vector2(0, -29)
+target_position = Vector2(0, -53)
 collision_mask = 8
-
-[node name="RollPivot" type="Node2D" parent="."]
-visible = false
+script = ExtResource("25_ea6o3")
 
 [node name="PlayerSfx" type="AudioStreamPlayer" parent="."]
 bus = &"PlayerSFX"
@@ -1242,7 +1565,7 @@ bus = &"PlayerSFX"
 [node name="Camera2D" type="Camera2D" parent="."]
 visible = false
 position = Vector2(-2, -20)
-zoom = Vector2(1.205, 1.205)
+zoom = Vector2(1.4, 1.4)
 drag_left_margin = 0.0
 drag_top_margin = 0.0
 drag_right_margin = 0.0
@@ -1258,12 +1581,27 @@ position = Vector2(0, -21)
 [node name="InventoryDisplay" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("24_lg5bt")]
 player = NodePath("../..")
 
+[node name="LanternLight" type="PointLight2D" parent="."]
+position = Vector2(-3, -3)
+scale = Vector2(0.405, 0.405)
+color = Color(0.981069, 0.846851, 0.354685, 1)
+energy = 0.6
+blend_mode = 2
+range_item_cull_mask = 5
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_eq82v")
+
 [connection signal="healed" from="." to="StateMachine" method="notify_healed"]
 [connection signal="hit" from="." to="StateMachine" method="notify_hit"]
-[connection signal="hp_changed" from="." to="HealthBar" method="update"]
+[connection signal="cooldown_timeout" from="StaminaBar" to="." method="_on_stamina_bar_cooldown_timeout"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="animation_finished" from="BodyAnimations" to="StateMachine" method="_on_body_animations_animation_finished"]
 [connection signal="animation_finished" from="WeaponContainer/Weapon/FXAnim" to="." method="_on_fx_anim_animation_finished"]
 [connection signal="animation_finished" from="WeaponContainer/Weapon/FXAnim" to="StateMachine" method="_on_body_animations_animation_finished"]
 [connection signal="area_entered" from="WeaponContainer/Weapon/SwordAttack" to="." method="_handle_deal_damage"]
 [connection signal="body_entered" from="WeaponContainer/Weapon/SwordAttack" to="." method="_handle_deal_damage"]
+[connection signal="collided" from="RopeRaycast/RayCast2DRight" to="StateMachine" method="rope_cast_collided"]
+[connection signal="collided" from="RopeRaycast/RayCast2DRight2" to="StateMachine" method="rope_cast_collided"]
+[connection signal="collided" from="RopeRaycast/RayCast2DLeft" to="StateMachine" method="rope_cast_collided"]
+[connection signal="collided" from="RopeRaycast/RayCast2DLeft2" to="StateMachine" method="rope_cast_collided"]
+[connection signal="collided" from="RopeRaycast/RayCast2DUp" to="StateMachine" method="rope_cast_collided"]

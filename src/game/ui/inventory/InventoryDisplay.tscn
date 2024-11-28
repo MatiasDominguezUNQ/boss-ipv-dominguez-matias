@@ -43,6 +43,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 1
 script = ExtResource("1_5n2ob")
 
 [node name="MainPanel" type="Panel" parent="."]
@@ -58,6 +59,7 @@ offset_right = -0.600006
 offset_bottom = 33.0
 grow_horizontal = 2
 grow_vertical = 2
+tooltip_text = "main inv"
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_dsb6q")
 script = ExtResource("2_oo3ii")
@@ -68,6 +70,7 @@ offset_left = 40.0
 offset_top = 175.07
 offset_right = 190.0
 offset_bottom = 185.07
+tooltip_text = "xp"
 theme_override_styles/fill = SubResource("StyleBoxFlat_7xy6x")
 script = ExtResource("4_4ccnd")
 
@@ -93,6 +96,7 @@ offset_right = 88.0
 offset_bottom = -12.605
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 0
 columns = 5
 
 [node name="Panel" parent="MainPanel/Stored" instance=ExtResource("2_n7gkl")]
@@ -254,3 +258,4 @@ text = "Int"
 [connection signal="gui_input" from="MainPanel" to="MainPanel" method="_on_gui_input"]
 [connection signal="mouse_entered" from="MainPanel" to="MainPanel" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="MainPanel" to="MainPanel" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="MainPanel/Stored" to="." method="_on_stored_mouse_entered"]

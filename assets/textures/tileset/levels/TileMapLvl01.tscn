@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://clt24kn4armal"]
+[gd_scene load_steps=40 format=4 uid="uid://clt24kn4armal"]
 
 [ext_resource type="Texture2D" uid="uid://crh07oshfgweq" path="res://assets/textures/tileset/ruins/Legacy Dungeon/Assets/Assets.png" id="1_pwv7w"]
 [ext_resource type="PackedScene" uid="uid://chyfhd1ohamw7" path="res://src/environment/obstacles/spikes.tscn" id="3_wiqai"]
@@ -25,8 +25,6 @@ tile_data = PackedInt32Array(0, 524291, 10, 65536, 524291, 11, 131072, 524291, 1
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_y4dhl"]
 tile_data = PackedInt32Array(0, 655363, 6, 65536, 655363, 7, 1, 655363, 6)
-
-[sub_resource type="TileMapPattern" id="TileMapPattern_7h26t"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_bw14i"]
 polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
@@ -369,7 +367,6 @@ pattern_2 = SubResource("TileMapPattern_dgonj")
 pattern_3 = SubResource("TileMapPattern_ahtnu")
 pattern_4 = SubResource("TileMapPattern_uv64x")
 pattern_5 = SubResource("TileMapPattern_y4dhl")
-pattern_6 = SubResource("TileMapPattern_7h26t")
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_tg4ew"]
 tile_data = PackedInt32Array(0, 327681, 9, 1, 393217, 9, 65537, 393217, 10, 2, 458753, 9, 65538, 458753, 10)
@@ -437,5 +434,5 @@ metadata/_edit_lock_ = true
 
 [node name="TileMapScenes" type="TileMapLayer" parent="."]
 z_index = 1
-tile_map_data = PackedByteArray("AAAXABUAAAAAAAAAAQAYABUAAAAAAAAAAQAZABUAAAAAAAAAAQA5ACsAAAAAAAAAAgBGACsAAAAAAAAAAgBRACsAAAAAAAAAAgAaABUAAAAAAAAAAQAGABIAAAAAAAAAAgAOABIAAAAAAAAAAgAWABIAAAAAAAAAAgAbABIAAAAAAAAAAgAjABIAAAAAAAAAAgArABIAAAAAAAAAAgAtACEAAAAAAAAAAgA1ACEAAAAAAAAAAgAuACsAAAAAAAAAAgA=")
+tile_map_data = PackedByteArray("AAAXABUAAAAAAAAAAQAYABUAAAAAAAAAAQAZABUAAAAAAAAAAQA5ACsAAAAAAAAAAgBGACsAAAAAAAAAAgAaABUAAAAAAAAAAQAWABIAAAAAAAAAAgArABIAAAAAAAAAAgA=")
 tile_set = SubResource("TileSet_c33o7")

@@ -11,9 +11,9 @@ func enter() -> void:
 		character.V_SPEED_LIMIT = character.jump_speed
 		character.velocity.y = -character.jump_speed
 		if character.wall_direction() != 0:
-			character.velocity.x = 1000 * -character.wall_direction()
+			character.velocity.x = 800 * -character.wall_direction()
 		else:
-			character.velocity.x = 1000 * character.move_direction
+			character.velocity.x = 800 * character.move_direction
 		character.is_sliding = false
 	if character.is_on_floor() || character.is_grabbing_rope:
 		character.player_sfx.stream = character.jump_sfx
@@ -29,10 +29,16 @@ func enter() -> void:
 			character._play_animation("jump")
 		
 
+func _on_rope_cast_collided(collider):
+	if Input.is_action_pressed("move_up"):
+		if collider is RigidBody2D and !character.is_grabbing_rope:
+			character.rope = collider
+			emit_signal("finished", "rope_swing")
+
 func handle_input(event: InputEvent) -> void:
-	if character.can_grab_rope() && (Input.is_action_pressed("jump") || Input.is_action_pressed("move_up")):
-		emit_signal("finished", "rope_swing")
-	elif Input.is_action_just_pressed("jump") && character.jumps < jumps_limit:
+	#if character.can_grab_rope() && (Input.is_action_pressed("jump") || Input.is_action_pressed("move_up")):
+		#emit_signal("finished", "rope_swing")
+	if Input.is_action_just_pressed("jump") && character.jumps < jumps_limit:
 		character.jumps += 1
 		character.player_sfx.stream = character.jump_sfx
 		character.player_sfx.play()
@@ -53,7 +59,7 @@ func update(delta: float) -> void:
 		else:
 			emit_signal("finished", "walk")
 	else:
-		if character.slide_skill && character.can_slide && character.wall_direction() != 0:
+		if character.slide_skill && character.can_slide && character.wall_direction() != 0 and character.move_direction == character.wall_direction():
 			emit_signal("finished", "wall_jump")
 		if character.velocity.y > 0:
 			character._play_animation("fall")

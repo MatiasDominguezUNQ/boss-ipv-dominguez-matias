@@ -26,6 +26,7 @@ signal dead()
 @export var health: int = max_health
 @export var push_force: float = 80.0
 @export var experience_reward: int = 2
+@export var damage: int = 2
 @export var knockback_resistance: float = 1.0
 var can_attack:bool = true
 var move_direction: int = 0
@@ -81,17 +82,25 @@ func knockback(force: float, direction: Vector2) -> void:
 	var knockback_force = direction * force / knockback_resistance
 	if is_on_floor() and knockback_force.y > -100:
 		knockback_force.y = -80
-	velocity += knockback_force
+	velocity = knockback_force
 
 func acting():
 	return body_animations.current_animation == "hit" || body_animations.current_animation == "attack"
 
 func _can_move_to_target():
+	if target == null:
+		return false
+	raycast.target_position = to_local(target.global_position)
+	raycast.force_raycast_update()
+	#(raycast.is_colliding() && raycast.get_collider() == target)
+	return has_safe_floor(move_direction) && ((abs(raycast.target_position.x) > 55 && (abs(raycast.target_position.y) < 60)) || (abs(raycast.target_position.x) > 5 && (abs(raycast.target_position.y) > 60)))
+
+func has_safe_floor(direction:int) -> bool:
 	var has_floor: bool
 	var has_spikes: bool
 	if target == null:
 		return false
-	if move_direction == 1:
+	if direction == 1:
 		right_floor_cast.force_raycast_update()
 		right_floor_cast_2.force_raycast_update()
 		has_floor = right_floor_cast.is_colliding()
@@ -101,10 +110,7 @@ func _can_move_to_target():
 		left_floor_cast_2.force_raycast_update()
 		has_floor = left_floor_cast.is_colliding()
 		has_spikes = left_floor_cast_2.is_colliding()
-	raycast.target_position = to_local(target.global_position)
-	raycast.force_raycast_update()
-	#(raycast.is_colliding() && raycast.get_collider() == target)
-	return not has_spikes && has_floor && ((abs(raycast.target_position.x) > 55 && (abs(raycast.target_position.y) < 60)) || (abs(raycast.target_position.x) > 0 && (abs(raycast.target_position.y) > 60)))
+	return has_floor and not has_spikes
 
 func _can_attack_target():
 	if target == null:
@@ -151,12 +157,7 @@ func _remove_custom() -> void:
 	collision_layer = 0
 
 func _on_sword_area_body_entered(body: Node2D) -> void:
-	if body is PlayerShield and body.has_method("notify_hit"):
-		attack_area.collision_mask = 0
-		body.notify_hit(2, self)
-	elif body is Player and body.has_method("notify_hit"):
-		attack_area.collision_mask = 0
-		body.notify_hit(2)
+	GameEnviroment.enemy_attack(body, damage, attack_area, self)
 
 func _on_attack_cooldown_timeout() -> void:
 	can_attack = true

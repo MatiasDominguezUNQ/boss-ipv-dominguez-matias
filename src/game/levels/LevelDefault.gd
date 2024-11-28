@@ -9,10 +9,10 @@ class_name GameLevel
 @onready var jump: Label = %Jump
 @onready var interact: Label = %Interact
 @onready var rope: Label = %Rope
-@onready var rope_jump: Label = $"Environment/Objects/Tutorial/Rope Jump"
 @onready var boss_area: Area2D = $Environment/BossArea
 @onready var boss_camera: Camera2D = %BossCamera
 @onready var spawn_point: Vector2 = %SpawnPoint.global_position
+@onready var rope_jump: Label = %"Rope Jump"
 
 @export var victory_music: AudioStream
 @export var death_music: AudioStream
@@ -28,9 +28,12 @@ signal restart_requested()
 signal next_level_requested()
 
 
-func _ready() -> void:
+func _ready() -> void: 
+	WorldEnviroment.environment.glow_enabled = true
 	randomize()
-	boss_area.collision_mask = (1 << 9)
+	if boss_area:
+		boss_area.collision_mask = (1 << 9)
+
 
 func get_chests():
 	return chests_node.get_children()
@@ -41,10 +44,9 @@ func _on_level_won() -> void:
 func _on_return_requested() -> void:
 	emit_signal("return_requested")
 
-
 func _on_restart_requested() -> void:
 	emit_signal("restart_requested")
-	
+
 func set_tutorials():
 	set_attack_tutorial()
 	set_movement_tutorial()
@@ -109,15 +111,13 @@ func get_key(action_id) -> String:
 	else:
 		return events.as_text()
 
-func _on_victory_menu_victory_music() -> void:
+func _on_player_victory() -> void:
 	background_music.stream = victory_music
 	background_music.play()
 
-
-func _on_death_music() -> void:
+func _on_player_death() -> void:
 	background_music.stream = death_music
 	background_music.play()
-
 
 func _on_boss_area_entered(area) -> void:
 	print("boss entered")
@@ -138,8 +138,9 @@ func _on_boss_dead() -> void:
 	background_music.volume_db = 0
 	background_music.play()
 	boss_area.collision_mask = 0
-	reset_camera()
-	
+	await get_tree().create_timer(3).timeout
+	GameState.emit_signal("level_won")
+
 func focus_camera_on_boss() -> void:
 	get_tree().root.content_scale_aspect = 4
 	CameraTransition.transition_camera2D(GameState.current_player.camera_2d, boss_camera)

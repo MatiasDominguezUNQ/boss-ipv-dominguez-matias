@@ -7,11 +7,16 @@ func enter() -> void:
 
 
 func handle_input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("jump") && character.can_grab_rope():
-		emit_signal("finished", "rope_swing")
-	elif Input.is_action_just_pressed("jump"):
+	#if Input.is_action_just_pressed("jump") && character.can_grab_rope():
+		#emit_signal("finished", "rope_swing")
+	if Input.is_action_just_pressed("jump"):
 		emit_signal("finished", "jump")
 
+func _on_rope_cast_collided(collider):
+	if Input.is_action_pressed("move_up"):
+		if collider is RigidBody2D and !character.is_grabbing_rope:
+			character.rope = collider
+			emit_signal("finished", "rope_swing")
 
 func update(delta: float) -> void:
 	character._handle_weapon_actions()

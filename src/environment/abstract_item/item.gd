@@ -63,5 +63,13 @@ func show_item_info() -> void:
 	await get_tree().create_timer(5).timeout
 	queue_free()
 
+func stats_to_string():
+	var result = ""
+	for stat in effects.keys():
+		var value = effects[stat]
+		if value > 0:
+			result += stat + " +" + str(value) + "\n"
+	return result.strip_edges()
+
 func equip_bonus(player):
 	pass

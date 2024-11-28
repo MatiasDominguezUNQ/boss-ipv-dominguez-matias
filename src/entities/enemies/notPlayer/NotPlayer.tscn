@@ -1,7 +1,6 @@
-[gd_scene load_steps=40 format=3 uid="uid://dnm8i2o1mv3sl"]
+[gd_scene load_steps=38 format=3 uid="uid://dnm8i2o1mv3sl"]
 
 [ext_resource type="Script" path="res://src/entities/enemies/notPlayer/NotPlayer.gd" id="1_kcbgc"]
-[ext_resource type="Texture2D" uid="uid://c3p42hwu17odm" path="res://assets/textures/player/player_sheet.png" id="2"]
 [ext_resource type="AudioStream" uid="uid://clbdqi48ruxxe" path="res://assets/sound/sfx/jump/22_orc_jump_2.wav" id="2_d5ev7"]
 [ext_resource type="PackedScene" uid="uid://xsalxs0jjtgk" path="res://src/game/ui/HealthBar.tscn" id="2_iue3h"]
 [ext_resource type="Script" path="res://src/entities/enemies/notPlayer/states/NotPlayerStateMachine.gd" id="3_l3u53"]
@@ -15,13 +14,10 @@
 [ext_resource type="Texture2D" uid="uid://diuu12stjs74l" path="res://assets/textures/weapon/sword.png" id="10_siqbk"]
 [ext_resource type="AudioStream" uid="uid://d0m84ey08yv2t" path="res://assets/sound/sfx/enemies/Scream_Robotic.wav" id="11_uoaoq"]
 [ext_resource type="AudioStream" uid="uid://ywpbgjt30g3s" path="res://assets/sound/sfx/movement/16_human_walk_stone_2.wav" id="12_ckah7"]
+[ext_resource type="Texture2D" uid="uid://bi7k0qak7bc5n" path="res://assets/textures/player/boss_sheet.png" id="14_gk6q3"]
 [ext_resource type="AudioStream" uid="uid://b7dsp141k2404" path="res://assets/sound/sfx/attacks/sword/07_human_atk_sword_2.wav" id="16_kspgn"]
 [ext_resource type="AudioStream" uid="uid://2rkqeepcpese" path="res://assets/sound/sfx/attacks/sword/07_human_atk_sword_3.wav" id="17_56juq"]
 [ext_resource type="Script" path="res://src/entities/enemies/notPlayer/sword_area.gd" id="18_hvtdn"]
-
-[sub_resource type="CapsuleShape2D" id="1"]
-radius = 17.0
-height = 62.0
 
 [sub_resource type="Animation" id="3"]
 length = 0.001
@@ -496,10 +492,6 @@ shader = ExtResource("8_3j4ow")
 shader_parameter/enable_damage = false
 shader_parameter/silver_color = Vector4(3, 3, 3, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tapp7"]
-atlas = ExtResource("2")
-region = Rect2(0, 0, 288, 160)
-
 [sub_resource type="Animation" id="9"]
 length = 0.001
 tracks/0/type = "value"
@@ -585,7 +577,7 @@ tracks/2/path = NodePath("SwordArea:collision_mask")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.5, 1.4),
+"times": PackedFloat32Array(0.3, 1.03333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [2, 0]
@@ -597,7 +589,7 @@ tracks/3/path = NodePath("Sword:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.0333333, 0.5, 1.4, 1.5),
+"times": PackedFloat32Array(0.0333333, 0.4, 1.4, 1.5),
 "transitions": PackedFloat32Array(1, 55.3443, 1, 1e-05),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 0.529412, 0.466667, 1), Color(1, 0.529412, 0.466667, 1), Color(1, 1, 1, 1)]
@@ -975,16 +967,20 @@ _data = {
 radius = 929.034
 
 [node name="NotPlayer" type="CharacterBody2D"]
+z_index = 2
 position = Vector2(1, -22)
 collision_layer = 32
 script = ExtResource("1_kcbgc")
-max_health = 25
+max_health = 80
+health = 80
+experience_reward = 15
+damage = 8
 jump_sfx = ExtResource("2_d5ev7")
 land_sfx = ExtResource("3_xeyxq")
 hit_sfx = ExtResource("4_l8vq5")
 
 [node name="AttackCooldown" type="Timer" parent="."]
-wait_time = 1.5
+wait_time = 0.7
 one_shot = true
 
 [node name="HealthBar" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_iue3h")]
@@ -994,9 +990,9 @@ offset_right = 25.0
 offset_bottom = -67.0
 player = NodePath("..")
 
-[node name="BodyCollision" type="CollisionShape2D" parent="."]
+[node name="BodyCollision" type="CollisionPolygon2D" parent="."]
 position = Vector2(-3, -9)
-shape = SubResource("1")
+polygon = PackedVector2Array(-17, -16, -11, -29, 15, -29, 19, -14, 19, 17, 2, 30, -18, 16)
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_l3u53")
@@ -1029,11 +1025,10 @@ libraries = {
 position = Vector2(-1.22392e-06, -7)
 
 [node name="Body" type="Sprite2D" parent="BodyPivot"]
-modulate = Color(4.62055e-06, 0.905658, 0.892464, 1)
 material = SubResource("ShaderMaterial_bcojc")
 position = Vector2(-9, -15)
 scale = Vector2(4, 4)
-texture = SubResource("AtlasTexture_tapp7")
+texture = ExtResource("14_gk6q3")
 hframes = 9
 vframes = 5
 
@@ -1050,6 +1045,7 @@ position = Vector2(20, 8)
 
 [node name="Weapon" type="Node2D" parent="WeaponContainer"]
 unique_name_in_owner = true
+position = Vector2(1.90735e-06, 6)
 rotation = -1.5708
 
 [node name="Sword" type="Sprite2D" parent="WeaponContainer/Weapon"]
@@ -1064,19 +1060,19 @@ libraries = {
 }
 
 [node name="SwordArea" type="Area2D" parent="WeaponContainer/Weapon"]
-visible = false
 collision_layer = 64
 collision_mask = 0
 priority = 2
 script = ExtResource("18_hvtdn")
 
 [node name="Polygon2D" type="CollisionPolygon2D" parent="WeaponContainer/Weapon/SwordArea"]
-polygon = PackedVector2Array(10, -2.99996, -1.99999, -3, -4.99999, -4.00002, -8, -2.67029e-05, -6.00002, 4.99998, -1.43051e-05, 4, 9.99999, 4.00004, 8.99994, 17, 13.9999, 18.0001, 16.9999, 17.0001, 17, 9.00006, 60, 9.00022, 70, 1.00026, 61, -5.99978, 15, -4.99994, 16, -13.9999, 13.0001, -17, 9.00005, -13, 11, -9.99996)
+polygon = PackedVector2Array(8.00005, -14, 4.673e-05, -13, -6.99995, -13, -7.00003, 6.99998, -2.90871e-05, 8, 17, 9.00006, 60, 9.00022, 70, 1.00026, 61, -5.99978, 15, -4.99994, 16, -13.9999, 13.0001, -17)
 
 [node name="SwordSFX" type="AudioStreamPlayer2D" parent="WeaponContainer/Weapon"]
 bus = &"BossSFX"
 
 [node name="Eyes" type="RayCast2D" parent="."]
+position = Vector2(-1, -27)
 enabled = false
 collision_mask = 3
 
@@ -1099,7 +1095,7 @@ position = Vector2(-18, 21)
 target_position = Vector2(0, 100)
 
 [node name="BodySFX" type="AudioStreamPlayer2D" parent="."]
-max_distance = 400.0
+max_distance = 1000.0
 attenuation = 1.46409
 bus = &"BossSFX"
 

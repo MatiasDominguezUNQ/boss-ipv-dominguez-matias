@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://dcs72phuegkmk"]
 
-[ext_resource type="Script" path="res://src/game/ui/controls_menu.gd" id="1_vguxe"]
+[ext_resource type="Script" path="res://src/game/ui/menus/controls_menu.gd" id="1_vguxe"]
 [ext_resource type="AudioStream" uid="uid://b485vsqlu714c" path="res://assets/sound/UI/Minimalist7.ogg" id="2_lhca5"]
 [ext_resource type="FontFile" uid="uid://bihylbkwevg8j" path="res://assets/fonts/DungeonFont.ttf" id="2_syj4n"]
 [ext_resource type="AudioStream" uid="uid://drvygf7nu8s7v" path="res://assets/sound/UI/Minimalist10.ogg" id="3_1civy"]
