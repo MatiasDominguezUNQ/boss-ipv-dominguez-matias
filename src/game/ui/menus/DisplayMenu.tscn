@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://qfjb61kllrmj"]
+[gd_scene load_steps=9 format=3 uid="uid://qfjb61kllrmj"]
 
 [ext_resource type="Script" path="res://src/game/ui/menus/DisplayMenu.gd" id="1_jo4kx"]
 [ext_resource type="AudioStream" uid="uid://b485vsqlu714c" path="res://assets/sound/UI/Minimalist7.ogg" id="2_drybh"]
 [ext_resource type="AudioStream" uid="uid://drvygf7nu8s7v" path="res://assets/sound/UI/Minimalist10.ogg" id="3_s2476"]
 [ext_resource type="FontFile" uid="uid://bihylbkwevg8j" path="res://assets/fonts/DungeonFont.ttf" id="4_rt32f"]
+[ext_resource type="Script" path="res://src/game/ui/menus/language_option_button.gd" id="5_lw32n"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dsb6q"]
 bg_color = Color(0.246388, 0.180123, 0.0824706, 1)
@@ -112,28 +113,80 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
 size_flags_stretch_ratio = 0.0
-theme_override_constants/separation = 2
+theme_override_constants/separation = 47
 
 [node name="Label" type="Label" parent="MainPanel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 text = "TAG_BRIGHTNESS"
+horizontal_alignment = 1
 
 [node name="Brightness" type="HSlider" parent="MainPanel/ScrollContainer/VBoxContainer/Label"]
 unique_name_in_owner = true
-layout_mode = 2
-offset_top = 25.0
-offset_right = 248.0
-offset_bottom = 41.0
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 16.76
+offset_bottom = 32.76
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_qe24e")
 min_value = 0.4
 max_value = 2.0
 step = 0.1
 value = 1.0
 
+[node name="Label2" type="Label" parent="MainPanel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "TAG_FULLSCREEN"
+horizontal_alignment = 1
+
+[node name="CheckButton" type="CheckButton" parent="MainPanel/ScrollContainer/VBoxContainer/Label2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = 16.81
+offset_right = 22.0
+offset_bottom = 40.81
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label3" type="Label" parent="MainPanel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "TAG_LANGUAGE"
+horizontal_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="MainPanel/ScrollContainer/VBoxContainer/Label3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.5
+offset_top = 19.0
+offset_right = 46.5
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "Español"
+popup/item_1/text = "English"
+popup/item_1/id = 1
+script = ExtResource("5_lw32n")
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 bus = &"SFX"
 
 [connection signal="mouse_entered" from="MainPanel/ReturnButton" to="." method="on_focus"]
-[connection signal="pressed" from="MainPanel/ReturnButton" to="." method="on_click"]
 [connection signal="pressed" from="MainPanel/ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="MainPanel/ReturnButton" to="." method="on_click"]
 [connection signal="value_changed" from="MainPanel/ScrollContainer/VBoxContainer/Label/Brightness" to="." method="_on_brightness_value_changed"]
+[connection signal="toggled" from="MainPanel/ScrollContainer/VBoxContainer/Label2/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="item_selected" from="MainPanel/ScrollContainer/VBoxContainer/Label3/OptionButton" to="MainPanel/ScrollContainer/VBoxContainer/Label3/OptionButton" method="_on_item_selected"]

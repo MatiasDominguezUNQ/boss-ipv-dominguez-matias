@@ -4,8 +4,14 @@ extends Control
 @export var click_sfx: AudioStream
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 @onready var brightness: HSlider = %Brightness
+@onready var check_button: CheckButton = $MainPanel/ScrollContainer/VBoxContainer/Label2/CheckButton
 
 func _ready() -> void:
+	var fullscreen = DisplayServer.window_get_mode()
+	if fullscreen == DisplayServer.WINDOW_MODE_FULLSCREEN:
+		check_button.button_pressed = true
+	else: 
+		check_button.button_pressed = false
 	brightness.value = GameEnviroment.global_brightness
 	WorldEnviroment.environment.adjustment_brightness = GameEnviroment.global_brightness
 	hide()
@@ -26,3 +32,10 @@ func on_focus():
 func on_click():
 	audio_stream_player.stream = click_sfx
 	audio_stream_player.play()
+
+
+func _on_check_button_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)

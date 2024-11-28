@@ -1,0 +1,197 @@
+[gd_scene load_steps=17 format=3 uid="uid://do70gjov5bjmd"]
+
+[ext_resource type="Script" path="res://src/game/levels/level_main.gd" id="1_xmv50"]
+[ext_resource type="AudioStream" uid="uid://b6n2ah3hmubjo" path="res://assets/sound/bgm/Tracks/Fx 1.ogg" id="2_30j2l"]
+[ext_resource type="AudioStream" uid="uid://y0vysv5wqli1" path="res://assets/sound/bgm/Tracks/Fx 3.ogg" id="3_xqft7"]
+[ext_resource type="AudioStream" uid="uid://0ijgx0332hb" path="res://assets/sound/bgm/Tracks/Dark 3.ogg" id="4_xy8ab"]
+[ext_resource type="PackedScene" uid="uid://bftg4rkelg32k" path="res://assets/textures/tileset/levels/TileMapLvlMain.tscn" id="5_1r0bn"]
+[ext_resource type="AudioStream" uid="uid://dqyjpkaxcyia2" path="res://assets/sound/bgm/Tracks/Action 3.ogg" id="5_sfnyj"]
+[ext_resource type="PackedScene" uid="uid://cpymripcqph0" path="res://src/game/ui/ui_menus.tscn" id="6_mtc4f"]
+[ext_resource type="PackedScene" uid="uid://by4dtbgjm7kty" path="res://src/environment/items/kiwi.tscn" id="7_24la8"]
+[ext_resource type="PackedScene" uid="uid://chkhrauq0xab" path="res://src/environment/background/mountain_background.tscn" id="7_hjryx"]
+[ext_resource type="PackedScene" uid="uid://hn82roycabpp" path="res://src/environment/items/crown.tscn" id="8_p8m3y"]
+[ext_resource type="PackedScene" uid="uid://5r8n8o5hr1su" path="res://src/environment/chest/chest.tscn" id="12_85qh4"]
+[ext_resource type="PackedScene" uid="uid://dfb2km1lpc3qa" path="res://src/entities/enemies/bat/Bat.tscn" id="15_i3f47"]
+[ext_resource type="PackedScene" uid="uid://cby55meunt1qo" path="res://src/entities/enemies/skeleton/Skeleton.tscn" id="16_io3kn"]
+[ext_resource type="PackedScene" uid="uid://dnm8i2o1mv3sl" path="res://src/entities/enemies/notPlayer/NotPlayer.tscn" id="17_tuwtj"]
+[ext_resource type="Script" path="res://src/entities/enemies/TurretsSpawner.gd" id="19_fmrni"]
+[ext_resource type="PackedScene" uid="uid://d4nvu7718dkl1" path="res://src/entities/enemies/armadillo/cannon_ball.tscn" id="21_cc3tk"]
+
+[node name="LevelMain" type="Node"]
+script = ExtResource("1_xmv50")
+victory_music = ExtResource("2_30j2l")
+death_music = ExtResource("3_xqft7")
+default_music = ExtResource("4_xy8ab")
+boss_music = ExtResource("5_sfnyj")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_xy8ab")
+autoplay = true
+bus = &"BackgroundLevel"
+
+[node name="MenuLayer" parent="." instance=ExtResource("6_mtc4f")]
+layer = 3
+
+[node name="BackgroundLayer" type="Node" parent="."]
+
+[node name="MountainBackground" parent="BackgroundLayer" instance=ExtResource("7_hjryx")]
+
+[node name="Environment" type="Node2D" parent="."]
+
+[node name="Tilesets" type="Node2D" parent="Environment"]
+
+[node name="TileMapLvl00" parent="Environment/Tilesets" instance=ExtResource("5_1r0bn")]
+position = Vector2(434, -2716)
+
+[node name="Objects" type="Node2D" parent="Environment"]
+z_as_relative = false
+
+[node name="Chests" type="Node2D" parent="Environment/Objects"]
+
+[node name="Chest" parent="Environment/Objects/Chests" instance=ExtResource("12_85qh4")]
+position = Vector2(10097, -2261)
+is_random = true
+
+[node name="Chest2" parent="Environment/Objects/Chests" instance=ExtResource("12_85qh4")]
+position = Vector2(10095, -1430)
+is_random = true
+
+[node name="Chest3" parent="Environment/Objects/Chests" instance=ExtResource("12_85qh4")]
+position = Vector2(9871, -1080)
+is_random = true
+
+[node name="Chest5" parent="Environment/Objects/Chests" instance=ExtResource("12_85qh4")]
+position = Vector2(11209, -789)
+is_random = true
+
+[node name="Chest9" parent="Environment/Objects/Chests" instance=ExtResource("12_85qh4")]
+position = Vector2(12477, -788)
+is_random = true
+
+[node name="Chest6" parent="Environment/Objects/Chests" instance=ExtResource("12_85qh4")]
+position = Vector2(8878, -1813)
+is_random = true
+
+[node name="Chest7" parent="Environment/Objects/Chests" instance=ExtResource("12_85qh4")]
+position = Vector2(11274, -116)
+item = ExtResource("7_24la8")
+
+[node name="Chest8" parent="Environment/Objects/Chests" instance=ExtResource("12_85qh4")]
+position = Vector2(11302, -1077)
+item = ExtResource("7_24la8")
+
+[node name="Chest4" parent="Environment/Objects/Chests" instance=ExtResource("12_85qh4")]
+position = Vector2(12371, -1749)
+item = ExtResource("8_p8m3y")
+
+[node name="Entities" type="Node2D" parent="Environment"]
+z_as_relative = false
+
+[node name="Enemies" type="Node2D" parent="Environment/Entities"]
+
+[node name="Spawner" type="Marker2D" parent="Environment/Entities/Enemies"]
+position = Vector2(9795, -1764)
+script = ExtResource("19_fmrni")
+scenes = Array[PackedScene]([ExtResource("16_io3kn"), ExtResource("15_i3f47")])
+amount = 3
+extents = Vector2(750.67, 10)
+
+[node name="Spawner2" type="Marker2D" parent="Environment/Entities/Enemies"]
+position = Vector2(9089, -1757)
+script = ExtResource("19_fmrni")
+scenes = Array[PackedScene]([ExtResource("16_io3kn"), ExtResource("15_i3f47")])
+amount = 2
+extents = Vector2(400, 10)
+
+[node name="Spawner3" type="Marker2D" parent="Environment/Entities/Enemies"]
+position = Vector2(9824, -2260)
+script = ExtResource("19_fmrni")
+scenes = Array[PackedScene]([ExtResource("16_io3kn"), ExtResource("15_i3f47")])
+amount = 2
+extents = Vector2(200, 10)
+
+[node name="Spawner4" type="Marker2D" parent="Environment/Entities/Enemies"]
+position = Vector2(9797, -1422)
+script = ExtResource("19_fmrni")
+scenes = Array[PackedScene]([ExtResource("16_io3kn"), ExtResource("15_i3f47")])
+amount = 2
+extents = Vector2(200, 10)
+
+[node name="Spawner5" type="Marker2D" parent="Environment/Entities/Enemies"]
+position = Vector2(11209, -1742)
+script = ExtResource("19_fmrni")
+scenes = Array[PackedScene]([ExtResource("16_io3kn"), ExtResource("15_i3f47")])
+amount = 2
+extents = Vector2(200, 10)
+
+[node name="Spawner6" type="Marker2D" parent="Environment/Entities/Enemies"]
+position = Vector2(10075, -1079)
+script = ExtResource("19_fmrni")
+scenes = Array[PackedScene]([ExtResource("16_io3kn"), ExtResource("15_i3f47")])
+amount = 3
+extents = Vector2(200, 10)
+
+[node name="Spawner7" type="Marker2D" parent="Environment/Entities/Enemies"]
+position = Vector2(10899, -1067)
+script = ExtResource("19_fmrni")
+scenes = Array[PackedScene]([ExtResource("16_io3kn"), ExtResource("15_i3f47")])
+amount = 2
+extents = Vector2(200, 10)
+
+[node name="NotPlayer" parent="Environment/Entities/Enemies" instance=ExtResource("17_tuwtj")]
+position = Vector2(11892, 282)
+
+[node name="CannonBall" parent="Environment/Entities/Enemies" instance=ExtResource("21_cc3tk")]
+position = Vector2(11863, -836)
+scale = Vector2(3, 3)
+
+[node name="Bat2" parent="Environment/Entities/Enemies" instance=ExtResource("15_i3f47")]
+position = Vector2(11503, -12)
+
+[node name="Bat4" parent="Environment/Entities/Enemies" instance=ExtResource("15_i3f47")]
+position = Vector2(11403, -12)
+
+[node name="Bat5" parent="Environment/Entities/Enemies" instance=ExtResource("15_i3f47")]
+position = Vector2(11448, -12)
+
+[node name="Bat6" parent="Environment/Entities/Enemies" instance=ExtResource("15_i3f47")]
+position = Vector2(11355, -12)
+
+[node name="Skeleton" parent="Environment/Entities/Enemies" instance=ExtResource("16_io3kn")]
+position = Vector2(11642, 293)
+
+[node name="Skeleton2" parent="Environment/Entities/Enemies" instance=ExtResource("16_io3kn")]
+position = Vector2(12150, 296)
+
+[node name="BossArea" type="Area2D" parent="Environment"]
+position = Vector2(11970, 30)
+collision_layer = 0
+collision_mask = 512
+
+[node name="BossCamera" type="Camera2D" parent="Environment/BossArea"]
+unique_name_in_owner = true
+position = Vector2(-127, 81)
+enabled = false
+zoom = Vector2(0.745, 0.745)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/BossArea"]
+polygon = PackedVector2Array(-353, -103, -350, -342, 405, -370, 425, 324, -799, 305, -801, -71)
+
+[node name="DefaultLighting" type="CanvasModulate" parent="."]
+position = Vector2(527, 132)
+color = Color(0.28485, 0.28485, 0.28485, 1)
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(6698, -2756)
+
+[connection signal="next_level_requested" from="MenuLayer" to="." method="_on_level_won"]
+[connection signal="player_death" from="MenuLayer" to="." method="_on_player_death"]
+[connection signal="player_victory" from="MenuLayer" to="." method="_on_player_victory"]
+[connection signal="restart_requested" from="MenuLayer" to="." method="_on_restart_requested"]
+[connection signal="return_requested" from="MenuLayer" to="." method="_on_return_requested"]
+[connection signal="dead" from="Environment/Entities/Enemies/NotPlayer" to="." method="_on_boss_dead"]
+[connection signal="area_entered" from="Environment/BossArea" to="." method="_on_boss_area_entered"]
+[connection signal="area_exited" from="Environment/BossArea" to="." method="_on_boss_area_exited"]
+[connection signal="body_entered" from="Environment/BossArea" to="." method="_on_boss_area_entered"]
+[connection signal="body_exited" from="Environment/BossArea" to="." method="_on_boss_area_exited"]

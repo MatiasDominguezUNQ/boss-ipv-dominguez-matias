@@ -378,8 +378,8 @@ script = ExtResource("1_0rbgb")
 ACCELERATION = 250.0
 AIR_ACCELERATION = 250.0
 jump_speed = 250
-max_health = 8
-health = 8
+max_health = 6
+health = 6
 damage = 3
 
 [node name="AttackCooldown" type="Timer" parent="."]

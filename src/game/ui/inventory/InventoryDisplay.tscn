@@ -65,11 +65,17 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_dsb6q")
 script = ExtResource("2_oo3ii")
 
 [node name="HealthBar" parent="MainPanel" instance=ExtResource("3_qb3th")]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 175.07
-offset_right = 190.0
-offset_bottom = 185.07
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 28.0
+offset_top = -0.5
+offset_right = -26.0
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
 tooltip_text = "xp"
 theme_override_styles/fill = SubResource("StyleBoxFlat_7xy6x")
 script = ExtResource("4_4ccnd")
@@ -248,10 +254,6 @@ text = "Def"
 [node name="Label4" type="Label" parent="MainPanel/Stats"]
 layout_mode = 2
 text = "Spd"
-
-[node name="Label5" type="Label" parent="MainPanel/Stats"]
-layout_mode = 2
-text = "Int"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 

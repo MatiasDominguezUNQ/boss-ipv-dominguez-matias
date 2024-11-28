@@ -1351,13 +1351,6 @@ push_force = 40.0
 jump_sfx = ExtResource("3_l7mkp")
 land_sfx = ExtResource("4_302f7")
 hit_sfx = ExtResource("5_1cnkm")
-base_attributes = {
-"Def": 3,
-"Dex": 1,
-"Int": 1,
-"Spd": 2,
-"Str": 4
-}
 
 [node name="StaminaBar" parent="." instance=ExtResource("5_njq1p")]
 offset_top = -24.0
@@ -1433,7 +1426,7 @@ update_rotation = false
 update_scale = false
 
 [node name="WeaponContainer" type="Node2D" parent="."]
-position = Vector2(-8, -4.5)
+position = Vector2(4.5, -2.5)
 
 [node name="ParryAttackParticles" type="GPUParticles2D" parent="WeaponContainer"]
 position = Vector2(1.6, -8.5)

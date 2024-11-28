@@ -971,6 +971,7 @@ z_index = 2
 position = Vector2(1, -22)
 collision_layer = 32
 script = ExtResource("1_kcbgc")
+ACCELERATION = 300.0
 max_health = 80
 health = 80
 experience_reward = 15

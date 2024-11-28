@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://hn82roycabpp"]
+
+[ext_resource type="PackedScene" uid="uid://bgkfoxwgnacsj" path="res://src/environment/items/item.tscn" id="1_o5bik"]
+[ext_resource type="Texture2D" uid="uid://byf3wyyw0p5s3" path="res://assets/textures/items/crown.png" id="2_vuios"]
+
+[node name="Crown" instance=ExtResource("1_o5bik")]
+item_type = 4
+effects = {
+"Def": 0,
+"Dex": 5,
+"Spd": 0,
+"Str": 5
+}
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_vuios")

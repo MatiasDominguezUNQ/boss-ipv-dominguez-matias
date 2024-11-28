@@ -23,6 +23,10 @@ GameState="*res://src/game/singletons/GameState.gd"
 GameEnviroment="*res://src/game/singletons/GameEnviroment.gd"
 CameraTransition="*res://src/game/singletons/camera_transition.tscn"
 
+[debug]
+
+file_logging/enable_file_logging=true
+
 [display]
 
 window/size/viewport_width=800

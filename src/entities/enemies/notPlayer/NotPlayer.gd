@@ -186,8 +186,6 @@ func _remove_custom() -> void:
 
 func _on_sword_area_body_entered(body: Node2D) -> void:
 	GameEnviroment.enemy_attack(body, damage, sword_area, self)
-	if body.has_method("knockback"):
-		body.knockback()
 
 func _on_attack_cooldown_timeout() -> void:
 	can_attack = true

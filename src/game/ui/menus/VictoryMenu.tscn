@@ -54,12 +54,11 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_y556t")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = -32.0
-offset_top = 15.0
-offset_right = 52.0
-offset_bottom = 38.0
+offset_top = 3.035
+offset_right = -1.0
+offset_bottom = 26.035
 grow_horizontal = 2
-text = "Nivel Completado"
+text = "COMPLETED"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -80,7 +79,7 @@ grow_vertical = 2
 [node name="ReplayButton" type="Button" parent="Panel/VBoxContainer"]
 process_mode = 3
 layout_mode = 2
-text = "Siguiente"
+text = "BUTTON_NEXT"
 
 [node name="ReturnButton" type="Button" parent="Panel/VBoxContainer"]
 process_mode = 3
@@ -91,8 +90,8 @@ text = "BUTTON_MENU"
 bus = &"SFX"
 
 [connection signal="mouse_entered" from="Panel/VBoxContainer/ReplayButton" to="." method="on_focus"]
-[connection signal="pressed" from="Panel/VBoxContainer/ReplayButton" to="." method="on_click"]
 [connection signal="pressed" from="Panel/VBoxContainer/ReplayButton" to="." method="_on_NextButton_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/ReplayButton" to="." method="on_click"]
 [connection signal="mouse_entered" from="Panel/VBoxContainer/ReturnButton" to="." method="on_focus"]
 [connection signal="pressed" from="Panel/VBoxContainer/ReturnButton" to="." method="_on_ReturnButton_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/ReturnButton" to="." method="on_click"]

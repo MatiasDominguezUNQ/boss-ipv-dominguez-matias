@@ -12,6 +12,7 @@ radius = 7.0
 height = 28.0
 
 [node name="Rope" type="StaticBody2D"]
+collision_layer = 0
 
 [node name="RopeHolder" type="Sprite2D" parent="."]
 modulate = Color(0.16446, 0.16446, 0.16446, 1)

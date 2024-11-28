@@ -1,5 +1,5 @@
 ﻿keys;en;es
-SETTINGS_DISPLAY;Display;Pantalla
+SETTINGS_DISPLAY;General;General
 SETTINGS_CONTROLS;Controls;Controles
 BUTTON_RETURN;Return;Regresar
 BUTTON_START;Start;Iniciar
@@ -7,25 +7,31 @@ BUTTON_RESTART;Restart;Reiniciar
 BUTTON_EXIT;Exit;Salir
 BUTTON_OPTIONS;Options;Opciones
 BUTTON_MENU;Back to Menu;Volver al Menú
-BUTTON_DISPLAY;Display;Pantalla
+BUTTON_DISPLAY;General;General
 BUTTON_RESUME;Resume;Reanudar
 BUTTON_AUDIO;Audio;Audio
+BUTTON_NEXT;Next;Siguiente
+BUTTON_TUTORIAL;Play Tutorial;Iniciar Tutorial
 TAG_CHARACTER;Character select;Elegir personaje
+TAG_FULLSCREEN;Fullscreen;Pantalla Completa
 TAG_PAUSED;Paused;Pausado
+TAG_LANGUAGE;Language;Idioma
+TAG_MUSIC;Music;Musica
 CLASS_RANGER;Ranger;Arquero
 CLASS_KNIGHT;Knight;Soldado
 CLASS_MAGE;Mage;Mago
 TUTO_01;#;#
 TUTO_02;#;#
-TUTO_03_RANGER;Hold  #;Carga tu ataque con #
-TUTO_03_KNIGHT;#  to  attack;# para atacar
-TUTO_04_RANGER;#  to  roll;# para esquivar
-TUTO_04_KNIGHT;#  to  block;# para bloquear
+TUTO_03_RANGER;Attack with  # / *;Ataca con # y *
+TUTO_03_KNIGHT;Attack with  # / *;Ataca con # y *
+TUTO_04_RANGER;#  to  roll;Esquiva con #
+TUTO_04_KNIGHT;#  to  block;Bloquea con #
 TUTO_05;Drop;Cae
 TUTO_06;Jump;Salta
 TUTO_07;Grab with #;Agarra con #
 TUTO_08;Release with #;Suelta con #
 TUTO_09;Interact with #;Pulsa #
+TUTO_10;# to open inventory;# para abrir el inventario
 TAG_ATTACK;Attack;Atacar
 TAG_INTERACT;Interact;Interactuar
 TAG_UTILITY;Utility Skill;Habilidad Secundaria
@@ -38,3 +44,4 @@ THANKS;Thanks for playing my demo :);Gracias por jugar mi demo :)
 TAG_BRIGHTNESS;Brightness;Brillo
 SILVER_FEATHER;Silver Feather;Pluma de Plata
 SILVER_FEATHER_DESC;Critical hits on well-timed attacks;Daño crítico en ataques sincronizados
+COMPLETED;Level Completed;Nivel Completado

@@ -24,7 +24,6 @@ func _ready() -> void:
 		"Dex": 3,
 		"Def": 3,
 		"Spd": 2,
-		"Int": 1
 	}
 	current_attributes = inventory.get_total_attributes(base_attributes)
 	emit_signal("statsUpdated",current_attributes)
@@ -164,10 +163,10 @@ func _handle_deal_damage(area: Node2D) -> void:
 		for hit_area in hit_areas:
 			if hit_area.has_method("notify_hit"):
 				if is_charging:
-					hit_area.notify_hit(damage*0.8, true)
+					hit_area.notify_hit(damage, true)
 					emit_charge_particles()
 					if hit_area is PlayerBoss:
-						hit_area.notify_hit(damage*0.8, true)
+						hit_area.notify_hit(damage, true)
 						emit_charge_particles()
 				else:
 					hit_area.notify_hit(damage)

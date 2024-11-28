@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://bs0do08ju7ll8"]
+[gd_scene load_steps=15 format=3 uid="uid://bs0do08ju7ll8"]
 
 [ext_resource type="Script" path="res://src/screens/MainMenu.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://c2oy8e2yvdo62" path="res://src/game/levels/Level00.tscn" id="3_64eba"]
 [ext_resource type="AudioStream" uid="uid://b485vsqlu714c" path="res://assets/sound/UI/Minimalist7.ogg" id="3_tccjc"]
 [ext_resource type="PackedScene" uid="uid://b308w8k2ec0i" path="res://src/screens/LevelManager.tscn" id="4"]
 [ext_resource type="AudioStream" uid="uid://drvygf7nu8s7v" path="res://assets/sound/UI/Minimalist10.ogg" id="4_mk1ol"]
@@ -41,6 +42,7 @@ anti_aliasing = false
 [node name="MainMenu" type="Node"]
 script = ExtResource("1")
 level_manager_scene = ExtResource("4")
+tutorial_level = ExtResource("3_64eba")
 focus_sfx = ExtResource("3_tccjc")
 click_sfx = ExtResource("4_mk1ol")
 mouse_cursor = ExtResource("10")
@@ -49,6 +51,7 @@ mouse_cursor = ExtResource("10")
 layer = 2
 
 [node name="TextureRect" type="TextureRect" parent="Background"]
+modulate = Color(0.808998, 0.808998, 0.808998, 1)
 z_as_relative = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -89,6 +92,11 @@ layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_1fk04")
 text = "BUTTON_START"
 
+[node name="StartTutorialButton" type="Button" parent="CanvasLayer/Container/Buttons"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_1fk04")
+text = "BUTTON_TUTORIAL"
+
 [node name="OptionsButton" type="Button" parent="CanvasLayer/Container/Buttons"]
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_i3jli")
@@ -116,12 +124,15 @@ bus = &"SFX"
 [node name="WorldEnviroment" parent="." instance=ExtResource("10_r64ll")]
 
 [connection signal="mouse_entered" from="CanvasLayer/Container/Buttons/StartButton" to="." method="on_focus"]
-[connection signal="pressed" from="CanvasLayer/Container/Buttons/StartButton" to="." method="on_click"]
 [connection signal="pressed" from="CanvasLayer/Container/Buttons/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/Container/Buttons/StartButton" to="." method="on_click"]
+[connection signal="mouse_entered" from="CanvasLayer/Container/Buttons/StartTutorialButton" to="." method="on_focus"]
+[connection signal="pressed" from="CanvasLayer/Container/Buttons/StartTutorialButton" to="." method="on_click"]
+[connection signal="pressed" from="CanvasLayer/Container/Buttons/StartTutorialButton" to="." method="_on_start_tutorial_button_pressed"]
 [connection signal="mouse_entered" from="CanvasLayer/Container/Buttons/OptionsButton" to="." method="on_focus"]
 [connection signal="pressed" from="CanvasLayer/Container/Buttons/OptionsButton" to="." method="on_click"]
 [connection signal="pressed" from="CanvasLayer/Container/Buttons/OptionsButton" to="CanvasLayer/OptionsMenu" method="show"]
 [connection signal="mouse_entered" from="CanvasLayer/Container/Buttons/ExitButton" to="." method="on_focus"]
-[connection signal="pressed" from="CanvasLayer/Container/Buttons/ExitButton" to="." method="on_click"]
 [connection signal="pressed" from="CanvasLayer/Container/Buttons/ExitButton" to="." method="_on_ExitButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/Container/Buttons/ExitButton" to="." method="on_click"]
 [connection signal="start_game" from="CanvasLayer/CharacterSelect" to="." method="_on_character_select_start_game"]

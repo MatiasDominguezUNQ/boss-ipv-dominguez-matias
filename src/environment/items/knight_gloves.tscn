@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://df2y51h717cpi"]
 
-[ext_resource type="PackedScene" uid="uid://bgkfoxwgnacsj" path="res://src/environment/abstract_item/item.tscn" id="1_e5n2n"]
+[ext_resource type="PackedScene" uid="uid://bgkfoxwgnacsj" path="res://src/environment/items/item.tscn" id="1_e5n2n"]
 [ext_resource type="Texture2D" uid="uid://b8yg3arw45i4n" path="res://assets/textures/items/knight_gloves.png" id="2_ijfl3"]
 
 [node name="KnightGloves" instance=ExtResource("1_e5n2n")]

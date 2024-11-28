@@ -10,13 +10,13 @@ func enter() -> void:
 func exit():
 	character.V_SPEED_LIMIT = character.jump_speed
 
-func handle_input(event: InputEvent) -> void:
+func handle_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("jump"):
 		emit_signal("finished", "jump")
 
 
 # En esta función vamos a manejar las acciones apropiadas para este estado
-func update(delta: float) -> void:
+func update(_delta: float) -> void:
 	character._handle_move_input()
 	character._handle_deacceleration()
 	character._apply_movement()

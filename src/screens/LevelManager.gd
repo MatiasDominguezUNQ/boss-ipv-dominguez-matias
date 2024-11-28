@@ -1,9 +1,5 @@
 extends Node
 
-## Escena manager de niveles que administra y carga el nivel actual,
-## y se encarga de reiniciar el nivel, regresar al menu principal o
-## cargar el siguiente nivel.
-
 @export var levels: Array[PackedScene]
 @export var items_global: Array[PackedScene]
 @export var main_menu_path: String
@@ -14,6 +10,7 @@ var current_level: GameLevel
 var level: int = 0
 
 func _ready() -> void:
+	level = GameState.level
 	GameState.connect("current_player_changed", Callable(self, "assign_items_to_chests"))
 	Input.set_custom_mouse_cursor(mouse_cursor, Input.CURSOR_ARROW, mouse_cursor.get_size() / 2)
 	call_deferred("_setup_level", level)
@@ -45,7 +42,6 @@ func _setup_level(id: int) -> void:
 		current_level.get_node("Environment").get_node("Entities").add_child(player)
 		player.global_position = current_level.spawn_point
 		get_tree().paused = false
-		current_level.set_tutorials()
 
 # Callback de regreso al MainMenu.
 func _return_called() -> void:

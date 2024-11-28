@@ -27,7 +27,7 @@ func exit():
 	character.global_rotation = 0
 	clear_current_joint()
 
-func handle_input(event: InputEvent) -> void:
+func handle_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("move_up") && character.can_move_up_rope():
 		clear_current_joint()
 		grab_rope()
@@ -37,7 +37,7 @@ func handle_input(event: InputEvent) -> void:
 	elif Input.is_action_just_pressed("jump"):
 		emit_signal("finished", "jump")
 
-func update(delta: float) -> void:
+func update(_delta: float) -> void:
 	character._handle_rope_swing_input()
 
 func handle_event(event: String, value = null, isCrit = false) -> void:

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dn4bk7vv4r8ke"]
+
+[ext_resource type="PackedScene" uid="uid://bgkfoxwgnacsj" path="res://src/environment/items/item.tscn" id="1_3hovg"]
+[ext_resource type="Texture2D" uid="uid://747v808k7wk0" path="res://assets/textures/items/soldier_boots.png" id="2_wpc5d"]
+
+[node name="MetalGreaves" instance=ExtResource("1_3hovg")]
+item_type = 3
+random_stats = true
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_wpc5d")

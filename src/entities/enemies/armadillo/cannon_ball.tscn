@@ -198,6 +198,87 @@ tracks/5/keys = {
 "values": [4]
 }
 
+[sub_resource type="Animation" id="Animation_rdacd"]
+resource_name = "attack_counterclock"
+length = 0.6
+loop_mode = 1
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BodyPivot/AttackArea:collision_mask")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1.02837),
+"update": 1,
+"values": [2]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BodySfx")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.5308,
+"start_offset": 0.0755,
+"stream": ExtResource("9_hnpdm")
+}],
+"times": PackedFloat32Array(0.363144)
+}
+tracks/1/use_blend = true
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BodyPivot/Body:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(7, 2)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BodyPivot:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -1.5708, -3.14159, -4.71239, -6.28319]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:collision_mask")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:collision_layer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
 [sub_resource type="Animation" id="8"]
 resource_name = "die"
 length = 0.45
@@ -318,55 +399,6 @@ tracks/1/keys = {
 "values": [Vector2i(0, 3), Vector2i(1, 3), Vector2i(2, 3)]
 }
 
-[sub_resource type="Animation" id="Animation_wasv5"]
-resource_name = "walk"
-length = 0.6
-loop_mode = 1
-step = 0.15
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BodyCollision:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(2.84217e-14, 11)]
-}
-tracks/1/type = "audio"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("BodySfx")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"clips": [{
-"end_offset": 0.50529,
-"start_offset": 0.0,
-"stream": ExtResource("12_me6c4")
-}, {
-"end_offset": 0.50529,
-"start_offset": 0.0,
-"stream": ExtResource("12_me6c4")
-}],
-"times": PackedFloat32Array(0, 0.3)
-}
-tracks/1/use_blend = true
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("BodyPivot/Body:frame_coords")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_vrgev"]
 resource_name = "start_attack"
 step = 0.15
@@ -465,22 +497,22 @@ tracks/4/keys = {
 "values": [7]
 }
 
-[sub_resource type="Animation" id="Animation_rdacd"]
-resource_name = "attack_counterclock"
+[sub_resource type="Animation" id="Animation_wasv5"]
+resource_name = "walk"
 length = 0.6
 loop_mode = 1
 step = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BodyPivot/AttackArea:collision_mask")
+tracks/0/path = NodePath("BodyCollision:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1.02837),
-"update": 1,
-"values": [2]
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.84217e-14, 11)]
 }
 tracks/1/type = "audio"
 tracks/1/imported = false
@@ -490,11 +522,15 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "clips": [{
-"end_offset": 0.5308,
-"start_offset": 0.0755,
-"stream": ExtResource("9_hnpdm")
+"end_offset": 0.50529,
+"start_offset": 0.0,
+"stream": ExtResource("12_me6c4")
+}, {
+"end_offset": 0.50529,
+"start_offset": 0.0,
+"stream": ExtResource("12_me6c4")
 }],
-"times": PackedFloat32Array(0.363144)
+"times": PackedFloat32Array(0, 0.3)
 }
 tracks/1/use_blend = true
 tracks/2/type = "value"
@@ -504,46 +540,10 @@ tracks/2/path = NodePath("BodyPivot/Body:frame_coords")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(7, 2)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("BodyPivot:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, -1.5708, -3.14159, -4.71239, -6.28319]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath(".:collision_mask")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [5]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath(".:collision_layer")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [4]
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iidtu"]
@@ -582,7 +582,7 @@ position = Vector2(0, -22)
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_ky20b")
-ACCELERATION = 120.0
+ACCELERATION = 200.0
 max_health = 40
 health = 40
 experience_reward = 8

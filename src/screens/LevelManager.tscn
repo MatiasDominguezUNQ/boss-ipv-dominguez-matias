@@ -1,15 +1,29 @@
-[gd_scene load_steps=6 format=3 uid="uid://b308w8k2ec0i"]
+[gd_scene load_steps=20 format=3 uid="uid://b308w8k2ec0i"]
 
 [ext_resource type="Script" path="res://src/screens/LevelManager.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://c2oy8e2yvdo62" path="res://src/game/levels/Level00.tscn" id="2_evsgx"]
+[ext_resource type="PackedScene" uid="uid://do70gjov5bjmd" path="res://src/game/levels/LevelMain.tscn" id="2_ugoue"]
 [ext_resource type="Texture2D" uid="uid://d2qvdjfp6wj6l" path="res://assets/textures/mouse/crosshair.png" id="3"]
 [ext_resource type="PackedScene" uid="uid://c40d8p0jemg4d" path="res://src/environment/items/jump_boots.tscn" id="3_kxulh"]
 [ext_resource type="PackedScene" uid="uid://y8cy0xggunj6" path="res://src/environment/items/rogue_gloves.tscn" id="4_fnlry"]
+[ext_resource type="PackedScene" uid="uid://ddhpgq1l7gtpk" path="res://src/environment/items/blue_cloak.tscn" id="5_5bd3f"]
+[ext_resource type="PackedScene" uid="uid://dpgceqtgpwaed" path="res://src/environment/items/cloak.tscn" id="6_jxuc8"]
+[ext_resource type="PackedScene" uid="uid://cy223iv83bagw" path="res://src/environment/items/golden_gloves.tscn" id="7_xh1gy"]
+[ext_resource type="PackedScene" uid="uid://2b3ap62lwam8" path="res://src/environment/items/golden_grieves.tscn" id="8_gjhxf"]
+[ext_resource type="PackedScene" uid="uid://bmcgnfifvik0d" path="res://src/environment/items/golden_helmet.tscn" id="9_1u00o"]
+[ext_resource type="PackedScene" uid="uid://cqkjd2j51u3fj" path="res://src/environment/items/gold_armor.tscn" id="10_bxtbu"]
+[ext_resource type="PackedScene" uid="uid://by23ablrnyf6x" path="res://src/environment/items/heavy_armor.tscn" id="11_0shq8"]
+[ext_resource type="PackedScene" uid="uid://c86xmb8e5247k" path="res://src/environment/items/heavy_helmet.tscn" id="12_rhvej"]
+[ext_resource type="PackedScene" uid="uid://df2y51h717cpi" path="res://src/environment/items/knight_gloves.tscn" id="13_tr6kh"]
+[ext_resource type="PackedScene" uid="uid://dohxymp7c5dqs" path="res://src/environment/items/light_armor.tscn" id="14_ykd5r"]
+[ext_resource type="PackedScene" uid="uid://cnlwna68sdrgw" path="res://src/environment/items/light_helmet.tscn" id="15_236me"]
+[ext_resource type="PackedScene" uid="uid://dn4bk7vv4r8ke" path="res://src/environment/items/metal_greaves.tscn" id="16_3khom"]
+[ext_resource type="PackedScene" uid="uid://d3a0b5x56duds" path="res://src/environment/items/silver_feather.tscn" id="17_m13lt"]
 
 [node name="LevelManager" type="Node"]
 script = ExtResource("2")
-levels = Array[PackedScene]([ExtResource("2_evsgx")])
-items_global = Array[PackedScene]([ExtResource("3_kxulh"), ExtResource("4_fnlry")])
+levels = Array[PackedScene]([ExtResource("2_evsgx"), ExtResource("2_ugoue")])
+items_global = Array[PackedScene]([ExtResource("3_kxulh"), ExtResource("4_fnlry"), ExtResource("5_5bd3f"), ExtResource("6_jxuc8"), ExtResource("7_xh1gy"), ExtResource("8_gjhxf"), ExtResource("9_1u00o"), ExtResource("10_bxtbu"), ExtResource("11_0shq8"), ExtResource("12_rhvej"), ExtResource("13_tr6kh"), ExtResource("14_ykd5r"), ExtResource("15_236me"), ExtResource("16_3khom"), ExtResource("17_m13lt")])
 main_menu_path = "res://src/screens/MainMenu.tscn"
 mouse_cursor = ExtResource("3")
 

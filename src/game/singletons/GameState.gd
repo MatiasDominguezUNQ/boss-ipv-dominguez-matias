@@ -6,6 +6,7 @@ signal change_input_mode(gamepad)
 signal level_won()
 
 @onready var items_stash: Inventory = Inventory.new()
+var level: int = 0
 var player_scene: PackedScene
 var current_player: Player
 var current_class: String
