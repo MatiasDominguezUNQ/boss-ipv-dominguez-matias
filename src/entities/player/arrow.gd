@@ -47,7 +47,7 @@ func initialize(container: Node, spawn_position: Vector2, direction: Vector2, sp
 	if special:
 		collision_mask = (1 << 0) | (1 << 2) | (1 << 5)
 		hit_box.collision_mask = 0
-		bounces_limit = 2
+		bounces_limit = 3
 		pierces_limit = 3
 		gravity = 0
 		VELOCITY = VELOCITY * 1

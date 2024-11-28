@@ -1,3 +1,9 @@
+res://src/entities/enemies/armadillo/states
+res://src/entities/enemies/armadillo
+D:/Facultad/Intro videojuegos/Juego Export/export bat
+res://src/entities/enemies/bat/states
+D:/Facultad/Intro videojuegos/Juego Export/export pre evento
+res://assets/textures/background
 res://src/game/ui
 D:/Facultad/Intro videojuegos/Juego Export/export noche de facu/fix bugs
 res://src/game/singletons
@@ -14,9 +20,3 @@ res://src/environment/effects
 res://src/entities/player
 res://assets/localization
 res://assets/textures/tileset/ruins/Legacy Dungeon/Assets
-res://assets/textures/environment
-res://src/environment
-res://assets/textures/weapon
-D:/Facultad/Intro videojuegos/Juego Export/export 2
-res://assets/textures/player
-res://src/environment/background

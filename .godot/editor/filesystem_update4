@@ -37,3 +37,17 @@ res://src/game/levels/LevelDefault.gd
 res://assets/textures/tileset/levels/TileMapLvl00.tscn
 res://src/screens/LevelManager.gd
 res://src/entities/player/ranger/states/DeadState.gd
+res://src/entities/enemies/bat/Bat.tscn
+res://src/entities/enemies/bat/bat.gd
+res://src/entities/enemies/bat/states/bat_walk_state.gd
+res://src/entities/enemies/bat/states/bat_state_machine.gd
+res://src/entities/enemies/bat/states/bat_attack_state.gd
+res://src/entities/enemies/bat/states/bat_idle_state.gd
+res://src/entities/enemies/armadillo/cannon_ball.tscn
+res://default_bus_layout.tres
+res://src/entities/enemies/armadillo/cannon_ball.gd
+res://src/entities/enemies/skeleton/states/SkeletonIdleState.gd
+res://src/entities/enemies/skeleton/skeleton.gd
+res://src/entities/enemies/armadillo/states/cannon_ball_attack_state.gd
+res://src/entities/enemies/skeleton/states/SkeletonWalkState.gd
+res://src/entities/enemies/armadillo/states/cannon_ball_state_machine.gd

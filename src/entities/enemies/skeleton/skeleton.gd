@@ -88,11 +88,19 @@ func acting():
 	return body_animations.current_animation == "hit" || body_animations.current_animation == "attack"
 
 func _can_move_to_target():
+	if target == null:
+		return false
+	raycast.target_position = to_local(target.global_position)
+	raycast.force_raycast_update()
+	#(raycast.is_colliding() && raycast.get_collider() == target)
+	return has_safe_floor(move_direction) && ((abs(raycast.target_position.x) > 55 && (abs(raycast.target_position.y) < 60)) || (abs(raycast.target_position.x) > 5 && (abs(raycast.target_position.y) > 60)))
+
+func has_safe_floor(direction:int) -> bool:
 	var has_floor: bool
 	var has_spikes: bool
 	if target == null:
 		return false
-	if move_direction == 1:
+	if direction == 1:
 		right_floor_cast.force_raycast_update()
 		right_floor_cast_2.force_raycast_update()
 		has_floor = right_floor_cast.is_colliding()
@@ -102,10 +110,7 @@ func _can_move_to_target():
 		left_floor_cast_2.force_raycast_update()
 		has_floor = left_floor_cast.is_colliding()
 		has_spikes = left_floor_cast_2.is_colliding()
-	raycast.target_position = to_local(target.global_position)
-	raycast.force_raycast_update()
-	#(raycast.is_colliding() && raycast.get_collider() == target)
-	return not has_spikes && has_floor && ((abs(raycast.target_position.x) > 55 && (abs(raycast.target_position.y) < 60)) || (abs(raycast.target_position.x) > 0 && (abs(raycast.target_position.y) > 60)))
+	return has_floor and not has_spikes
 
 func _can_attack_target():
 	if target == null:

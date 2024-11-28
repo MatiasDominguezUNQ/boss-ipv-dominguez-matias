@@ -12,10 +12,6 @@ func update(delta):
 	elif character._can_move_to_target():
 		emit_signal("finished", "walk")
 
-func _on_animation_finished(anim_name):
-	if anim_name == "hit":
-		character._play_animation("idle")
-
 func handle_event(event: String, value = null, isCrit = false) -> void:
 	match event:
 		"hit":

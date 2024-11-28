@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c2oy8e2yvdo62"]
+[gd_scene load_steps=23 format=3 uid="uid://c2oy8e2yvdo62"]
 
 [ext_resource type="Script" path="res://src/game/levels/LevelDefault.gd" id="1_dnan7"]
 [ext_resource type="AudioStream" uid="uid://0ijgx0332hb" path="res://assets/sound/bgm/Tracks/Dark 3.ogg" id="2_2fanc"]
@@ -17,8 +17,10 @@
 [ext_resource type="Texture2D" uid="uid://cqu8phjmrwdjx" path="res://assets/textures/tutorial/tutorial_jump.png" id="11_8vurq"]
 [ext_resource type="FontFile" uid="uid://dy5sekvp82oi3" path="res://assets/fonts/Mystery Font(1).ttf" id="12_ube4y"]
 [ext_resource type="PackedScene" uid="uid://cby55meunt1qo" path="res://src/entities/enemies/skeleton/Skeleton.tscn" id="13_3p21p"]
+[ext_resource type="PackedScene" uid="uid://dfb2km1lpc3qa" path="res://src/entities/enemies/bat/Bat.tscn" id="15_t5xdq"]
 [ext_resource type="PackedScene" uid="uid://dnm8i2o1mv3sl" path="res://src/entities/enemies/notPlayer/NotPlayer.tscn" id="15_xjymf"]
 [ext_resource type="PackedScene" uid="uid://df2y51h717cpi" path="res://src/environment/items/knight_gloves.tscn" id="18_pijyx"]
+[ext_resource type="PackedScene" uid="uid://d4nvu7718dkl1" path="res://src/entities/enemies/armadillo/cannon_ball.tscn" id="21_pokhl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n55b7"]
 size = Vector2(1074, 534)
@@ -181,6 +183,39 @@ z_as_relative = false
 
 [node name="Enemies" type="Node2D" parent="Environment/Entities"]
 
+[node name="Bat" parent="Environment/Entities/Enemies" instance=ExtResource("15_t5xdq")]
+position = Vector2(1925, 521)
+
+[node name="Bat2" parent="Environment/Entities/Enemies" instance=ExtResource("15_t5xdq")]
+position = Vector2(2234, 597)
+
+[node name="Bat3" parent="Environment/Entities/Enemies" instance=ExtResource("15_t5xdq")]
+position = Vector2(2864, 1427)
+
+[node name="Bat4" parent="Environment/Entities/Enemies" instance=ExtResource("15_t5xdq")]
+position = Vector2(3918, 1417)
+
+[node name="Bat5" parent="Environment/Entities/Enemies" instance=ExtResource("15_t5xdq")]
+position = Vector2(4888, 945)
+
+[node name="Bat6" parent="Environment/Entities/Enemies" instance=ExtResource("15_t5xdq")]
+position = Vector2(5036, 937)
+
+[node name="Bat7" parent="Environment/Entities/Enemies" instance=ExtResource("15_t5xdq")]
+position = Vector2(5150, 937)
+
+[node name="Bat8" parent="Environment/Entities/Enemies" instance=ExtResource("15_t5xdq")]
+position = Vector2(5214, 939)
+
+[node name="Bat9" parent="Environment/Entities/Enemies" instance=ExtResource("15_t5xdq")]
+position = Vector2(4954, 943)
+
+[node name="Bat10" parent="Environment/Entities/Enemies" instance=ExtResource("15_t5xdq")]
+position = Vector2(4720, 939)
+
+[node name="Bat11" parent="Environment/Entities/Enemies" instance=ExtResource("15_t5xdq")]
+position = Vector2(5328, 943)
+
 [node name="Skeleton" parent="Environment/Entities/Enemies" instance=ExtResource("13_3p21p")]
 position = Vector2(3859, 1504)
 
@@ -189,15 +224,6 @@ position = Vector2(2988, 1504)
 
 [node name="Skeleton2" parent="Environment/Entities/Enemies" instance=ExtResource("13_3p21p")]
 position = Vector2(4070, 1504)
-
-[node name="Skeleton4" parent="Environment/Entities/Enemies" instance=ExtResource("13_3p21p")]
-position = Vector2(4987, 1631)
-
-[node name="Skeleton5" parent="Environment/Entities/Enemies" instance=ExtResource("13_3p21p")]
-position = Vector2(5218, 1632)
-
-[node name="Skeleton6" parent="Environment/Entities/Enemies" instance=ExtResource("13_3p21p")]
-position = Vector2(5399, 1633)
 
 [node name="NotPlayer" parent="Environment/Entities/Enemies" instance=ExtResource("15_xjymf")]
 position = Vector2(5204, 1269)
@@ -218,6 +244,10 @@ script = ExtResource("9_s0mrs")
 turret_scene = ExtResource("10_q2s6t")
 extents = Vector2(250, 600)
 pathfinding_path = NodePath("../AstarTilemap")
+
+[node name="CannonBall" parent="Environment/Entities/Enemies" instance=ExtResource("21_pokhl")]
+position = Vector2(5322, 1608)
+scale = Vector2(2, 2)
 
 [node name="BossArea" type="Area2D" parent="Environment"]
 position = Vector2(5028, 1178)
