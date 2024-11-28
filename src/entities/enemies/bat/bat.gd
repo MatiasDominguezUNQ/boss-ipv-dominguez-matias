@@ -44,8 +44,10 @@ func _apply_movement() -> void:
 				var push_force_total = relative_velocity * 0.5
 				body.velocity.x += push_force_total
 				velocity.x -= push_force_total
+				velocity.y -= ACCELERATION
 			if body.velocity.x == 0:
 				body.velocity.x = push_force * 0.5
+				velocity.y -= ACCELERATION
 			break
 
 func _physics_process(delta: float) -> void:
@@ -77,6 +79,11 @@ func _can_attack_target_air():
 	raycast.target_position = to_local(target.global_position)
 	raycast.force_raycast_update()
 	return raycast.is_colliding() and raycast.get_collider() == target and abs(raycast.target_position.x) < 150 and abs(raycast.target_position.y) < 150
+
+func can_see_body(body):
+	raycast.target_position = to_local(body.global_position)
+	raycast.force_raycast_update()
+	return raycast.is_colliding() and raycast.get_collider() == body
 
 func _on_sword_area_body_entered(body: Node2D) -> void:
 	has_collided = true

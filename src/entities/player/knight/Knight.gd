@@ -24,7 +24,6 @@ func _ready() -> void:
 		"Dex": 3,
 		"Def": 3,
 		"Spd": 2,
-		"Int": 1
 	}
 	current_attributes = inventory.get_total_attributes(base_attributes)
 	emit_signal("statsUpdated",current_attributes)

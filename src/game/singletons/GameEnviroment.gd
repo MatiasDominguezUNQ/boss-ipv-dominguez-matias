@@ -20,6 +20,14 @@ func show_damage(position: Vector2, damage: int, isCrit: bool = false, default: 
 		instance.global_position = position + Vector2(randf_range(-10, 10), randf_range(-10, 10))
 		instance.display_text(str(damage), color)
 
+func show_heal(position: Vector2, amount: int) -> void:
+	if floating_text_scene:
+		color = Color(0.46, 0.827, 0.193)
+		var instance = floating_text_scene.instantiate()
+		add_child(instance)
+		instance.global_position = position + Vector2(randf_range(-10, 10), randf_range(-10, 10))
+		instance.display_text(str(amount), color)
+
 func enemy_attack(body, damage, weapon_area, enemy):
 	var hit_bodies = []
 	for overlapping_body in weapon_area.get_overlapping_bodies():
@@ -38,5 +46,8 @@ func enemy_attack(body, damage, weapon_area, enemy):
 			if hit_body is Player and hit_body.has_method("notify_hit"):
 				weapon_area.collision_mask = 0
 				hit_body.notify_hit(damage)
+				if hit_body.has_method("knockback"):
+					var knockback_direction = (hit_body.global_position - enemy.global_position).normalized()
+					hit_body.knockback(500, knockback_direction) 
 				break 
 	weapon_area.collision_mask = 0

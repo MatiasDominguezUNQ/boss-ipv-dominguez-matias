@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dohxymp7c5dqs"]
+
+[ext_resource type="PackedScene" uid="uid://bgkfoxwgnacsj" path="res://src/environment/items/item.tscn" id="1_2cft0"]
+[ext_resource type="Texture2D" uid="uid://ctx7rhtuiisk4" path="res://assets/textures/items/light_armor.png" id="2_e0ovg"]
+
+[node name="LightArmor" instance=ExtResource("1_2cft0")]
+item_type = 1
+random_stats = true
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_e0ovg")

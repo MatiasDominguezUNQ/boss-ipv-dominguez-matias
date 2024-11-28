@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqkjd2j51u3fj"]
+
+[ext_resource type="PackedScene" uid="uid://bgkfoxwgnacsj" path="res://src/environment/items/item.tscn" id="1_oj5ql"]
+[ext_resource type="Texture2D" uid="uid://b1y11ee02chlp" path="res://assets/textures/items/golden_armor.png" id="2_ia4b6"]
+
+[node name="GoldArmor" instance=ExtResource("1_oj5ql")]
+item_type = 1
+random_stats = true
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_ia4b6")

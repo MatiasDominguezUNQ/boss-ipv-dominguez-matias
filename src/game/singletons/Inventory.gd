@@ -13,11 +13,9 @@ var attribute_modifiers := {
 	"Dex": 0,
 	"Def": 0,
 	"Spd": 0,
-	"Int": 0
 }
 
 func _ready():
-	print("inv ready")
 	emit_signal("updated")
 
 func _init():
@@ -29,22 +27,20 @@ func _init():
 		equipment_slots[i] = InventorySlot.new()
 
 func add_item(item: Item) -> void:
-	print("adding item")
-	for slot in slots:
-		if slot.item and slot.item.item_name == item.item_name and slot.item.item_type == Item.ItemType.CONSUMABLE:
-			slot.amount += 1
-			emit_signal("updated")
-			return
-	for i in range(slots.size()):
-		print("slot: ", i)
-		if slots[i].item is not Item:
-			print(i)
-			slots[i].item = item.duplicate()
-			slots[i].amount = 1
-			slots[i].texture = item.sprite_2d.texture.duplicate()
-			itemsq += 1
-			emit_signal("updated")
-			return
+	if item.item_type != Item.ItemType.CONSUMABLE:
+		for slot in slots:
+			if slot.item and slot.item.item_name == item.item_name and slot.item.item_type == Item.ItemType.CONSUMABLE:
+				slot.amount += 1
+				emit_signal("updated")
+				return
+		for i in range(slots.size()):
+			if slots[i].item is not Item:
+				slots[i].item = item.duplicate()
+				slots[i].amount = 1
+				slots[i].texture = item.sprite_2d.texture.duplicate()
+				itemsq += 1
+				emit_signal("updated")
+				return
 
 func is_full():
 	return itemsq >= 20

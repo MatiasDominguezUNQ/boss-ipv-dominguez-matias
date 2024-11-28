@@ -97,21 +97,22 @@ text = "BUTTON_RETURN"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MainPanel"]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = 35.0
-offset_right = -20.0
-offset_bottom = -35.25
+offset_left = 49.0
+offset_top = 25.0
+offset_right = -40.0
+offset_bottom = -54.0
 grow_horizontal = 2
+grow_vertical = 2
 pivot_offset = Vector2(0, 16.195)
 horizontal_scroll_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainPanel/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 2
+size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
 theme_override_constants/separation = 51
 
@@ -121,10 +122,15 @@ text = "Master"
 horizontal_alignment = 1
 
 [node name="AudioSlider" type="HSlider" parent="MainPanel/ScrollContainer/VBoxContainer/Label"]
-layout_mode = 2
-offset_top = 18.0
-offset_right = 360.0
-offset_bottom = 34.0
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 13.455
+offset_bottom = 29.455
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_vsfkc")
 max_value = 4.0
 step = 0.001
@@ -138,10 +144,15 @@ text = "Musica"
 horizontal_alignment = 1
 
 [node name="AudioSlider" type="HSlider" parent="MainPanel/ScrollContainer/VBoxContainer/Label2"]
-layout_mode = 2
-offset_top = 18.0
-offset_right = 360.0
-offset_bottom = 34.0
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 18.84
+offset_bottom = 34.84
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_vsfkc")
 max_value = 4.0
 step = 0.001
@@ -155,10 +166,15 @@ text = "SFX"
 horizontal_alignment = 1
 
 [node name="AudioSlider" type="HSlider" parent="MainPanel/ScrollContainer/VBoxContainer/Label3"]
-layout_mode = 2
-offset_top = 18.0
-offset_right = 360.0
-offset_bottom = 34.0
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 18.56
+offset_bottom = 34.56
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_vsfkc")
 max_value = 4.0
 step = 0.001
@@ -170,5 +186,5 @@ bus_name = "SFX"
 bus = &"SFX"
 
 [connection signal="mouse_entered" from="MainPanel/ReturnButton" to="." method="on_focus"]
-[connection signal="pressed" from="MainPanel/ReturnButton" to="." method="on_click"]
 [connection signal="pressed" from="MainPanel/ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="MainPanel/ReturnButton" to="." method="on_click"]

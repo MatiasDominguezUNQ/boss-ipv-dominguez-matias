@@ -45,7 +45,6 @@ func _setup_level(id: int) -> void:
 		current_level.get_node("Environment").get_node("Entities").add_child(player)
 		player.global_position = current_level.spawn_point
 		get_tree().paused = false
-		current_level.set_tutorials()
 
 # Callback de regreso al MainMenu.
 func _return_called() -> void:

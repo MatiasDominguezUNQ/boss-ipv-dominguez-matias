@@ -84,7 +84,7 @@ func handle_collision(collision: KinematicCollision2D):
 			crit_particles.emitting = false
 			spawn_effect(vfx_hit)
 			set_physics_process(false)
-			collision_mask = 0
+			hit_box.collision_mask = 0
 			await get_tree().create_timer(2).timeout
 			_remove()
 		else:

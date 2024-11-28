@@ -13,6 +13,7 @@ class_name GameLevel
 @onready var boss_camera: Camera2D = %BossCamera
 @onready var spawn_point: Vector2 = %SpawnPoint.global_position
 @onready var rope_jump: Label = %"Rope Jump"
+@onready var inventory: Label = %Inventory
 
 @export var victory_music: AudioStream
 @export var death_music: AudioStream
@@ -33,6 +34,7 @@ func _ready() -> void:
 	randomize()
 	if boss_area:
 		boss_area.collision_mask = (1 << 9)
+	call_deferred("set_tutorials")
 
 
 func get_chests():
@@ -99,10 +101,13 @@ func set_rope_tutorial():
 	rope_jump.text = text2
 
 func set_interact_tutorial():
+	var inv_key = get_key("toggle_inventory")
+	var inv_text = tr("TUTO_10").replace("#", inv_key)
 	var key = get_key("interact")
 	var text = tr("TUTO_09")
 	text = text.replace("#", key)
 	interact.text = text
+	inventory.text = inv_text
 
 func get_key(action_id) -> String:
 	var events = InputMap.action_get_events(action_id)[0]

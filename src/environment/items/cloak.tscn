@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpgceqtgpwaed"]
+
+[ext_resource type="PackedScene" uid="uid://bgkfoxwgnacsj" path="res://src/environment/items/item.tscn" id="1_w0b7b"]
+[ext_resource type="Texture2D" uid="uid://c1dfvrb5g4qlv" path="res://assets/textures/items/light_cloak.png" id="2_g3g17"]
+
+[node name="Cloak" instance=ExtResource("1_w0b7b")]
+item_name = "Cloak"
+item_desc = "Cloak"
+item_type = 4
+random_stats = true
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_g3g17")

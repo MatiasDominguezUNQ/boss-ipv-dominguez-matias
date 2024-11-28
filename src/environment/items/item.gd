@@ -11,8 +11,8 @@ enum ItemType { HEAD, CHEST, HANDS, FEET, ACCESORY, CONSUMABLE }
 	"Dex": 0,
 	"Def": 0,
 	"Spd": 0,
-	"Int": 0
 }
+@export var random_stats: bool = false
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var item_info: Label = %Info
 @onready var sprite_2d: Sprite2D = $Sprite2D
@@ -24,6 +24,8 @@ var players_in_area: Array[Player] = []
 var can_grab: bool = true
 
 func _ready() -> void:
+	if random_stats:
+		randomize_stats()
 	anim_player.play("idle")
 	set_process(false)
 	item_name = tr(item_name)
@@ -51,7 +53,6 @@ func _process(delta):
 		item_info.position.y -= 5*delta
 
 func pickup(player) -> void:
-	print("pickup item")
 	show_item_info()
 	equip_bonus(player)
 
@@ -73,3 +74,31 @@ func stats_to_string():
 
 func equip_bonus(player):
 	pass
+	
+func randomize_stats():
+	var possible_stats = []
+	match item_type:
+		ItemType.HEAD:
+			possible_stats = ["Def", "Dex", "Str"]
+		ItemType.CHEST:
+			possible_stats = ["Def", "Str", "Spd"]
+		ItemType.HANDS:
+			possible_stats = ["Dex", "Str", "Def"]
+		ItemType.FEET:
+			possible_stats = ["Spd", "Dex", "Def"]
+		ItemType.ACCESORY:
+			possible_stats = ["Str", "Dex", "Spd"]
+	if possible_stats.is_empty(): return
+	var stats_to_apply = 2
+	if randi_range(1, 100) <= 10: 
+		stats_to_apply = 3
+	var chosen_stats = []
+	while chosen_stats.size() < stats_to_apply:
+		var stat = possible_stats.pick_random()
+		if stat not in chosen_stats:
+			chosen_stats.append(stat)
+	for stat in effects.keys():
+		if stat in chosen_stats:
+			effects[stat] = int(randf_range(1, 5))
+		else:
+			effects[stat] = 0

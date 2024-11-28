@@ -43,7 +43,6 @@ var inventory: Inventory
 	"Dex": 5,
 	"Def": 2,
 	"Spd": 4,
-	"Int": 2
 }
 
 var current_attributes: Dictionary
@@ -173,6 +172,18 @@ func _handle_hit(amount: int, isCrit) -> void:
 	player_sfx.play()
 	emit_signal("hp_changed",health, max_health)
 
+func knockback(force: float, direction: Vector2) -> void:
+	direction = direction.normalized()
+	var knockback_force = direction * force 
+	if is_on_floor() and knockback_force.y > -100:
+		knockback_force.y = -80
+	velocity = knockback_force
+
+func heal(amount: int):
+	health += amount
+	emit_signal("hp_changed",health, max_health)
+	GameEnviroment.show_heal(damage_spawn.global_position, amount)
+
 func receive_damage(amount, isCrit):
 	if !is_dead:
 		var defense = current_attributes.get("Def")
@@ -292,7 +303,7 @@ func calculate_speed():
 	move_speed = lerp(0.5, 4.0, float(current_attributes.get("Spd") - 1) / (20 - 1))
 
 func move_slow():
-	if !is_on_floor():
+	if is_on_floor():
 		acceleration = 100
 
 func _on_stamina_bar_cooldown_timeout() -> void:

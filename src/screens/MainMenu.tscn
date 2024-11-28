@@ -49,6 +49,7 @@ mouse_cursor = ExtResource("10")
 layer = 2
 
 [node name="TextureRect" type="TextureRect" parent="Background"]
+modulate = Color(0.808998, 0.808998, 0.808998, 1)
 z_as_relative = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -116,12 +117,12 @@ bus = &"SFX"
 [node name="WorldEnviroment" parent="." instance=ExtResource("10_r64ll")]
 
 [connection signal="mouse_entered" from="CanvasLayer/Container/Buttons/StartButton" to="." method="on_focus"]
-[connection signal="pressed" from="CanvasLayer/Container/Buttons/StartButton" to="." method="on_click"]
 [connection signal="pressed" from="CanvasLayer/Container/Buttons/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/Container/Buttons/StartButton" to="." method="on_click"]
 [connection signal="mouse_entered" from="CanvasLayer/Container/Buttons/OptionsButton" to="." method="on_focus"]
 [connection signal="pressed" from="CanvasLayer/Container/Buttons/OptionsButton" to="." method="on_click"]
 [connection signal="pressed" from="CanvasLayer/Container/Buttons/OptionsButton" to="CanvasLayer/OptionsMenu" method="show"]
 [connection signal="mouse_entered" from="CanvasLayer/Container/Buttons/ExitButton" to="." method="on_focus"]
-[connection signal="pressed" from="CanvasLayer/Container/Buttons/ExitButton" to="." method="on_click"]
 [connection signal="pressed" from="CanvasLayer/Container/Buttons/ExitButton" to="." method="_on_ExitButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/Container/Buttons/ExitButton" to="." method="on_click"]
 [connection signal="start_game" from="CanvasLayer/CharacterSelect" to="." method="_on_character_select_start_game"]

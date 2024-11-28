@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cy223iv83bagw"]
+
+[ext_resource type="PackedScene" uid="uid://bgkfoxwgnacsj" path="res://src/environment/items/item.tscn" id="1_giijv"]
+[ext_resource type="Texture2D" uid="uid://qlet8qcpma7j" path="res://assets/textures/items/golden_gloves.png" id="2_4b48b"]
+
+[node name="GoldenGloves" instance=ExtResource("1_giijv")]
+item_type = 2
+random_stats = true
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_4b48b")

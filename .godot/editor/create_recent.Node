@@ -1,10 +1,10 @@
+CollisionPolygon2D
 Timer
 AudioStreamPlayer
 Control
 TextureProgressBar
 Label
 GPUParticles2D
-CollisionPolygon2D
 PointLight2D
 Camera3D
 WorldEnvironment

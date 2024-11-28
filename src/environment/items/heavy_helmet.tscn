@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c86xmb8e5247k"]
+
+[ext_resource type="PackedScene" uid="uid://bgkfoxwgnacsj" path="res://src/environment/items/item.tscn" id="1_d6q0r"]
+[ext_resource type="Texture2D" uid="uid://b3pfl37m1dd6w" path="res://assets/textures/items/head_icon.png" id="2_f8oye"]
+
+[node name="HeavyHelmet" instance=ExtResource("1_d6q0r")]
+random_stats = true
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_f8oye")
