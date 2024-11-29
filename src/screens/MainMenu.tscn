@@ -124,8 +124,8 @@ bus = &"SFX"
 [node name="WorldEnviroment" parent="." instance=ExtResource("10_r64ll")]
 
 [connection signal="mouse_entered" from="CanvasLayer/Container/Buttons/StartButton" to="." method="on_focus"]
-[connection signal="pressed" from="CanvasLayer/Container/Buttons/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/Container/Buttons/StartButton" to="." method="on_click"]
+[connection signal="pressed" from="CanvasLayer/Container/Buttons/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="mouse_entered" from="CanvasLayer/Container/Buttons/StartTutorialButton" to="." method="on_focus"]
 [connection signal="pressed" from="CanvasLayer/Container/Buttons/StartTutorialButton" to="." method="on_click"]
 [connection signal="pressed" from="CanvasLayer/Container/Buttons/StartTutorialButton" to="." method="_on_start_tutorial_button_pressed"]

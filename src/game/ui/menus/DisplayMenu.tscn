@@ -185,8 +185,8 @@ script = ExtResource("5_lw32n")
 bus = &"SFX"
 
 [connection signal="mouse_entered" from="MainPanel/ReturnButton" to="." method="on_focus"]
-[connection signal="pressed" from="MainPanel/ReturnButton" to="." method="_on_return_button_pressed"]
 [connection signal="pressed" from="MainPanel/ReturnButton" to="." method="on_click"]
+[connection signal="pressed" from="MainPanel/ReturnButton" to="." method="_on_return_button_pressed"]
 [connection signal="value_changed" from="MainPanel/ScrollContainer/VBoxContainer/Label/Brightness" to="." method="_on_brightness_value_changed"]
 [connection signal="toggled" from="MainPanel/ScrollContainer/VBoxContainer/Label2/CheckButton" to="." method="_on_check_button_toggled"]
 [connection signal="item_selected" from="MainPanel/ScrollContainer/VBoxContainer/Label3/OptionButton" to="MainPanel/ScrollContainer/VBoxContainer/Label3/OptionButton" method="_on_item_selected"]

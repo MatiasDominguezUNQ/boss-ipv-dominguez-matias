@@ -21,7 +21,7 @@ func _ready() -> void:
 	inventory.item_equipped.connect(self.updateStats)
 	base_attributes = {
 		"Str": 4,
-		"Dex": 3,
+		"Dex": 4,
 		"Def": 3,
 		"Spd": 2,
 	}

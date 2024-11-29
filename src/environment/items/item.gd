@@ -70,7 +70,8 @@ func stats_to_string():
 		var value = effects[stat]
 		if value > 0:
 			result += stat + " +" + str(value) + "\n"
-	return result.strip_edges()
+	result = result.strip_edges()
+	return result
 
 func equip_bonus(player):
 	pass
