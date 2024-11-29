@@ -31,7 +31,7 @@ res://src/game/ui/GUI.tscn::e512ea5c6f11d9fbe6dd5d2d356231e2::1732837047::res://
 res://src/game/ui/HealthBar.tscn::232d0ceab5aa81324687c12c813c5212::1732837054::res://.godot/exported/133200997/export-90c70cecb4feaa186a2589408986f744-HealthBar.scn
 res://src/game/ui/main_menu.tscn::9f7ca8cca15e24252ef45b4429d9cd03::1732661031::res://.godot/exported/133200997/export-6e9f99bc4b8aef4e07544c611ac01173-main_menu.scn
 res://src/screens/LevelManager.tscn::bb3e041cd9dc978d6e4631c0b93c5076::1732837040::res://.godot/exported/133200997/export-0a72feb6a59cfa98de6d811c623a4c55-LevelManager.scn
-res://src/screens/MainMenu.tscn::e9da86afd61b6f049cddda9f22143b0a::1732837040::res://.godot/exported/133200997/export-d42f27f2e7a53767c12da7c0df23d14a-MainMenu.scn
+res://src/screens/MainMenu.tscn::2bfe2465a19c44d8526f05172246ff9f::1732839471::res://.godot/exported/133200997/export-d42f27f2e7a53767c12da7c0df23d14a-MainMenu.scn
 res://default_bus_layout.tres::2c60c56541539b0be1e2f52ede447573::1732813774::res://.godot/exported/133200997/export-19246414aa9fb561ced4b8dce477acec-default_bus_layout.res
 res://src/entities/enemies/skeleton/Skeleton.tscn::f2e4024acb3f86d3447e9815a45f030c::1732837044::res://.godot/exported/133200997/export-4590d5b2528dde09db06f9ec295462f9-Skeleton.scn
 res://src/entities/player/knight/Knight.tscn::780fcd661ad8821f1833dbfb18e6d2fc::1732837041::res://.godot/exported/133200997/export-3853f286fa978bd23a172e4cafbe940e-Knight.scn
@@ -55,7 +55,7 @@ res://assets/textures/tileset/levels/TileMapLvl02.tscn::9d05f4382f8f9df7bbc6ed95
 res://src/game/levels/Level01.tscn::ea863f4d984248e6c461adb1e176c3e9::1732837045::res://.godot/exported/133200997/export-00dea8f10af15f3c6befe4ab18e7bee8-Level01.scn
 res://src/game/levels/Level02.tscn::bedb7feccb96bfeff4fb747f29a207af::1732837049::res://.godot/exported/133200997/export-fde80e6f20a59902720fabfba97fa4ba-Level02.scn
 res://src/game/levels/levels_enviroment.tscn::e14160db10c584db1878d713df256561::1732661031::res://.godot/exported/133200997/export-43c8d208773d6206e50b81729e5884e4-levels_enviroment.scn
-res://src/game/singletons/WorldEnviroment.tres::4aa4404fd0f96bcdc7219dabae849d9a::1732837290::res://.godot/exported/133200997/export-f17bf73010fb35f46e20e3d158a72723-WorldEnviroment.res
+res://src/game/singletons/WorldEnviroment.tres::4aa4404fd0f96bcdc7219dabae849d9a::1732839471::res://.godot/exported/133200997/export-f17bf73010fb35f46e20e3d158a72723-WorldEnviroment.res
 res://src/game/ui/menus/action_input.tscn::e7954950e562e2097c3b49e06bc6ce89::1732661031::res://.godot/exported/133200997/export-c29ae2f8d3b0c4e5bf0ed3ac3ca6857a-action_input.scn
 res://src/game/ui/menus/AudioMenu.tscn::558ee38ca330bcf359732bd6b643a23d::1732837051::res://.godot/exported/133200997/export-9e3a7b37a00d977238f7ab4a89209584-AudioMenu.scn
 res://src/game/ui/menus/ControlsMenu.tscn::e66e795dfe58ccfbaf924de26aa46875::1732661031::res://.godot/exported/133200997/export-4be31ce834f01036dfc6f11b6b845b33-ControlsMenu.scn
