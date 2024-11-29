@@ -5,10 +5,10 @@
 [ext_resource type="AudioStream" uid="uid://b485vsqlu714c" path="res://assets/sound/UI/Minimalist7.ogg" id="3_tccjc"]
 [ext_resource type="PackedScene" uid="uid://b308w8k2ec0i" path="res://src/screens/LevelManager.tscn" id="4"]
 [ext_resource type="AudioStream" uid="uid://drvygf7nu8s7v" path="res://assets/sound/UI/Minimalist10.ogg" id="4_mk1ol"]
-[ext_resource type="Texture2D" uid="uid://5pf873p8pn83" path="res://assets/textures/background/main_background.png" id="6_2cmbd"]
 [ext_resource type="PackedScene" uid="uid://dcs72phuegkmk" path="res://src/game/ui/CharacterSelectMenu.tscn" id="6_io8u3"]
 [ext_resource type="AudioStream" uid="uid://cc6m3sf0a4did" path="res://assets/sound/bgm/Tracks/Ambience 3.ogg" id="6_kop1s"]
 [ext_resource type="PackedScene" uid="uid://dkuwy38tjrrxs" path="res://src/game/ui/menus/OptionsMenu.tscn" id="7_cwbr0"]
+[ext_resource type="Texture2D" uid="uid://dipxjrg5d3uc0" path="res://assets/textures/background/main_portrait.png" id="7_k8rky"]
 [ext_resource type="Texture2D" uid="uid://ddo8ji8phouh1" path="res://assets/textures/mouse/pointer.png" id="10"]
 [ext_resource type="PackedScene" uid="uid://c1jb1up3g5dl8" path="res://src/game/singletons/WorldEnviroment.tscn" id="10_r64ll"]
 
@@ -58,7 +58,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("6_2cmbd")
+texture = ExtResource("7_k8rky")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
